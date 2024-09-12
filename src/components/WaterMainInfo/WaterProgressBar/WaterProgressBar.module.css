@@ -1,0 +1,24 @@
+.barbox{
+    border-radius: 15px;
+    padding: 12px;
+    width: 198px;
+    height: 70px;
+
+    box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+    background: #fff;
+}
+
+.barday{
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+    color: #323f47;
+}
+
+.barline{
+    border-radius: 9px;
+    width: 174px;
+    height: 6px;
+    background: #f0eff4;
+}
