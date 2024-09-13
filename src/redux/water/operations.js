@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseUrl = "https://watertracker-app-spy2.onrender.com";
+axios.defaults.baseURL = "https://watertracker-app-spy2.onrender.com";
 
 // Операція для додвання порції води в поточний день
 export const addWaterItem = createAsyncThunk(
@@ -52,9 +52,7 @@ export const getDayWater = createAsyncThunk(
   "water/getDayWater",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/water/day");
-      console.log('getDayWater', response.data);
-      
+      const response = await axios.get("/water/day");      
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

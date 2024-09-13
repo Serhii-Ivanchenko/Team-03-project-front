@@ -4,8 +4,10 @@ import "./App.css";
 import { lazy, Suspense, useEffect } from "react";
 import RestrictedRoute from "../RestrictedRoute.jsx";
 import PrivateRoute from "../PrivateRoute.jsx";
-import { useDispatch } from "react-redux";
-import { getDayWater } from "../../redux/water/operations.js";
+import { useDispatch, useSelector } from "react-redux";
+import { refreshUser } from "../../redux/user/operations.js";
+import { selectIsRefreshing } from "../../redux/user/selectors.js";
+import Loader from "../Loader/Loader.jsx";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage.jsx"));
@@ -17,15 +19,18 @@ const NotFoundPage = lazy(() =>
   import("../../pages/NotFoundPage/NotFoundPage.jsx")
 );
 
-function App() {
-  
-  // const dispatch = useDispatch();
+export default function App() {
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getDayWater());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshUser);
+  }, [dispatch]);
 
-  return (
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <SharedLayout>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
@@ -59,6 +64,4 @@ function App() {
       </Suspense>
     </SharedLayout>
   );
-}
-
-export default App;
+};

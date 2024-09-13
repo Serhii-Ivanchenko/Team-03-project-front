@@ -9,13 +9,18 @@ export const initialState = {
     error: null,
   },
 
-//   auth: {
-//     user: {
-//       name: null,
-//       email: null,
-//     },
-//     token: null,
-//     isLoggedIn: false,
-//     isRefreshing: false,
-//   },
+  user: {
+    user: {
+      name: null,
+      email: null,
+      gender: null,
+      photo: null,
+      weight: null,
+      activeTime: null,
+      dailyNorm: null,
+    },
+    token: null,
+    isLoggedIn: false,
+    isRefreshing: false,
+  },
 };
