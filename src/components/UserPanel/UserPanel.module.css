@@ -1,0 +1,16 @@
+.userPanel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+  
+  .greeting {
+    color: #323F47;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 38px; /* 105.556% */
+    letter-spacing: -0.36px;
+    
+  }
+  

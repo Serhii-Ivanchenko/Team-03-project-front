@@ -1,0 +1,41 @@
+.waterItem {
+    display: flex;
+    padding: 20px;
+    align-items: flex-start;
+    gap: 20px; 
+    border-radius: 15px;
+    background: #FFF;
+    backdrop-filter: blur(16.799999237060547px);
+  }
+  
+  .info {
+    flex: 1;
+  }
+  
+  .quantity {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .time {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .editButton, .deleteButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .icon {
+    width: 20px;
+    height: 20px;
+    color: #007bff;
+  }
+  
