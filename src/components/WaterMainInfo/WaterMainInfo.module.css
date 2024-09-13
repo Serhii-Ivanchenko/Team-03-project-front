@@ -1,0 +1,11 @@
+.mainbox{
+    border-radius: 30px;
+    width: 343px;
+    height: 415px;
+
+    background-color: #9be1a0;
+    background-image: url(../../assets/images/water_main_info/transparent_bottle_for_water_1_1x.webp);
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
