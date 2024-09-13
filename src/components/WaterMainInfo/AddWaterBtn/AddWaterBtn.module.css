@@ -7,7 +7,21 @@
 
     display: flex;
     justify-content: center;
+    gap: 10px;
+    align-items: center;
+    margin-left: auto;
+
+    border: none;
     
+}
+
+@media only screen and (min-width: 768px) {
+.btnbox {
+    padding: 18px 30px;
+    width: 178px;
+    height: 60px;
+    
+  }
 }
 
 .btntext{
@@ -20,7 +34,20 @@
     color: #fff;
 }
 
+@media only screen and (min-width: 768px) {
+.btntext{
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
 .btnicon{
     stroke: #fff;
-    fill:black
+}
+
+@media only screen and (min-width: 768px){
+    .btnicon{
+        width: 24px;
+        height: 24px;
+    }
 }
