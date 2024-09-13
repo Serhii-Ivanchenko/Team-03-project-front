@@ -1,9 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import SharedLayout from "../SharedLayout/SharedLayout.jsx";
 import "./App.css";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import RestrictedRoute from "../RestrictedRoute.jsx";
 import PrivateRoute from "../PrivateRoute.jsx";
+import { useDispatch } from "react-redux";
+import { getDayWater } from "../../redux/water/operations.js";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage.jsx"));
@@ -16,6 +18,13 @@ const NotFoundPage = lazy(() =>
 );
 
 function App() {
+  
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getDayWater());
+  // }, [dispatch]);
+
   return (
     <SharedLayout>
       <Suspense fallback={<div>Loading...</div>}>
