@@ -112,10 +112,9 @@
 }
 
 .input {
-  margin-top: 8px;
   border: 1px solid rgba(47, 47, 47, 0.2);
   border-radius: 15px;
-  padding: 14px;
+  padding: 14px 16px;
   height: 46px;
   outline: none;
 }
@@ -186,6 +185,11 @@
 
 .recommendedNorma {
   margin-bottom: 14px;
+}
+
+.waterNorma {
+  color: #9be1a0;
+  margin-top: 5px;
 }
 
 .userNormaWrapper {

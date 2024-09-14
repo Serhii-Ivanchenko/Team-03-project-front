@@ -169,7 +169,7 @@ export default function UserSettingsForm() {
               <p className={css.label}>
                 The required amount of water in liters per day:
               </p>
-              <p>1.5 L</p>
+              <p className={css.waterNorma}>1.5 L</p>
             </div>
             <div className={css.userNormaWrapper}>
               <label className={css.settingsFormLabel} htmlFor="userNorma">
