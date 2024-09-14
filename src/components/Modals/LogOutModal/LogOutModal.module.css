@@ -1,9 +1,20 @@
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .logOutModalContainer {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  align-content: center;
+  align-items: center;
   gap: 28px;
+  animation: modalFadeIn 0.3s ease-out;
 }
 
 .logOutModalTextContainer {
@@ -20,7 +31,6 @@
   line-height: 1.2;
   letter-spacing: -0.01em;
   text-align: center;
-  justify-content: center;
 }
 
 .logOutModalText {
@@ -39,33 +49,37 @@
   margin: 0 auto;
 }
 
-.logOutModalBtn {
+.logOutModalBtn,
+.logOutModalCancelBtn {
   padding: 14px 129px;
-  background-color: #9be1a0;
   border: none;
   border-radius: 30px;
   font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.01em;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.logOutModalBtn {
+  background-color: #9be1a0;
+  color: #fff;
 }
 
 .logOutModalCancelBtn {
-  padding: 14px;
   background-color: #f0eff4;
-  border: none;
-  border-radius: 30px;
   color: #323f474d;
-  font-size: 14px;
-  line-height: 1.29;
-  letter-spacing: -0.01em;
 }
 
-.logOutModallBtn:hover {
-  background-color: #87d28d;
+.logOutModalBtn:hover {
+  background-color: #6ac96e;
+  box-shadow: 0 0 10px 2px #6ac96e;
+  transform: scale(1.05);
 }
 
 .logOutModalCancelBtn:hover {
   color: #2f2f2f;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
 }
 
 @media (min-width: 768px) {
@@ -94,14 +108,9 @@
     gap: 10px;
   }
 
-  .logOutModalBtn {
-    padding: 18px 59px;
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
+  .logOutModalBtn, 
   .logOutModalCancelBtn {
-    padding: 18px 59px;
+    padding: 14px 50px;
     font-size: 16px;
     line-height: 1.5;
   }
