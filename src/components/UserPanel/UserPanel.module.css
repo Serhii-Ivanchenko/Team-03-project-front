@@ -3,6 +3,19 @@
     flex-direction: column;
     gap: 20px;
   }
+
+  @media only screen and (min-width: 768px) {
+    .userPanel {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+}
+
+/* @media only screen and (min-width: 1440px) {
+  .userPanel {
+        
+    }
+} */
   
   .greeting {
     color: #323F47;
@@ -15,7 +28,16 @@
     
   }
 
+  @media only screen and (min-width: 768px) {
+    .greeting {
+      font-size: 36px;
+      line-height: 1.06em;
+      letter-spacing: -0.36px;
+    }
+}
+
   .userName{
     font-weight: 700;
   }
+
   
