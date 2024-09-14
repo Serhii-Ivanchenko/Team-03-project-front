@@ -1,14 +1,22 @@
-import css from "../WelcomeSection/WelcomeSection.css"
+import css from "./WelcomeSection.module.css"
 import Logo from "../Logo/Logo.jsx";
-
+import { Link } from "react-router-dom";
 
 const WelcomeSection = () => {
 
   return (
-      <div className={css.main}>
-          <Logo/>
-      <p className={css.description}>Record daily water intake and track</p>
-      <h1 className={css.title}>Water consumption tracker</h1>
+    <div className={css.mainContainer}>
+      <Logo className={css.logoMain} />
+      <div className={css.welcome}>
+        <p className={css.descr}>Record daily water intake and track</p>
+        <h1 className={css.title}>Water consumption tracker</h1>
+        <Link className={css.singup} to="/signup">
+          Try Tracker
+        </Link>
+        <Link className={css.singin} to="/signin">
+          Sing In
+        </Link>
+      </div>
     </div>
   );
 }

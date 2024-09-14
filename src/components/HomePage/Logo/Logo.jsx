@@ -1,11 +1,15 @@
-import css from "../Logo/Logo.css"
+import css from "./Logo.module.css";
+ import myIcon from "../../../assets/images/icons/icons.svg"; 
+
 
 const Logo = () => {
   return (
-    <div>
+    <div className={css.logo}>
       <svg className={css.logo} width={152} height={24}>
-        <use href="./../../../assets/images/icons.svg#icon-AquaTrack"></use>
+        <use className={css.logoicon} href={`${myIcon}#icon-AquaTrack`}></use>
       </svg>
+    
+     
     </div>
   );
 }
