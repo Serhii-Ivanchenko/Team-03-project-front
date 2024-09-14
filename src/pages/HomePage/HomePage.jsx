@@ -1,3 +1,15 @@
+import AdvantagesSection from "../../components/HomePage/AdvantagesSection/AdvantagesSection.jsx";
+import WelcomeSection from "../../components/HomePage/WelcomeSection/WelcomeSection.jsx";
+
+
+
 export default function HomePage() {
-  return <p>Hello world!</p>;
+
+  return (
+    <div>
+      <WelcomeSection/>
+      <AdvantagesSection />
+     {/* <p>Hello world!</p>; */}
+    </div>
+  );
 }
