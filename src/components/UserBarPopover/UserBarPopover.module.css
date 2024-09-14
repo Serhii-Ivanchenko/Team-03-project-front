@@ -1,25 +1,46 @@
 .popover {
-    display: inline-flex;
-    padding: 14px 57px 14px 20px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 8px;
-    border-radius: 15px;
-    background: #FFF;
-    box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.10);   
-  }
-  
-  .button {
-    color: #323F47;
-    font-family: Poppins;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 22.4px;
-  }
-  
-  .button:hover {
-    background: color #323f47;;
-  }
-  
+  display: inline-flex;
+  padding: 14px 41px 14px 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+  border-radius: 15px;
+  background: #FFF;
+  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.10);   
+}
+
+.button,
+.buttonOut {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.286em;
+  background: none;
+  border: none;
+}
+
+.button {
+  color: #323F47;
+}
+
+.buttonOut {
+  color: rgba(50, 63, 71, 0.40);
+}
+
+.icon,
+.iconOut {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  fill: none;
+}
+
+.icon {
+  stroke: #323F47;
+}
+
+.iconOut {
+  stroke: rgba(50, 63, 71, 0.40);
+}

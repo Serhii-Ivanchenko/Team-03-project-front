@@ -1,10 +1,12 @@
-import UserBar from './UserBar';
+import UserBar from '../UserBar/UserBar';
 import styles from './UserPanel.module.css';
 
-const UserPanel = ({ userName }) => {
+const UserPanel = ({ userName = 'User' }) => {
   return (
     <div className={styles.userPanel}>
-      <h2 className={styles.greeting}>Hello, {userName}!</h2>
+      <h2 className={styles.greeting}>
+        Hello<span className={styles.userName}>, {userName}!</span>
+      </h2>
       <UserBar userName={userName} />
     </div>
   );

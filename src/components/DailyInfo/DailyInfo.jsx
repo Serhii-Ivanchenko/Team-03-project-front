@@ -1,13 +1,16 @@
-import ChooseDate from './ChooseDate';
-import AddWaterBtn from './AddWaterBtn';
-import WaterList from './WaterList';
+import AddWaterButton from '../AddWaterButton/AddWaterButton';
+import ChooseDate from '../ChooseDate/ChooseDate';
+import WaterList from '../WaterList/WaterList';
+import styles from "./DailyInfo.module.css";
 
 const DailyInfo = () => {
   return (
-    <div>
-      <ChooseDate />
-      <AddWaterBtn />
-      <WaterList />
+    <div className={styles.container}>
+      <div className={styles.row}>
+        <ChooseDate />
+        <AddWaterButton />
+      </div>
+      <WaterList className={styles.waterList} />
     </div>
   );
 };

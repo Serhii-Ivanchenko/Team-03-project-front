@@ -1,4 +1,6 @@
-import WaterItem from './WaterItem';
+import WaterItem from '../WaterItem/WaterItem';
+import styles from './WaterList.module.css';
+
 
 const WaterList = () => {
   // Тимчасовий масив даних для прикладу
@@ -10,7 +12,7 @@ const WaterList = () => {
   ];
 
   return (
-    <div className="waterList">
+    <div className={styles.container}>
       {waterItems.map(item => (
         <WaterItem key={item.id} quantity={item.quantity} time={item.time} />
       ))}

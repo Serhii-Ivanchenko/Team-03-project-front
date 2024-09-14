@@ -1,3 +1,10 @@
+import WaterDetailedInfo from "../../components/WaterDetailedInfo/WaterDetailedInfo";
+import styles from './TrackerPage.module.css';
+
 export default function TrackerPage() {
-  return <p>TrackerPage</p>;
+  return (
+    <div className={styles.container}>
+      <WaterDetailedInfo />
+    </div>
+  );
 }
