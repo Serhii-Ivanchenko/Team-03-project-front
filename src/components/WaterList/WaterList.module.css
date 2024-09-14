@@ -1,0 +1,16 @@
+.container{
+    padding: 24px 0px;
+    display: flex;
+    flex-wrap: nowrap;  
+    overflow-x: auto;
+    gap: 10px;
+}
+
+.container::-webkit-scrollbar {
+  height: 8px;
+}
+  
+  .container::-webkit-scrollbar-thumb {
+    border-radius: 9px;
+    background: #323F47;
+  }
