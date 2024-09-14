@@ -5,6 +5,8 @@ margin-left: 32px;
   width: 672px;
   height: 732px;
   margin: 20px auto;
+  float:left;
+  
 }
 /* .logoMain{
      padding-bottom: 32px;
@@ -12,6 +14,9 @@ margin-left: 32px;
 .descr {
   padding-bottom: 16px;
 }
+/* .logoMain{
+   margin-bottom: 132px;
+} */
 
 .welcome {
   padding: 188px 62px;
