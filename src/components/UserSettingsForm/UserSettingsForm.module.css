@@ -1,0 +1,216 @@
+.settingsFormModal {
+  position: relative;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 40px 20px;
+  min-width: 320px;
+  max-width: 343px;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  background-color: transparent;
+  border: none;
+}
+
+.closeBtnIcon {
+  height: 12px;
+  width: 12px;
+  stroke: #2f2f2f;
+}
+
+.uploadPhotoBtn {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.container {
+  /* display: flex; */
+}
+
+.genderFormWrapper {
+  margin-top: 40px;
+}
+
+.genderInput {
+  display: none;
+}
+
+.settingsHeader {
+  color: #323f47;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+.avatarInput {
+  display: none;
+}
+
+.genderWrapper {
+  margin-top: 14px;
+  display: flex;
+  gap: 20px;
+}
+
+.settingsFormLabel {
+  font-family: "Poppins", sans-serif;
+  color: #323f47;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.label {
+  font-family: "Poppins", sans-serif;
+  color: #2f2f2f;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+}
+
+.radioBtnLabel {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  color: #2f2f2f;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+}
+
+.input {
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  border-radius: 15px;
+  padding: 14px 16px;
+  height: 46px;
+  outline: none;
+}
+
+.input:active {
+  border-color: rgba(47, 47, 47, 0.4);
+}
+
+.inputSectionWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  gap: 14px;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.normaSectionWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 14px;
+  margin-top: 14px;
+}
+
+.normaWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.formula {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: #9be1a0;
+}
+
+.formulaDescr {
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+  padding: 16px;
+  height: 140px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: rgba(47, 47, 47, 0.6);
+  margin-bottom: 14px;
+}
+
+.activeTime {
+  display: flex;
+  gap: 4px;
+}
+
+.accent {
+  color: #9be1a0;
+}
+
+.recommendedNorma {
+  margin-bottom: 14px;
+}
+
+.waterNorma {
+  color: #9be1a0;
+  margin-top: 5px;
+}
+
+.userNormaWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.saveButton {
+  margin-top: 40px;
+  border-radius: 30px;
+  padding: 14px 40px;
+  width: 116px;
+  height: 46px;
+  background-color: #9be1a0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
+  border: none;
+}

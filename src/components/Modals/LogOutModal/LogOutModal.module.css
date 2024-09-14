@@ -1,0 +1,117 @@
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.logOutModalContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+.logOutModalTextContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 304px;
+}
+
+.logOutModalTitle {
+  color: #323f47;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.logOutModalText {
+  color: #323f47;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.logOutModalBtnWrapper {
+  display: flex;
+  gap: 9px;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.logOutModalBtn,
+.logOutModalCancelBtn {
+  padding: 14px 129px;
+  border: none;
+  border-radius: 30px;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.logOutModalBtn {
+  background-color: #9be1a0;
+  color: #fff;
+}
+
+.logOutModalCancelBtn {
+  background-color: #f0eff4;
+  color: #323f474d;
+}
+
+.logOutModalBtn:hover {
+  background-color: #6ac96e;
+  box-shadow: 0 0 10px 2px #6ac96e;
+  transform: scale(1.05);
+}
+
+.logOutModalCancelBtn:hover {
+  color: #2f2f2f;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .logOutModalContainer {
+    gap: 24px;
+  }
+
+  .logOutModalTextContainer {
+    width: 436px;
+    gap: 24px;
+  }
+
+  .logOutModalTitle {
+    font-size: 28px;
+    line-height: 1.14;
+  }
+
+  .logOutModalText {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+
+  .logOutModalBtnWrapper {
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .logOutModalBtn, 
+  .logOutModalCancelBtn {
+    padding: 14px 50px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
