@@ -1,6 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "../initialState.js";
-import { logIn, logOut, refreshUser, register } from "./operations.js";
+import {
+  getUserData,
+  logIn,
+  logOut,
+  refreshUser,
+  register,
+  updateUserAvatar,
+  updateUserData,
+} from "./operations.js";
 
 const userSlice = createSlice({
   name: "user",
@@ -36,6 +44,45 @@ const userSlice = createSlice({
       })
       .addCase(refreshUser.rejected, (state) => {
         state.token = null;
+      })
+      .addCase(getUserData.pending, (state) => {
+        state.isLoading = true;
+        state.error = false;
+      })
+      .addCase(getUserData.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+      })
+      .addCase(getUserData.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateUserAvatar.pending, (state) => {
+        state.isLoading = true;
+        state.error = false;
+      })
+      .addCase(updateUserAvatar.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user.photo = action.payload;
+      })
+      .addCase(updateUserAvatar.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateUserData.pending, (state) => {
+        state.isLoading = true;
+        state.error = false;
+      })
+      .addCase(updateUserData.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = {
+          ...state.user,
+          ...action.payload,
+        };
+      })
+      .addCase(updateUserData.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       }),
 });
 

@@ -75,12 +75,48 @@ export const refreshUser = createAsyncThunk(
 );
 
 // Операція для отримання інформації про поточного користувача
-// export const getUserInfo =
+export const getUserData = createAsyncThunk(
+  "user/getUserData",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get("/users/data");
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 // Операція для зміни інформації про користувача
-// export const updateUserInfo =
+export const updateUserData = createAsyncThunk(
+  "user/updateUserData",
+  async (userDataToUpdate, thunkAPI) => {
+    try {
+      const response = await axios.patch(`/users/update`, userDataToUpdate);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 // Операція для зміни аватару користувача
-// export const updateUserAvatar =
+export const updateUserAvatar = createAsyncThunk(
+  "user/updateAvatar",
+  async (newAvatar, thunkAPI) => {
+    try {
+      const formData = new FormData();
+      formData.append("photo", newAvatar);
 
+      const response = await axios.patch("/users/photo", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

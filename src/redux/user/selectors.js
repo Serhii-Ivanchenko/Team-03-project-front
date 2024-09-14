@@ -5,3 +5,7 @@ export const selectUser = (state) => state.user.user;
 export const selectAuth = (state) => state.user;
 
 export const selectIsRefreshing = (state) => state.user.isRefreshing;
+
+export const selectIsLoading = (state) => state.user.isLoading;
+
+export const selectError = (state) => state.user.error;

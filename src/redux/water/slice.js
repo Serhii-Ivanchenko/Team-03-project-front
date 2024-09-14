@@ -9,6 +9,7 @@ import {
   getMonthWater,
   getMonthWaterByMonth,
 } from "./operations.js";
+import { logOut } from "../user/operations.js";
 
 const waterSlice = createSlice({
   name: "water",
@@ -119,6 +120,11 @@ const waterSlice = createSlice({
       .addCase(getMonthWaterByMonth.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
+        state.loading = false;
+        state.error = null;
       }),
 });
 
