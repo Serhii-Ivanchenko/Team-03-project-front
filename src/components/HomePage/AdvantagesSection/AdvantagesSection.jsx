@@ -8,10 +8,10 @@ const AdvantagesSection = () => {
         src="../../../assets/images/main_page/main_page_desktop_girl_1x.webp"
         alt="Girl drinking water"
       />
-      <img
+      {/* <img
         src="../../../assets/images/main_page/main_page_desktop_girl_2x.webp"
         alt="Girl drinking water"
-      />
+      /> */}
     </div>
   );
 }
