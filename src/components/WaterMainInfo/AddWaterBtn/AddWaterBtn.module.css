@@ -12,6 +12,13 @@
     margin-left: auto;
 
     border: none;
+    color: #fff;
+    stroke: #fff;
+}
+
+.btnbox:hover{
+    color: #9be1a0;
+    stroke:#9be1a0 ;
     
 }
 
@@ -20,30 +27,25 @@
     padding: 18px 30px;
     width: 178px;
     height: 60px;
-    
   }
 }
 
-.btntext{
+ .btntext{
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-size: 14px;
     line-height: 1.28571;
     letter-spacing: -0.01em;
     text-align: center;
-    color: #fff;
 }
+
 
 @media only screen and (min-width: 768px) {
 .btntext{
     font-size: 16px;
     line-height: 1.5;
   }
-}
-
-.btnicon{
-    stroke: #fff;
-}
+} 
 
 @media only screen and (min-width: 768px){
     .btnicon{
