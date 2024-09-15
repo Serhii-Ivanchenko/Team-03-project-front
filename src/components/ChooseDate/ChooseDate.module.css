@@ -8,3 +8,11 @@
     letter-spacing: -0.2px;
     
 }
+
+@media only screen and (min-width: 768px) {
+    .dateText {
+        font-size: 28px;
+        line-height: 1.14em;
+        letter-spacing: -0.28px;
+    }
+}

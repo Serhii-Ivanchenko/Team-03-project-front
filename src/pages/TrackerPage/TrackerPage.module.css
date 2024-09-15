@@ -1,5 +1,10 @@
 .container{
     padding-top: 16px;
     padding-bottom: 16px;
-    
 }
+
+@media only screen and (min-width: 1440px) {
+    .container {
+        display: flex;
+        gap: 32px;
+      }}

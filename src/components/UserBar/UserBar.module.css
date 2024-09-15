@@ -6,7 +6,6 @@
     border-radius: 30px;
     background: #323F47;
     border: none;
-    margin-bottom: 43px;
   }
 
   @media only screen and (min-width: 768px) {
@@ -49,6 +48,7 @@
 }
 
   .icon{
+    fill: transparent;
     width: 16px;
     height: 16px;
     stroke:#FFF;

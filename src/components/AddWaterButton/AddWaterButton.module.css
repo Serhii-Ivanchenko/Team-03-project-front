@@ -18,11 +18,11 @@
   }
   
   .icon {
+    border-radius: 50%;
     width: 30px;
     height: 30px;
-    fill: #9BE1A0;
+    background-color: #9BE1A0;
     stroke: #323F47;
-   
   }
   
   .text {
