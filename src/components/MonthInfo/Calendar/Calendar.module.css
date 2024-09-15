@@ -1,0 +1,12 @@
+.container{
+    width: 343px;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 24px;
+    padding-left: 16px;
+    padding-right: 16px;
+    
+}
