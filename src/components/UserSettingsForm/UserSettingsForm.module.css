@@ -3,19 +3,21 @@
   background-color: #fff;
   border-radius: 15px;
   padding: 40px 20px;
+  min-width: 320px;
   max-width: 343px;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 @media screen and (min-width: 768px) {
   .settingsFormModal {
-    min-width: 648px;
+    max-width: 648px;
+    padding: 40px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .settingsFormModal {
-    min-width: 920px;
+    max-width: 920px;
   }
 }
 
@@ -23,6 +25,7 @@
   position: absolute;
   top: 20px;
   right: 16px;
+  padding: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,16 +43,7 @@
 }
 
 .closeBtnIcon {
-  height: 12px;
-  width: 12px;
   stroke: #2f2f2f;
-}
-
-@media screen and (min-width: 768px) {
-  .closeBtnIcon {
-    height: 14px;
-    width: 14px;
-  }
 }
 
 .settingsHeader {
@@ -301,7 +295,7 @@
     height: 128px;
     font-size: 16px;
     line-height: 1.5;
-    padding: 16px 24px;
+    letter-spacing: -0.02em;
   }
 }
 

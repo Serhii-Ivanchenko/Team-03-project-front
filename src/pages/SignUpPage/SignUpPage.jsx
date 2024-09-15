@@ -1,7 +1,9 @@
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
+import UserSettingsForm from "../../components/UserSettingsForm/UserSettingsForm.jsx";
 
 const SignUpPage = () => {
-  return <SignUpForm />;
+  return <div> <SignUpForm /> <UserSettingsForm/>
+  </div>;
 };
 
 export default SignUpPage;
