@@ -1,4 +1,4 @@
-import "./LogOutModal.css";
+import css from"./LogOutModal.module.css";
 
 const LogOutModal = () => {
   return (
