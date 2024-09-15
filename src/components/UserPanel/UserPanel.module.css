@@ -10,13 +10,7 @@
       justify-content: space-between;
     }
 }
-
-/* @media only screen and (min-width: 1440px) {
-  .userPanel {
-        
-    }
-} */
-  
+ 
   .greeting {
     color: #323F47;
     font-family: Gilroy;
