@@ -119,6 +119,15 @@
   outline: none;
 }
 
+.inputError {
+  border: 1px solid #ef5050;
+  border-radius: 15px;
+  padding: 14px 16px;
+  height: 46px;
+  outline: none;
+  color: #ef5050;
+}
+
 .input:active {
   border-color: rgba(47, 47, 47, 0.4);
 }
@@ -213,4 +222,13 @@
   text-align: center;
   color: #323f47;
   border: none;
+}
+
+.errorMessage {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: #ef5050;
 }

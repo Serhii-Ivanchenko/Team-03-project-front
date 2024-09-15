@@ -1,30 +1,42 @@
 import { useForm } from "react-hook-form";
-// import { yupResolver } from "@hookform/resolvers/yup";
-// import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import css from "../UserSettingsForm/UserSettingsForm.module.css";
 import { FiUpload } from "react-icons/fi";
 import { BsExclamationLg } from "react-icons/bs";
 import { MdRadioButtonChecked } from "react-icons/md";
 import { IoMdRadioButtonOff } from "react-icons/io";
 
-export default function UserSettingsForm() {
-  //   const { register, handleSubmit } = useForm({
-  //     resolver: yupResolver(schema),
-  //   });
+const schema = yup.object({
+  gender: yup.string().oneOf(["male", "female"]),
+  name: yup.string().min(2, "Too Short!").max(40, "Too Long!"),
+  email: yup.string().email("Must be a valid email"),
+  weight: yup
+    .number()
+    .typeError("Weight must be a number")
+    .positive("Weight must be a positive number"),
+  activeTime: yup
+    .number()
+    .typeError("Activity must be a number")
+    .positive("Activity must be a positive number"),
+  dailyNorm: yup
+    .number()
+    .typeError("Daily norma must be a number")
+    .positive("Daily norma must be a positive number"),
+});
 
-  const { register, handleSubmit, watch } = useForm();
+export default function UserSettingsForm() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   const selectedOption = watch("gender");
 
   const onSubmit = (data) => console.log(data);
-
-  //   const schema = yup.object({
-  //     gender: yup.string(),
-  //     name: yup.string().min(2, "Too Short!").max(40, "Too Long!"),
-  //     email: yup.string().email(),
-  //     weight: yup.number().positive().integer(),
-  //     activity: yup.number().positive(),
-  //     norma: yup.number().positive(),
-  //   });
 
   return (
     <div className={css.settingsFormModal}>
@@ -101,8 +113,9 @@ export default function UserSettingsForm() {
                   type="text"
                   {...register("name")}
                   id="name"
-                  className={css.input}
+                  className={errors.name ? `${css.inputError}` : `${css.input}`}
                 />
+                <p className={css.errorMessage}>{errors.name?.message}</p>
               </div>
               <div className={css.inputWrapper}>
                 <label className={css.settingsFormLabel} htmlFor="email">
@@ -112,8 +125,11 @@ export default function UserSettingsForm() {
                   type="email"
                   {...register("email")}
                   id="email"
-                  className={css.input}
+                  className={
+                    errors.email ? `${css.inputError}` : `${css.input}`
+                  }
                 />
+                <p className={css.errorMessage}>{errors.email?.message}</p>
               </div>
             </div>
             <p className={css.settingsFormLabel}>My daily norma</p>
@@ -149,9 +165,12 @@ export default function UserSettingsForm() {
                 <input
                   type="text"
                   id="weight"
-                  className={css.input}
+                  className={
+                    errors.weight ? `${css.inputError}` : `${css.input}`
+                  }
                   {...register("weight")}
                 />
+                <p className={css.errorMessage}>{errors.weight?.message}</p>
               </div>
               <div className={css.inputWrapper}>
                 <label className={css.label} htmlFor="activity">
@@ -160,9 +179,12 @@ export default function UserSettingsForm() {
                 <input
                   type="text"
                   id="activity"
-                  className={css.input}
+                  className={
+                    errors.activeTime ? `${css.inputError}` : `${css.input}`
+                  }
                   {...register("activeTime")}
                 />
+                <p className={css.errorMessage}>{errors.activeTime?.message}</p>
               </div>
             </div>
             <div className={css.recommendedNorma}>
@@ -178,9 +200,12 @@ export default function UserSettingsForm() {
               <input
                 type="text"
                 id="userNorma"
-                className={css.input}
+                className={
+                  errors.dailyNorm ? `${css.inputError}` : `${css.input}`
+                }
                 {...register("dailyNorm")}
               />
+              <p className={css.errorMessage}>{errors.dailyNorm?.message}</p>
             </div>
           </div>
         </div>
