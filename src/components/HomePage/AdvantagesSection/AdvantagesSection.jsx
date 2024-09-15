@@ -4,14 +4,11 @@ import css from "./AdvantagesSection.module.css";
 const AdvantagesSection = () => {
   return (
     <div className={css.img}>
-      {/* <img
-        src="../../../assets/images/main_page/main_page_desktop_girl_1x.webp"
-        alt="Girl drinking water"
-      /> */}
-      {/* <img
-        src="../../../assets/images/main_page/main_page_desktop_girl_2x.webp"
-        alt="Girl drinking water"
-      /> */}
+      <div className={css.infoStaticsBtn}>
+        <button className={css.habitbtn}>Habit drive</button>
+        <button className={css.statistics}>View statistics</button>
+        <button className={css.rate}>Personal rate setting</button>
+      </div>
     </div>
   );
 }

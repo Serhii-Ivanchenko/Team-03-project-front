@@ -10,3 +10,33 @@ margin-top:32px;
 /* margin-left: 32px; */
 float: right;
 }
+.habitbtn{
+    background: #323F47;
+color: #FFF;
+
+
+}
+.statistics, .habitbtn, .rate{
+     border-radius: 30px;
+    padding: 11px 16px;
+    border:none;
+    text-align: center;
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: 12px; 
+letter-spacing: -0.12px;
+
+}
+.statistics{
+    background:#9BE1A0;
+}
+.rate{
+    background: #FFF;
+}
+.infoStaticsBtn{
+    display: flex;
+gap:10px;
+
+}

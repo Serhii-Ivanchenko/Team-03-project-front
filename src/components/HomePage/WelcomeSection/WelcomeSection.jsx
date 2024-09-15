@@ -6,7 +6,9 @@ const WelcomeSection = () => {
 
   return (
     <div className={css.mainContainer}>
-      <Logo className={css.logoMain} />
+      <div className={css.logoMain}>
+        <Logo />
+      </div>
       <div className={css.welcome}>
         <p className={css.descr}>Record daily water intake and track</p>
         <h1 className={css.title}>Water consumption tracker</h1>

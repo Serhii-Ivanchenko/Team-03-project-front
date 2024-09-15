@@ -9,18 +9,17 @@
   float:left;
   
 }
-/* .logoMain{
-     padding-bottom: 32px;
-} */
+
 .descr {
   padding-bottom: 16px;
 }
-/* .logoMain{
-   margin-bottom: 132px;
-} */
+.logoMain{
+   margin-left: 32px;
+   margin-top: 32px;
+}
 
 .welcome {
-  padding: 188px 62px;
+  padding: 132px 62px;
 }
 
 .title {
