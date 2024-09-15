@@ -3,9 +3,20 @@
   background-color: #fff;
   border-radius: 15px;
   padding: 40px 20px;
-  min-width: 320px;
   max-width: 343px;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (min-width: 768px) {
+  .settingsFormModal {
+    min-width: 648px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .settingsFormModal {
+    min-width: 920px;
+  }
 }
 
 .closeBtn {
@@ -21,10 +32,60 @@
   border: none;
 }
 
+@media screen and (min-width: 768px) {
+  .closeBtn {
+    height: 28px;
+    width: 28px;
+  }
+}
+
 .closeBtnIcon {
   height: 12px;
   width: 12px;
   stroke: #2f2f2f;
+}
+
+@media screen and (min-width: 768px) {
+  .closeBtnIcon {
+    height: 14px;
+    width: 14px;
+  }
+}
+
+.settingsHeader {
+  color: #323f47;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .settingsHeader {
+    font-size: 28px;
+    line-height: 1.14;
+  }
+}
+
+.avatar {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.avatarInput {
+  display: none;
 }
 
 .uploadPhotoBtn {
@@ -39,8 +100,25 @@
   align-items: center;
   gap: 8px;
 }
-.container {
-  /* display: flex; */
+
+@media screen and (min-width: 768px) {
+  .uploadPhotoBtn {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    display: flex;
+    gap: 40px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    width: 400px;
+  }
 }
 
 .genderFormWrapper {
@@ -49,35 +127,6 @@
 
 .genderInput {
   display: none;
-}
-
-.settingsHeader {
-  color: #323f47;
-  font-family: "Poppins", sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  margin-bottom: 20px;
-}
-
-.avatar {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 10px;
-}
-
-.avatarInput {
-  display: none;
-}
-
-.genderWrapper {
-  margin-top: 14px;
-  display: flex;
-  gap: 20px;
 }
 
 .settingsFormLabel {
@@ -89,13 +138,17 @@
   letter-spacing: -0.01em;
 }
 
-.label {
-  font-family: "Poppins", sans-serif;
-  color: #2f2f2f;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.29;
-  letter-spacing: -0.01em;
+@media screen and (min-width: 768px) {
+  .settingsFormLabel {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+}
+
+.genderWrapper {
+  margin-top: 14px;
+  display: flex;
+  gap: 20px;
 }
 
 .radioBtnLabel {
@@ -111,25 +164,11 @@
   letter-spacing: -0.01em;
 }
 
-.input {
-  border: 1px solid rgba(47, 47, 47, 0.2);
-  border-radius: 15px;
-  padding: 14px 16px;
-  height: 46px;
-  outline: none;
-}
-
-.inputError {
-  border: 1px solid #ef5050;
-  border-radius: 15px;
-  padding: 14px 16px;
-  height: 46px;
-  outline: none;
-  color: #ef5050;
-}
-
-.input:active {
-  border-color: rgba(47, 47, 47, 0.4);
+@media screen and (min-width: 768px) {
+  .radioBtnLabel {
+    font-size: 16px;
+    line-height: 1.5;
+  }
 }
 
 .inputSectionWrapper {
@@ -146,6 +185,50 @@
   gap: 8px;
 }
 
+.input {
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  border-radius: 15px;
+  padding: 14px 16px;
+  height: 46px;
+  outline: none;
+}
+
+@media screen and (min-width: 768px) {
+  .input {
+    padding: 16px;
+    height: 56px;
+  }
+}
+
+.input:active {
+  border-color: rgba(47, 47, 47, 0.4);
+}
+
+.inputError {
+  border: 1px solid #ef5050;
+  border-radius: 15px;
+  padding: 14px 16px;
+  height: 46px;
+  outline: none;
+  color: #ef5050;
+}
+
+@media screen and (min-width: 768px) {
+  .inputError {
+    padding: 16px;
+    height: 56px;
+  }
+}
+
+.errorMessage {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: #ef5050;
+}
+
 .normaSectionWrapper {
   display: flex;
   flex-direction: column;
@@ -154,10 +237,33 @@
   margin-top: 14px;
 }
 
+@media screen and (min-width: 768px) {
+  .normaSectionWrapper {
+    flex-direction: row;
+    gap: 28px;
+  }
+}
+
 .normaWrapper {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.label {
+  font-family: "Poppins", sans-serif;
+  color: #2f2f2f;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+}
+
+@media screen and (min-width: 768px) {
+  .label {
+    font-size: 16px;
+    line-height: 1.5;
+  }
 }
 
 .formula {
@@ -167,6 +273,13 @@
   line-height: 1.29;
   letter-spacing: -0.01em;
   color: #9be1a0;
+}
+
+@media screen and (min-width: 768px) {
+  .formula {
+    font-size: 16px;
+    line-height: 1.5;
+  }
 }
 
 .formulaDescr {
@@ -183,9 +296,37 @@
   margin-bottom: 14px;
 }
 
+@media screen and (min-width: 768px) {
+  .formulaDescr {
+    height: 128px;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 16px 24px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .formulaDescr {
+    height: 152px;
+  }
+}
+
 .activeTime {
   display: flex;
   gap: 4px;
+}
+
+.bsExclamationLg {
+  color: #9be1a0;
+  width: 18px;
+  height: 18px;
+}
+
+@media screen and (min-width: 768px) {
+  .bsExclamationLg {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .accent {
@@ -196,9 +337,23 @@
   margin-bottom: 14px;
 }
 
+@media screen and (min-width: 768px) {
+  .recommendedNorma {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}
+
 .waterNorma {
   color: #9be1a0;
   margin-top: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .waterNorma {
+    margin-top: 0px;
+  }
 }
 
 .userNormaWrapper {
@@ -224,11 +379,12 @@
   border: none;
 }
 
-.errorMessage {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.29;
-  letter-spacing: -0.01em;
-  color: #ef5050;
+@media screen and (min-width: 768px) {
+  .saveButton {
+    padding: 14px 50px;
+    width: 141px;
+    height: 56px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
 }
