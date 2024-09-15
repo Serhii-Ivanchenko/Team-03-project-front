@@ -1,5 +1,5 @@
 import css from "./WelcomeSection.module.css"
-import Logo from "../Logo/Logo.jsx";
+import Logo from "../../../components/Logo/Logo.jsx";
 import { Link } from "react-router-dom";
 
 const WelcomeSection = () => {

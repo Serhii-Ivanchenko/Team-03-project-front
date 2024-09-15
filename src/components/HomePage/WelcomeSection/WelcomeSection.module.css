@@ -1,10 +1,11 @@
 .mainContainer {
   background-color: #f0eff4;
-margin-left: 32px;
   border-radius: 30px;
   width: 672px;
   height: 732px;
-  margin: 20px auto;
+  gap: 32px;
+  margin-top: 32px;
+  margin-left: 32px;
   float:left;
   
 }
