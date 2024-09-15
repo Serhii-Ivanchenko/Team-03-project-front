@@ -5,7 +5,7 @@
   height: 732px;
   gap: 32px;
   margin-top: 32px;
-  margin-left: 32px;
+  /* margin-left: 32px; */
   float:left;
   
 }
@@ -52,6 +52,10 @@
   padding: 18px 40px;
   border-radius: 30px;
 }
+
+.btn:hover{
+    background-color: #87D28D;
+}
 .btnSingIn {
   padding-right: 16px;
   text-decoration: none;
@@ -66,4 +70,9 @@
   padding: 18px 40px;
   border-radius: 30px;
   border: 1px solid #323F47;
+}
+.btnSingIn:hover{
+    border: 1px solid #87D28D;
+    color:#87D28D;
+    
 }
