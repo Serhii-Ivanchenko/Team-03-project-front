@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux";
 import css from "./SignUpForm.module.css";
 import { useForm } from "react-hook-form";
 import clsx from "clsx";
-// import { createContext, useContext } from "react";
 import { register as registerUser } from "../../redux/user/operations";
 import { signUpFormSchema } from "../../validationSchemas/authFormSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,9 +9,8 @@ import { Link } from "react-router-dom";
 import GoogleBtn from "../GoogleBtn/GoogleBtn";
 import toast from "react-hot-toast";
 import axios from "axios";
-
-// const modalContext = createContext();
-// const useModal = () => useContext(modalContext);
+import { useState } from "react";
+import iconSprite from "../../assets/images/icons/icons.svg";
 
 export const AuthFormLayout = ({ children, className }) => {
   return <div className={clsx(css.layout, { className })}>{children}</div>;
@@ -20,7 +18,7 @@ export const AuthFormLayout = ({ children, className }) => {
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
-  //   const { openModal } = useModal();
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -37,11 +35,36 @@ const SignUpForm = () => {
     const newEmail = email.toLowerCase();
     dispatch(registerUser({ email: newEmail, password }));
     reset();
-    // openModal();
   };
 
-  // const handleClickShowPassword = () => {
-  //   setShowPassword(!showPassword);
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleGoogleSignUp = async () => {
+    try {
+      const response = await axios.get("/users/get-oauth-url");
+      const { url } = response.data.data;
+      window.location.href = url;
+    } catch (error) {
+      console.error("Error getting Google OAuth URL:", error);
+      toast.error("Error getting Google OAuth URL");
+    }
+  };
+  // const handleConfirmGoogleAuth = async (code) => {
+  //   try {
+  //     const response = await axios.post("/confirm-google-auth", { code });
+  //     const { token, user } = response.data;
+
+  //     // Dispatch дії для збереження користувача і токену
+  //     dispatch(logInWithGoogle({ token, user }));
+
+  //     toast.success("Successfully signed up with Google!");
+  //     navigate("/"); // Перенаправлення після успішної авторизації
+  //   } catch (error) {
+  //     console.error("Error confirming Google Auth:", error);
+  //     toast.error("Error during Google Sign Up");
+  //   }
   // };
   return (
     <AuthFormLayout className={css.layout}>
@@ -70,10 +93,25 @@ const SignUpForm = () => {
             Password
             <input
               className={clsx(css.input, { [css.inputError]: errors.password })}
-              //   type={showPassword ? "text" : "password"}
+              type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
               {...register("password", { required: true })}
             />
+            <button
+              className={css.showPasswordBtn}
+              type="button"
+              onClick={handleClickShowPassword}
+            >
+              {showPassword ? (
+                <svg className={css.icon}>
+                  <use href={`${iconSprite}#icon-eye-off`}></use>
+                </svg>
+              ) : (
+                <svg className={css.icon}>
+                  <use href={`${iconSprite}#icon-eye`}></use>
+                </svg>
+              )}
+            </button>
           </label>
 
           {errors.password && (
@@ -92,10 +130,25 @@ const SignUpForm = () => {
               className={clsx(css.input, {
                 [css.inputError]: errors.confirmPassword,
               })}
-              //   type={showPassword ? "text" : "password"}
+              type={showPassword ? "text" : "password"}
               placeholder="Repeat password"
               {...register("confirmPassword", { required: true })}
             />
+            <button
+              className={css.showPasswordBtn}
+              type="button"
+              onClick={handleClickShowPassword}
+            >
+              {showPassword ? (
+                <svg className={css.icon}>
+                  <use href={`${iconSprite}#icon-eye-off`}></use>
+                </svg>
+              ) : (
+                <svg className={css.icon}>
+                  <use href={`${iconSprite}#icon-eye`}></use>
+                </svg>
+              )}
+            </button>
           </label>
           {errors.confirmPassword && (
             <p className={css.errorsMessage}>{"password does not match"}</p>
@@ -122,17 +175,6 @@ const SignUpForm = () => {
       </div>
     </AuthFormLayout>
   );
-};
-
-const handleGoogleSignUp = async () => {
-  try {
-    const response = await axios.get("users/get-oauth-url");
-    const { url } = response.data.data;
-    window.location.href = url;
-  } catch (error) {
-    console.log(error);
-    toast.error("Error getting Google OAuth URL");
-  }
 };
 
 export default SignUpForm;
