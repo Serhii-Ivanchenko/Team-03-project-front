@@ -10,12 +10,12 @@ const WaterItem = ({ quantity, time }) => {
         </svg>
       </div>
       <div className={styles.info}>
-        <span className={styles.quantity}>
-          {quantity} <span className={styles.unit}></span>
-        </span>
-        <span className={styles.time}>
-          {time} <span className={styles.unit}></span>
-        </span>
+        <p className={styles.quantity}>
+          {quantity}<span className={styles.unit}></span>
+        </p>
+        <p className={styles.time}>
+          {time}<span className={styles.unit}></span>
+        </p>
       </div>
       <div className={styles.actionIconsContainer}>
         <svg className={styles.iconAction}>

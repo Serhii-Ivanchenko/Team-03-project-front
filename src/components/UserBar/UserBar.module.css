@@ -6,13 +6,11 @@
     border-radius: 30px;
     background: #323F47;
     border: none;
-    margin-bottom: 40px;
   }
 
   @media only screen and (min-width: 768px) {
     .userBar {
       gap: 10px;
-      margin-bottom: 41px;
     }
 }
   

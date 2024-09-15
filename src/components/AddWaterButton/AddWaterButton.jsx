@@ -7,7 +7,7 @@ const AddWaterButton = ({ onClick }) => {
   return (
     <button className={styles.addWaterButton} onClick={onClick}>
       <svg className={styles.icon}>
-        <use href={`${iconPlus}#icon-plus-in-circle`}></use>
+        <use href={`${iconPlus}#icon-plus`}></use>
       </svg>
       <span className={styles.text}>Add water</span>
     </button>
