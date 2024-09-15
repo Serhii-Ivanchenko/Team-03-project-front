@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/auth/operations";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signInFormSchema } from "../../validationSchemas/authFormSchema";
@@ -7,6 +6,7 @@ import { AuthFormLayout } from "../SignUpForm/SignUpForm";
 import css from "./SignInForm.module.css";
 import clsx from "clsx";
 import { NavLink } from "react-router-dom";
+import { logIn } from "../../redux/user/operations";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const SignInForm = () => {
   const onSubmit = (data) => {
     const { email, password } = data;
     const newEmail = email.toLowerCase();
-    dispatch(login({ email: newEmail, password }));
+    dispatch(logIn({ email: newEmail, password }));
     reset();
   };
 

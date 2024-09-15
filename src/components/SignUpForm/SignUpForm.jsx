@@ -3,14 +3,13 @@ import css from "./SignUpForm.module.css";
 import { useForm } from "react-hook-form";
 import clsx from "clsx";
 // import { createContext, useContext } from "react";
-import { register as registerUser } from "../../redux/auth/operations";
+import { register as registerUser } from "../../redux/user/operations";
 import { signUpFormSchema } from "../../validationSchemas/authFormSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import GoogleBtn from "../GoogleBtn/GoogleBtn";
-import { showOnboarding } from "../../redux/auth/slice";
 import toast from "react-hot-toast";
-import { AXIOS_INSTANCE } from "../../redux/constants";
+import axios from "axios";
 
 // const modalContext = createContext();
 // const useModal = () => useContext(modalContext);
@@ -108,10 +107,11 @@ const SignUpForm = () => {
           context={"Sign Up with Google"}
           onClick={() => {
             handleGoogleSignUp();
-            dispatch(showOnboarding(true));
+            // dispatch(userSlice(true));
           }}
         />
         <div className={css.inviteOnLogIn}>
+          {" "}
           <p className={css.inviteText}>
             Already have an account?{" "}
             <Link className={css.link} to="/signin">
@@ -126,7 +126,7 @@ const SignUpForm = () => {
 
 const handleGoogleSignUp = async () => {
   try {
-    const response = await AXIOS_INSTANCE.get("users/get-oauth-url");
+    const response = await axios.get("users/get-oauth-url");
     const { url } = response.data.data;
     window.location.href = url;
   } catch (error) {
