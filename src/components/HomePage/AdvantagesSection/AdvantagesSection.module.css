@@ -38,5 +38,21 @@ letter-spacing: -0.12px;
 .infoStaticsBtn{
     display: flex;
 gap:10px;
-
+    margin-top: 594px;
+    margin-right: 32px;
+justify-content: flex-end;
+}
+.ratebtn{
+        display: flex;
+    justify-content: flex-end;
+       padding-top: 10px;
+    padding-right: 114px;
+    
+}
+.circle{
+    border-radius: 50px;
+    background-color: #9BE1A0;
+    width: 8px;
+    height: 8px;
+     display: inline-block;
 }
