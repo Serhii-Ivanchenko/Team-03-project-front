@@ -1,21 +1,35 @@
-.container{
-    width: 343px;
-    height: 300px;
-    width: 343px;
-       
+.containerpagin{
+    width: 303px;
+    min-width: 276px;
+    height: 20px;
+  
 }
+
+@media only screen and (min-width: 768px) {
+.containerpagin {
+        width: 640px;
+        height: 32px;
+    }
+    }
+
+ @media only screen and (min-width: 1440px) {
+            .containerpagin {
+                width: 608px;
+            }
+        }
 
 .mainbox{
     height: 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-right: 16px;
-        /* padding-left: 16px; */
-        /*padding-bottom: 32px;
-         padding-top: 24px;*/
-    
         background-color: #f0eff4;
+}
+
+@media only screen and (min-width: 768px) {
+    .mainbox {
+            height: 32px;
+        }
 }
 
 .name {
@@ -40,7 +54,7 @@
      width: 200px; 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: right;
     text-align: center;
     align-items: center;
 
@@ -50,13 +64,7 @@
     .mainboxpagination {
             height: 32px;
             width: 215px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            text-align: center;
-            align-items: center;
-    
-        }
+            }
     }
 
        
@@ -69,18 +77,14 @@
          align-items: center;
          height: 20px;
 margin-top : 1px; 
-         gap: 10 px; 
+         gap: 16 px; 
 }
 
 @media only screen and (min-width: 768px) {
     .boxpagination {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            height: 24px;
-             margin-top : 4px; 
-            gap: 10 px;
+        height: 24px;
+        margin-top : 4px; 
+        gap: 20 px;
         }
     }
 
@@ -99,8 +103,7 @@ margin-top : 1px;
 @media only screen and (min-width: 768px) {
     .namemonth {
             font-size: 16px;
-            line-height: 1.5;
-            
+            line-height: 1.5;    
         }
     }
 
@@ -114,8 +117,7 @@ margin-top : 1px;
         height: 20px;
         text-align: center;
         align-items: center;
-        /* width: 100%; */
-            /* height: 100%;*/
+
 } 
 
 .iconpie{
@@ -123,12 +125,11 @@ margin-top : 1px;
         stroke: #323f47;
         width: 20px;
         height: 20px;
+        opacity: 0.4;
 }
 
 @media only screen and (min-width: 768px) {
     .iconpie {
-            stroke-width: 1.80px;
-            stroke: #323f47;
             width: 24px;
             height: 24px;
         }

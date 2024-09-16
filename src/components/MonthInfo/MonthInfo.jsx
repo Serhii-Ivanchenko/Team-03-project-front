@@ -12,11 +12,9 @@ export default function MonthInfo() {
     return (
         <div className={css.container}>
         {/* <div className={css.mainbox}> */}
-            {/* <div className={css.name}>Month</div> */}
-           
+            {/* <div className={css.name}>Month</div> */}           
                 <CalendarPagination  />
-           
-          
+
             {/* </div > */}
             
 
