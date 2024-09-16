@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { refreshUser } from "../../redux/user/operations.js";
 import { selectIsRefreshing } from "../../redux/user/selectors.js";
 import Loader from "../Loader/Loader.jsx";
+import { Toaster } from "react-hot-toast";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage.jsx"));
@@ -32,6 +33,7 @@ export default function App() {
     <Loader />
   ) : (
     <SharedLayout>
+      <Toaster position="top-right" reverseOrder={false} />
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<HomePage />} />

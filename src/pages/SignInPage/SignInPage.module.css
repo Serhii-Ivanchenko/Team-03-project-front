@@ -1,3 +1,8 @@
+.section {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+}
 .container {
   position: relative;
   margin: 0 auto;
@@ -11,6 +16,8 @@
   background: #f0eff4;
   border-radius: 30px;
   width: 100%;
+  gap: 172px;
+  margin-top: 32px;
 
   @media (max-width: 374.98px) {
     max-width: 375px;
@@ -29,8 +36,15 @@
   }
 
   @media (min-width: 1440px) {
-    width: 1440px;
-    flex-direction: row;
+    /* width: 1440px; */
     gap: 32px;
+    max-width: 672px;
+  }
+}
+
+.advantSect {
+  display: none;
+  @media (min-width: 1440px) {
+    display: block;
   }
 }

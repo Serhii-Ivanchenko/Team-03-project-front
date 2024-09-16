@@ -7,10 +7,9 @@
     width: 100%;
   }
 }
-.signUpContainer {
+.signInContainer {
   width: 100%;
   margin-bottom: 100px;
-  margin-top: 172px;
   height: 100%;
 
   @media (min-width: 768px) {
@@ -33,6 +32,7 @@
 }
 
 .form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -58,7 +58,7 @@
 .input {
   width: 100%;
   padding: 16px;
-  margin-bottom: 10px;
+
   line-height: 18px;
   letter-spacing: -1%;
   text-align: left;
@@ -71,6 +71,17 @@
     line-height: 1.5;
     height: 56px;
   }
+}
+input:not(:last-of-type) {
+  margin-bottom: 10px;
+}
+.input:hover,
+input:focus {
+  border: 1px solid rgba(47, 47, 47, 0.4);
+}
+
+.input::placeholder {
+  color: #2f2f2f99;
 }
 .submit {
   margin-top: 32px;
@@ -125,13 +136,17 @@
 .errorMessage {
   color: #ef5050;
   font-size: 13px;
+  font-family: Poppins;
+  margin-top: 10px;
 }
 .inputError {
   border: 1px solid #ef5050;
   color: #ef5050;
   transition: all 0.7s ease-in-out;
 }
-
+.inputError:hover {
+  border: 1px solid #ef5050;
+}
 .showPasswordBtn {
   display: none;
 
@@ -159,4 +174,15 @@
   position: relative;
   display: flex;
   align-items: center;
+}
+.forgotPswBtn {
+  border: none;
+  color: rgba(47, 47, 47, 0.5);
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+.forgotPswBtn:hover {
+  text-decoration: underline;
+  color: rgba(47, 47, 47, 0.8);
 }
