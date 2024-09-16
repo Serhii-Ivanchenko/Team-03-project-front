@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://watertracker-app-spy2.onrender.com";
+// axios.defaults.baseURL = "https://watertracker-app-spy2.onrender.com";
 
 // Операція для додвання порції води в поточний день
 export const addWaterItem = createAsyncThunk(
