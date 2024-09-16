@@ -1,9 +1,14 @@
+import Logo from "../../components/HomePage/Logo/Logo";
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
-import UserSettingsForm from "../../components/UserSettingsForm/UserSettingsForm.jsx";
+import css from "./SignUpPage.module.css";
 
 const SignUpPage = () => {
-  return <div> <SignUpForm /> <UserSettingsForm/>
-  </div>;
+  return (
+    <div className={css.container}>
+      <Logo />
+      <SignUpForm />
+    </div>
+  );
 };
 
 export default SignUpPage;
