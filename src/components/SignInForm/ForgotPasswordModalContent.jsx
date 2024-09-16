@@ -29,13 +29,13 @@ const ForgotPasswordModalContent = ({ onClose }) => {
             type="email"
             className={css.modalInput}
             value={email}
-            placeholder="Enter your password"
+            placeholder="Enter your email"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
         <button type="submit" className={css.modalSubmit}>
-          Reset password{" "}
+          Send email{" "}
         </button>
       </form>
       <button className={css.modalClose} onClick={onClose}>
