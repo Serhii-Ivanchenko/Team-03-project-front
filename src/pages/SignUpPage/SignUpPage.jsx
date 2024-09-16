@@ -1,4 +1,4 @@
-import Logo from "../../components/HomePage/Logo/Logo";
+import Logo from "../../components/Logo/Logo";
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
 import css from "./SignUpPage.module.css";
 
