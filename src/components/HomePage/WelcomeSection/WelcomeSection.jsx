@@ -1,10 +1,9 @@
-import css from "./WelcomeSection.module.css"
+import css from "./WelcomeSection.module.css";
 import Logo from "../../../components/Logo/Logo.jsx";
 import { Link } from "react-router-dom";
-import DeleteWaterModal from './../../Modals/DeleteWaterModal/DeleteWaterModal.jsx'
+import LogOutModal from "./../../Modals/LogOutModal/LogOutModal.jsx";
 
 const WelcomeSection = () => {
-
   return (
     <div className={css.mainContainer}>
       <Logo className={css.logoMain} />
@@ -19,10 +18,10 @@ const WelcomeSection = () => {
         </Link>
       </div>
       <div>
-        <DeleteWaterModal />
+        <LogOutModal />
       </div>
     </div>
   );
-}
+};
 
-export default WelcomeSection
+export default WelcomeSection;
