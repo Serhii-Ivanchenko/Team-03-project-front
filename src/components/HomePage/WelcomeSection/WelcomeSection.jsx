@@ -1,7 +1,6 @@
 import css from "./WelcomeSection.module.css";
 import Logo from "../../../components/Logo/Logo.jsx";
 import { Link } from "react-router-dom";
-import LogOutModal from "./../../Modals/LogOutModal/LogOutModal.jsx";
 
 const WelcomeSection = () => {
   return (
@@ -16,9 +15,6 @@ const WelcomeSection = () => {
         <Link className={css.singin} to="/signin">
           <button className={css.btnSingIn}>Sing In</button>
         </Link>
-      </div>
-      <div>
-        <LogOutModal />
       </div>
     </div>
   );
