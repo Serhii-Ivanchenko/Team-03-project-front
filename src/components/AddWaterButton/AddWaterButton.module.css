@@ -13,16 +13,23 @@
     padding: 0;
   }
   
-  .addWaterButton:hover {
-    background-color: #0056b3;
-  }
-  
   .icon {
-    border-radius: 50%;
-    width: 30px;
+    width: 18px;    
+    height: 18px;
+     stroke: #323F47;
+    fill: transparent;
+     
+  }
+
+  .containerSvg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;     
     height: 30px;
+    border-radius: 50%;
     background-color: #9BE1A0;
-    stroke: #323F47;
+
   }
   
   .text {

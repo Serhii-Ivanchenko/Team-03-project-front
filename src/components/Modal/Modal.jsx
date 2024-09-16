@@ -28,8 +28,8 @@ export default function Modal({ isOpen, onClose, children }) {
       onRequestClose={onClose}
     >
       <>
-        {/* <button onClick={onClose}>close</button> */}
-        {/* {children} */}
+        <button onClick={onClose}>close</button>
+        {children}
       </>
     </ReactModal>
   );
