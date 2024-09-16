@@ -30,13 +30,4 @@ const GoogleBtn = ({ context }) => {
   );
 };
 
-// const GoogleBtn = ({ context, onClick }) => {
-//   return (
-//     <Button className={css.google_btn} onClick={onClick}>
-//       <FcGoogle className={css.icon_google} />
-//       {context}
-//     </Button>
-//   );
-// };
-
 export default GoogleBtn;
