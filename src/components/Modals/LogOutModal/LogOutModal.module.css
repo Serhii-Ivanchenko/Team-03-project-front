@@ -27,15 +27,6 @@
   background: #fff;
 }
 
-.logOutModalTitle {
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1.2em;
-  letter-spacing: -0.01em;
-  text-align: center;
-  color: #323f47;
-}
-
 .logOutModalTextContainer {
   display: flex;
   justify-content: center;
@@ -43,6 +34,15 @@
   gap: 16px;
   width: 316px;
   height: 58px;
+}
+
+.logOutModalTitle {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2em;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
 }
 
 .logOutModalText {
@@ -60,13 +60,15 @@
   justify-content: center;
   flex-direction: column;
   gap: 9px;
-  margin: 0 auto;
+
   width: 304px;
   height: 101px;
 }
 
 .logOutModalBtn,
 .logOutModalCancelBtn {
+  font-weight: 700;
+
   display: flex;
   align-items: center;
   text-wrap: nowrap;
@@ -76,7 +78,7 @@
 
   border-radius: 30px;
   border: none;
-  padding: 14px 129px;
+  padding: 14px 126px;
   width: 304px;
   height: 46px;
 
@@ -87,10 +89,12 @@
 
 .logOutModalBtn {
   background-color: #9be1a0;
-  color: #fff;
+  color: #323f47;
 }
 
 .logOutModalCancelBtn {
+  font-family: "Poppins", sans-serif;
+
   background-color: #f0eff4;
   color: #323f474d;
 }
@@ -121,7 +125,8 @@
     height: 244px;
 
     box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
-    background: #fff;
+    /* background: #fff; */
+    background: red;
   }
 
   .logOutModalTextContainer {
@@ -143,6 +148,9 @@
     flex-direction: row;
     justify-content: center;
     gap: 10px;
+
+    width: 356px;
+    height: 60px;
   }
 
   .logOutModalBtn,
@@ -152,10 +160,14 @@
   }
 
   .logOutModalBtn {
-    padding: 18px 67px;
+    padding: 18px 57px;
+    width: 173px;
+    height: 60px;
   }
 
   .logOutModalCancelBtn {
     padding: 18px 59px;
+    width: 176px;
+    height: 60px;
   }
 }
