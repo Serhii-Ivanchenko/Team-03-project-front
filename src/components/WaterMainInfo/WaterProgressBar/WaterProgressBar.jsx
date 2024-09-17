@@ -1,12 +1,12 @@
 import css from './WaterProgressBar.module.css';
 
-export default function WaterProgressBar() {
+export default function WaterProgressBar({handleSliderChange}) {
     return (
         <div className={css.barbox}>
             <p className={css.barday}>Today</p>
             <div className={css.barline}>
                 <div className={css.barlineFill}></div>
-                <div className={css.barcircle}></div>
+                <div  className={css.barcircle}></div>
             </div>
         
             <ul className={css.barpercent}>
