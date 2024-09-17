@@ -49,6 +49,7 @@ const userSlice = createSlice({
       .addCase(register.rejected, handleRejectedIsLoggedIn)
       .addCase(logIn.pending, handlePendingIsLoggedIn)
       .addCase(logIn.fulfilled, (state, action) => {
+        state.user = { ...state.user, ...action.payload.data.user };
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.isLoading = false;
