@@ -18,9 +18,10 @@ const handlePending = (state) => {
 };
 
 const handleRejected = (state, action) => {
+  state.token = null;
   state.isLoggedIn = false;
   state.isLoading = false;
-  state.error = action.payload.message;
+  state.error = action.payload;
 };
 
 const userSlice = createSlice({
