@@ -18,21 +18,22 @@ const userSlice = createSlice({
     builder
       .addCase(register.pending, (state, action) => {
         state.isLoggedIn = false;
-        state.isLoading = false;
-        state.error = action.payload;
+        state.isLoading = true;
       })
       .addCase(register.fulfilled, (state, action) => {
-        console.log("Received payload:", action.payload.data); // Додайте це
+        console.log("Received payload:", action.payload.data); 
 
         state.user = { ...state.user, ...action.payload.data.user };
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
 
-        console.log("Saved token:", state.token); // Додайте це
-        console.log("Updated state:", state.user, state.token); // Переконайтесь, що новий стан правильно зберігається
+        console.log("Saved token:", state.token);
+        console.log("Updated state:", state.user, state.token);
       })
-      .addCase(register.rejected, (state) => {
+      .addCase(register.rejected, (state,action) => {
         state.isLoggedIn = false;
+        state.isLoading = false;
+        state.error = action.payload;
       })
       .addCase(logIn.pending, (state) => {
         state.isLoading = true;
