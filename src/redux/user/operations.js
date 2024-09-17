@@ -69,12 +69,11 @@ export const refreshUser = createAsyncThunk(
         { withCredentials: true }
       );
 
-      const { accessToken } = response.data.data;
-      setAuthHeader(accessToken);
+      setAuthHeader(response.data.data.accessToken);
 
-      return accessToken;
+      return response.data;
     } catch (error) {
-      clearAuthHeader();
+      // clearAuthHeader();
       console.error("Error refreshing user:", error);
       return thunkAPI.rejectWithValue(error.response.status);
     }
@@ -82,12 +81,11 @@ export const refreshUser = createAsyncThunk(
   {
     condition: (_, thunkAPI) => {
       const reduxState = thunkAPI.getState();
-      const savedToken = reduxState.auth.token;
+      const savedToken = reduxState.user.token;
       return savedToken !== null;
     },
   }
 );
-
 
 // Операція для отримання інформації про поточного користувача
 export const getUserData = createAsyncThunk(
