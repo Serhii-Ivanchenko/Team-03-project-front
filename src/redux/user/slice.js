@@ -21,7 +21,7 @@ const userSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(register.fulfilled, (state, action) => {
-        console.log("Received payload:", action.payload.data); 
+        console.log("Received payload:", action.payload.data);
 
         state.user = { ...state.user, ...action.payload.data.user };
         state.token = action.payload.data.accessToken;
@@ -30,7 +30,7 @@ const userSlice = createSlice({
         console.log("Saved token:", state.token);
         console.log("Updated state:", state.user, state.token);
       })
-      .addCase(register.rejected, (state,action) => {
+      .addCase(register.rejected, (state, action) => {
         state.isLoggedIn = false;
         state.isLoading = false;
         state.error = action.payload;
@@ -102,13 +102,27 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(logInWithGoogle.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = true;
-      })
-      .addCase(logInWithGoogle.rejected, (state) => {
+      .addCase(logInWithGoogle.pending, (state) => {
         state.isLoggedIn = false;
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(logInWithGoogle.fulfilled, (state, action) => {
+        console.log("Received payload:", action.payload);
+
+        // Оновлюємо стан користувача та токен
+        state.user = { ...state.user, ...action.payload.user };
+        state.token = action.payload.accessToken;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+
+        console.log("Saved token:", state.token);
+        console.log("Updated state:", state.user, state.token);
+      })
+      .addCase(logInWithGoogle.rejected, (state, action) => {
+        state.isLoggedIn = false;
+        state.isLoading = false;
+        state.error = action.payload; // Зберігаємо помилку для відображення
       }),
 });
 
