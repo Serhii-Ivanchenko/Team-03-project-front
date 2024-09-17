@@ -1,10 +1,8 @@
 
-
-@media screen and (max-width: 375px) {
-  /* Styles for small phones */
+@media screen and (min-width: 375px) {
   .logo{
-  width: 114px;
-  height: 20px;
+  width: 152px;
+  height: 24px;
  
 }
 }
