@@ -1,5 +1,10 @@
-/* .logo{
-    padding-left: 32px;
-    padding-top: px;
+
+
+@media screen and (max-width: 375px) {
+  /* Styles for small phones */
+  .logo{
+  width: 114px;
+  height: 20px;
  
-} */
+}
+}
