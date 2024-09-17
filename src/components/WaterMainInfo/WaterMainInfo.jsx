@@ -10,7 +10,7 @@ import { useState } from "react";
 export default function WaterMainInfo() {
 
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
   // const [progress, setProgress] = useState(0);
 
   // const handleSliderChange = (event) => {
@@ -30,7 +30,7 @@ const openModal = () => {
             <svg className={css.logoicon} width={114} height={20}>
                 <use className={css.logoiconUse} href={`${myIcon}#icon-AquaTrack`}></use>
             </svg>
-            <WaterDailyNorma norma={user.dailyNorm}/>
+            <WaterDailyNorma />
             <WaterProgressBar  />
             <AddWaterButton openModal={openModal} />
              {
