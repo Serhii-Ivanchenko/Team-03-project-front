@@ -127,23 +127,14 @@ export const logInWithGoogle = createAsyncThunk(
   "user/logInWithGoogle",
   async (code, thunkAPI) => {
     try {
-      // Запит на підтвердження Google логіну
       const response = await axios.post("/auth/google/confirm-google-auth", {
-        code, // Передаємо код для авторизації
+        code,
       });
-
       const { accessToken, user } = response.data.data;
-
-      // Встановлюємо заголовок з токеном для подальших запитів
       setAuthHeader(accessToken);
-
-      // Зберігаємо токен у локальне сховище для відновлення сесії
       localStorage.setItem("accessToken", accessToken);
-
-      // Повертаємо необхідні дані для оновлення стану
       return { accessToken, user };
     } catch (error) {
-      // Якщо виникає помилка, відправляємо її у `rejected` стан
       return thunkAPI.rejectWithValue(error.message);
     }
   }

@@ -112,13 +112,13 @@ const userSlice = createSlice({
       .addCase(logInWithGoogle.fulfilled, (state, action) => {
         console.log("Received payload:", action.payload);
 
-        // Оновлюємо стан користувача та токен
-        state.user = { ...state.user, ...action.payload.user };
-        state.token = action.payload.accessToken;
+        const { accessToken, user } = action.payload;
+
+        state.user = { ...state.user, ...user };
+        state.token = accessToken;
         state.isLoggedIn = true;
         state.isLoading = false;
 
-        console.log("Saved token:", state.token);
         console.log("Updated state:", state.user, state.token);
       })
       .addCase(logInWithGoogle.rejected, (state, action) => {
