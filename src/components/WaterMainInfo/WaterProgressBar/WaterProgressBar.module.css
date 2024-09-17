@@ -94,7 +94,8 @@
 
      position: absolute;
      top: -3px;
-     left: 0; 
+     left:0 ;
+    transition: left 0.5s ease-out;
     
     
 }

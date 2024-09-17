@@ -5,17 +5,11 @@ import css from './WaterMainInfo.module.css'
 import myIcon from '../../assets/images/icons/icons.svg'
 import Modal from "../Modal/Modal";
 import { useState } from "react";
-// import user from
 
 export default function WaterMainInfo() {
 
   const [modalIsOpen, setIsOpen] = useState(false);
-  // const [user, setUser] = useState([]);
-  // const [progress, setProgress] = useState(0);
 
-  // const handleSliderChange = (event) => {
-  //   setProgress();
-  // };
     
 const openModal = () => {
   setIsOpen(true);
