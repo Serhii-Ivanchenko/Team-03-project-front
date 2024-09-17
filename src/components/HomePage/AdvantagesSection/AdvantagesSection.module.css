@@ -1,59 +1,81 @@
+
 .img{
-background-image: url(../../../assets/images/main_page/main_page_desktop_girl_1x.webp);
+background-image: url(../../../assets/images/main_page/main_page_mobile_girl_1x.webp);
 background-repeat: no-repeat;
-width: 672px;
-height: 736px;
+width: 343px;
+height: 353px;
 border-radius: 30px;
-margin-top:32px;
-float: right;
+margin-top:16px;
+float: left;
 }
+
 .habitbtn{
     background: #323F47;
 color: #FFF;
 
-
 }
 .statistics, .habitbtn, .rate{
      border-radius: 30px;
-    padding: 11px 16px;
+    padding: 9px 12px;
     border:none;
     text-align: center;
 font-family: Poppins;
-font-size: 12px;
+font-size: 8px;
 font-style: normal;
 font-weight: 700;
-line-height: 12px; 
-letter-spacing: -0.12px;
+line-height: 8px; 
+letter-spacing: -0.08px;
 
 }
+
+
 .statistics{
     background:#9BE1A0;
 }
 .rate{
     background: #FFF;
 }
+
 .infoStaticsBtn{
     display: flex;
-gap:10px;
-    margin-top: 594px;
-    margin-right: 32px;
+gap:4px;
+    margin-top: 265px;
+    margin-right: 16px;
 justify-content: flex-end;
 }
+
+
 .ratebtn{
         display: flex;
     justify-content: flex-end;
-       padding-top: 10px;
-    padding-right: 114px;
+       padding-top: 4px;
+    padding-right: 83px;
     
 }
+
+
 .circle{
     border-radius: 50px;
     background-color: #9BE1A0;
     width: 8px;
     height: 8px;
      display: inline-block;
+     margin-right: 2px;
 }
-.customers{
+/* ================================== */
+
+
+
+@media only screen and (max-width: 767px) and (min-resolution: 192dpi) {
+    .img {
+        background-image: url(../../../assets//images//main_page/main_page_mobile_girl_2x.webp);
+    }
+}
+
+
+
+
+/* .customers{
     border:none;
     height: 40px;
     border-radius: 30px;
@@ -70,53 +92,96 @@ font-size: 15px;
 font-style: normal;
 font-weight: 700;
 line-height: 22.4px;
-}
-.happy{
+} */
+/* .happy{
     color: #9BE1A0;
-}
+} */
 
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
 
 .img{
-background-image: url(../../../assets/images/main_page/main_page_mobile_girl_1x.webp);
-width: 343px;
-height: 353px;
+background-image: url(../../../assets/images/main_page/main_page_tablet_girl_1x.webp);
+width: 704px;
+height: 446px;
 
 }
 .infoStaticsBtn{
-    margin-top: 265px;
+    display: flex;
+gap:10px;
+    margin-top: 336px;
+    margin-right: 32px;
+justify-content: flex-end;
+}
+
+
+.statistics, .habitbtn, .rate{
+    padding: 11px 16px;
+    border:none;
+font-size: 12px;
+line-height: 12px; 
+letter-spacing: -0.12px;
+
+}
+
+.ratebtn{
+        display: flex;
+    justify-content: flex-end;
+       padding-top: 10px;
+    padding-right: 115px;
+    
+}
+
+}
+
+@media only screen and (min-width: 768px) and (min-resolution: 192dpi) {
+    .img {
+        background-image: url(../../../assets/images/main_page/main_page_tablet_girl_2x.webp);
+    }
+}
+
+
+
+@media screen and (min-width: 1440px) {
+
+.img{
+background-image: url(../../../assets/images/main_page/main_page_desktop_girl_1x.webp);
+width: 672px;
+height: 736px;
+/* margin-top:32px; */
+}
+
+/* 
+.statistics, .habitbtn, .rate{
+    padding: 11px 16px;
+    border:none;
+font-size: 12px;
+line-height: 12px; 
+letter-spacing: -0.12px;
+
+} */
+
+.infoStaticsBtn{
+    display: flex;
+gap:10px;
+    margin-top: 594px;
+    /* margin-right: 32px; */
+/* justify-content: flex-end; */
+}
+
+.ratebtn{
+        display: flex;
+    justify-content: flex-end;
+       padding-top: 10px;
+    padding-right: 114px;
+    
 }
 
 
 }
 
-
-@media screen and (max-width: 375px) {
-  /* Styles for small phones */
-  .mainContainer {
-    width: 343px;
-    height: 411px;
-  }
-
-  .title{
-    font-size: 38px;
-font-style: normal;
-font-weight: 700;
-line-height: 38px;
-  }
-
-  .welcome {
-  padding: 74px 16px;
+@media only screen and (min-width: 1440px) and (min-resolution: 192dpi) {
+    .img {
+        background-image: url(../../../assets/images/main_page/main_page_desktop_girl_2x.webp);
+    }
 }
-.btn{
-padding:14px 19px;
-}
-
-.btnSingIn{
-  padding:14px 28px;
-}
-
-}
-
-
