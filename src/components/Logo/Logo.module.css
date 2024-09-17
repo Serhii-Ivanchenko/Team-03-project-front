@@ -1,5 +1,11 @@
-/* .logo{
-    padding-left: 32px;
-    padding-top: px;
- 
-} */
+.logo {
+  width: 114px;
+  height: 20px;
+}
+
+@media (min-width: 768px) {
+  .logo {
+    width: 152px;
+    height: 24px;
+  }
+}

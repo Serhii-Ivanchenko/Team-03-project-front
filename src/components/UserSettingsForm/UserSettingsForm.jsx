@@ -103,7 +103,7 @@ export default function UserSettingsForm() {
           </div>
         </div>
         <div className={css.container}>
-          <div>
+          <div className={css.wrapper}>
             <div className={css.inputSectionWrapper}>
               <div className={css.inputWrapper}>
                 <label className={css.settingsFormLabel} htmlFor="name">
@@ -150,9 +150,7 @@ export default function UserSettingsForm() {
               of loads (in the absence of these, you must set 0)
             </p>
             <div className={css.activeTime}>
-              <BsExclamationLg
-                style={{ color: "#9be1a0", width: "18px", height: "18px" }}
-              />
+              <BsExclamationLg className={css.bsExclamationLg} />
               <p className={css.label}>Active time in hours</p>
             </div>
           </div>

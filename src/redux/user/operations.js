@@ -3,7 +3,7 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://watertracker-app-spy2.onrender.com";
 
-const setAuthHeader = (token) => {
+export const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
@@ -17,7 +17,9 @@ export const register = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await axios.post("/auth/register", userData);
-      setAuthHeader(response.data.token);
+      setAuthHeader(response.data.data.accessToken);
+      console.log("Full backend response:", response.data);
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.status);
@@ -31,7 +33,7 @@ export const logIn = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await axios.post("/auth/login", userData);
-      setAuthHeader(response.data.token);
+      setAuthHeader(response.data.data.accessToken);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.status);
@@ -55,13 +57,25 @@ export const refreshUser = createAsyncThunk(
   "user/refresh",
   async (_, thunkAPI) => {
     try {
-      const reduxState = thunkAPI.getState();
-      const savedToken = reduxState.auth.token;
-      setAuthHeader(savedToken);
-      const response = await axios.post("/auth/refresh");
-      return response.data;
+      // const reduxState = thunkAPI.getState();
+      // const savedToken = reduxState.user.token;
+      // console.log("Saved Token:", savedToken);
+
+      // setAuthHeader(savedToken);
+
+      const response = await axios.post(
+        "/auth/refresh",
+        {},
+        { withCredentials: true }
+      );
+
+      const { accessToken } = response.data.data;
+      setAuthHeader(accessToken);
+
+      return accessToken;
     } catch (error) {
       clearAuthHeader();
+      console.error("Error refreshing user:", error);
       return thunkAPI.rejectWithValue(error.response.status);
     }
   },
@@ -73,6 +87,7 @@ export const refreshUser = createAsyncThunk(
     },
   }
 );
+
 
 // Операція для отримання інформації про поточного користувача
 export const getUserData = createAsyncThunk(
@@ -117,6 +132,36 @@ export const updateUserAvatar = createAsyncThunk(
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const logInWithGoogle = createAsyncThunk(
+  "user/logInWithGoogle",
+  async (code, thunkAPI) => {
+    try {
+      const response = await axios.post("/auth/google/confirm-google-auth", {
+        code,
+      });
+      const { accessToken, user } = response.data.data;
+      setAuthHeader(accessToken);
+      localStorage.setItem("accessToken", accessToken);
+      return { accessToken, user };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// для зміни паролю користувача
+export const resetPassword = createAsyncThunk(
+  "user/resetPassword",
+  async (email, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("/users/reset-password", { email });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
     }
   }
 );
