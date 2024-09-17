@@ -68,12 +68,14 @@ const userSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        // state.user = action.payload;
+        state.token = action.payload; 
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, (state) => {
         state.token = null;
+        state.isRefreshing = false;
       })
       .addCase(getUserData.pending, handlePending)
       .addCase(getUserData.fulfilled, (state, action) => {

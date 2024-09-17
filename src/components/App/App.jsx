@@ -25,7 +25,7 @@ export default function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(refreshUser);
+    dispatch(refreshUser());
   }, [dispatch]);
 
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -59,7 +59,7 @@ export default function App() {
           <Route
             path="/tracker"
             element={
-              <PrivateRoute redirectTo="/login" component={<TrackerPage />} />
+              <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
             }
           />
           <Route path="/confirm-google-auth" element={<GoogleAuthCallback />} />

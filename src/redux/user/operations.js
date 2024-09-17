@@ -57,13 +57,25 @@ export const refreshUser = createAsyncThunk(
   "user/refresh",
   async (_, thunkAPI) => {
     try {
-      const reduxState = thunkAPI.getState();
-      const savedToken = reduxState.auth.token;
-      setAuthHeader(savedToken);
-      const response = await axios.post("/auth/refresh");
-      return response.data;
+      // const reduxState = thunkAPI.getState();
+      // const savedToken = reduxState.user.token;
+      // console.log("Saved Token:", savedToken);
+
+      // setAuthHeader(savedToken);
+
+      const response = await axios.post(
+        "/auth/refresh",
+        {},
+        { withCredentials: true }
+      );
+
+      const { accessToken } = response.data.data;
+      setAuthHeader(accessToken);
+
+      return accessToken;
     } catch (error) {
       clearAuthHeader();
+      console.error("Error refreshing user:", error);
       return thunkAPI.rejectWithValue(error.response.status);
     }
   },
@@ -75,6 +87,7 @@ export const refreshUser = createAsyncThunk(
     },
   }
 );
+
 
 // Операція для отримання інформації про поточного користувача
 export const getUserData = createAsyncThunk(
