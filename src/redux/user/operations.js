@@ -120,3 +120,28 @@ export const updateUserAvatar = createAsyncThunk(
     }
   }
 );
+
+export const logInWithGoogle = createAsyncThunk(
+  "user/logInWithGoogle",
+  async ({ token, user }, { rejectWithValue }) => {
+    try {
+      // Обробка успішної авторизації через Google
+      return { token, user };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+// для зміни паролю користувача
+export const resetPassword = createAsyncThunk(
+  "user/resetPassword",
+  async (email, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("/users/reset-password", { email });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
