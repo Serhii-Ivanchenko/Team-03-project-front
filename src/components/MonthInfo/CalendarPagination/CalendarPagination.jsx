@@ -42,7 +42,7 @@ const options = {
 
 
   return (
-    <div className={css.container}>
+    <div className={css.containerpagin}>
       <div className={css.mainbox}>
       <p className={css.name}>Month</p>
     <div className={css.mainboxpagination}>

@@ -39,7 +39,7 @@ export default function Calendar() {
 
 
   return (
-    <div className={css.container}>
+    <div className={css.containercalend}>
      { data.map(item => (
         <CalendarItem key={item.date} day={item.date.slice(-2)} value={item.value} />
       ))}
