@@ -132,3 +132,16 @@ export const logInWithGoogle = createAsyncThunk(
     }
   }
 );
+
+// для зміни паролю користувача
+export const resetPassword = createAsyncThunk(
+  "user/resetPassword",
+  async (email, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("/users/reset-password", { email });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);

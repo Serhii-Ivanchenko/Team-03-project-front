@@ -1,3 +1,8 @@
+.section {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+}
 .container {
   position: relative;
   margin: 0 auto;
@@ -5,12 +10,13 @@
   padding-right: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 126px;
   padding-top: 16px;
   padding-bottom: 16px;
   background: #f0eff4;
   border-radius: 30px;
   width: 100%;
+  margin-top: 32px;
 
   @media (max-width: 374.98px) {
     max-width: 375px;
@@ -29,8 +35,14 @@
   }
 
   @media (min-width: 1440px) {
-    width: 1440px;
-    flex-direction: row;
-    gap: 32px;
+    /* width: 1440px; */
+    max-width: 672px;
+    gap: 0;
+  }
+}
+.advantSect {
+  display: none;
+  @media (min-width: 1440px) {
+    display: block;
   }
 }

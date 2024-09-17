@@ -30,11 +30,29 @@ const SignUpForm = () => {
     mode: "onSubmit",
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const { email, password } = data;
     const newEmail = email.toLowerCase();
-    dispatch(registerUser({ email: newEmail, password }));
-    reset();
+
+    try {
+      const resultAction = await dispatch(
+        registerUser({ email: newEmail, password })
+      );
+      if (registerUser.fulfilled.match(resultAction)) {
+        reset();
+        toast.success("Registration successful!");
+      } else if (registerUser.rejected.match(resultAction)) {
+        const errorStatus = resultAction.payload;
+        if (errorStatus === 409) {
+          toast.error("User already exists.");
+        } else {
+          toast.error("Registration failed. Please try again.");
+        }
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+      toast.error("An unexpected error occurred.");
+    }
   };
 
   const handleClickShowPassword = () => {
@@ -71,88 +89,81 @@ const SignUpForm = () => {
       <div className={css.signUpContainer}>
         <h2 className={css.title}>Sign Up</h2>
         <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-          <label
-            className={clsx(css.field, { [css.errorField]: errors.email })}
-          >
-            Email
+          <label className={css.field}>
+            <span className={css.label}>Email </span>
             <input
-              className={clsx(css.input, { [css.inputError]: errors.email })}
-              placeholder="Enter your email"
+              type="email"
               {...register("email", {
                 required: true,
               })}
+              placeholder="Enter your email"
+              className={clsx(css.input, { [css.inputError]: errors.email })}
             />
-          </label>
-          {errors.email && (
-            <p className={css.errorsMessage}>{errors.email.message}</p>
-          )}
-
-          <label
-            className={clsx(css.field, { [css.errorField]: errors.password })}
-          >
-            Password
-            <input
-              className={clsx(css.input, { [css.inputError]: errors.password })}
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
-              {...register("password", { required: true })}
-            />
-            <button
-              className={css.showPasswordBtn}
-              type="button"
-              onClick={handleClickShowPassword}
-            >
-              {showPassword ? (
-                <svg className={css.icon}>
-                  <use href={`${iconSprite}#icon-eye-off`}></use>
-                </svg>
-              ) : (
-                <svg className={css.icon}>
-                  <use href={`${iconSprite}#icon-eye`}></use>
-                </svg>
-              )}
-            </button>
+            <p className={css.errorMessage}>{errors.email?.message}</p>
           </label>
 
-          {errors.password && (
-            <p className={css.errorsMessage}>
-              {"must contain at least 8 characters"}
+          <label className={css.field}>
+            <span className={css.label}>Password </span>
+            <div className={css.inputField}>
+              <input
+                type={showPassword ? "text" : "password"}
+                {...register("password", { required: true })}
+                placeholder="Enter your password"
+                className={clsx(css.input, {
+                  [css.inputError]: errors.password,
+                })}
+              />
+              <button
+                className={css.showPasswordBtn}
+                type="button"
+                onClick={handleClickShowPassword}
+              >
+                {showPassword ? (
+                  <svg className={css.icon}>
+                    <use href={`${iconSprite}#icon-eye-off`}></use>
+                  </svg>
+                ) : (
+                  <svg className={css.icon}>
+                    <use href={`${iconSprite}#icon-eye`}></use>
+                  </svg>
+                )}
+              </button>
+            </div>
+            <p className={css.errorMessage}>{errors.password?.message}</p>
+          </label>
+
+          <label className={css.field}>
+            <span className={css.label}> Repeat password</span>
+            <div className={css.inputField}>
+              <input
+                type={showPassword ? "text" : "password"}
+                {...register("confirmPassword", { required: true })}
+                placeholder="Repeat password"
+                className={clsx(css.input, {
+                  [css.inputError]: errors.confirmPassword,
+                })}
+              />
+              <button
+                className={css.showPasswordBtn}
+                type="button"
+                onClick={handleClickShowPassword}
+              >
+                {showPassword ? (
+                  <svg className={css.icon}>
+                    <use href={`${iconSprite}#icon-eye-off`}></use>
+                  </svg>
+                ) : (
+                  <svg className={css.icon}>
+                    <use href={`${iconSprite}#icon-eye`}></use>
+                  </svg>
+                )}
+              </button>
+            </div>
+            <p className={css.errorMessage}>
+              {errors.confirmPassword?.message}
             </p>
-          )}
-
-          <label
-            className={clsx(css.field, {
-              [css.errorField]: errors.confirmPassword,
-            })}
-          >
-            Repeat password
-            <input
-              className={clsx(css.input, {
-                [css.inputError]: errors.confirmPassword,
-              })}
-              type={showPassword ? "text" : "password"}
-              placeholder="Repeat password"
-              {...register("confirmPassword", { required: true })}
-            />
-            <button
-              className={css.showPasswordBtn}
-              type="button"
-              onClick={handleClickShowPassword}
-            >
-              {showPassword ? (
-                <svg className={css.icon}>
-                  <use href={`${iconSprite}#icon-eye-off`}></use>
-                </svg>
-              ) : (
-                <svg className={css.icon}>
-                  <use href={`${iconSprite}#icon-eye`}></use>
-                </svg>
-              )}
-            </button>
           </label>
-          {errors.confirmPassword && (
-            <p className={css.errorsMessage}>{"password does not match"}</p>
-          )}
+
           <input className={css.submit} type="submit" value="Sign Up" />
         </form>
 
