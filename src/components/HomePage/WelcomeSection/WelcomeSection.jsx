@@ -1,9 +1,8 @@
-import css from "./WelcomeSection.module.css"
+import css from "./WelcomeSection.module.css";
 import Logo from "../../../components/Logo/Logo.jsx";
 import { Link } from "react-router-dom";
 
 const WelcomeSection = () => {
-
   return (
     <div className={css.mainContainer}>
       <div className={css.logoMain}>
@@ -21,6 +20,6 @@ const WelcomeSection = () => {
       </div>
     </div>
   );
-}
+};
 
-export default WelcomeSection
+export default WelcomeSection;
