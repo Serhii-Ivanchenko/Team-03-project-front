@@ -12,12 +12,22 @@ import {
 } from "./operations.js";
 
 const handlePending = (state) => {
-  state.isLoggedIn = false;
   state.isLoading = true;
   state.error = null;
 };
 
 const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload;
+};
+
+const handlePendingIsLoggedIn = (state) => {
+  state.isLoggedIn = false;
+  state.isLoading = true;
+  state.error = null;
+};
+
+const handleRejectedIsLoggedIn = (state, action) => {
   state.token = null;
   state.isLoggedIn = false;
   state.isLoading = false;
@@ -29,21 +39,21 @@ const userSlice = createSlice({
   initialState: initialState.user,
   extraReducers: (builder) =>
     builder
-      .addCase(register.pending, handlePending)
+      .addCase(register.pending, handlePendingIsLoggedIn)
       .addCase(register.fulfilled, (state, action) => {
         state.user = { ...state.user, ...action.payload.data.user };
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
-      .addCase(register.rejected, handleRejected)
-      .addCase(logIn.pending, handlePending)
+      .addCase(register.rejected, handleRejectedIsLoggedIn)
+      .addCase(logIn.pending, handlePendingIsLoggedIn)
       .addCase(logIn.fulfilled, (state, action) => {
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
-      .addCase(logIn.rejected, handleRejected)
+      .addCase(logIn.rejected, handleRejectedIsLoggedIn)
       .addCase(logOut.pending, handlePending)
       .addCase(logOut.fulfilled, (state) => {
         state.user = initialState.user;
@@ -51,7 +61,6 @@ const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(logOut.rejected, (state, action) => {
-        state.user = initialState.user;
         handleRejected(state, action);
       })
       .addCase(refreshUser.pending, (state) => {
@@ -65,45 +74,27 @@ const userSlice = createSlice({
       .addCase(refreshUser.rejected, (state) => {
         state.token = null;
       })
-      .addCase(getUserData.pending, (state) => {
-        state.isLoading = true;
-        state.error = false;
-      })
+      .addCase(getUserData.pending, handlePending)
       .addCase(getUserData.fulfilled, (state, action) => {
+        state.user = action.payload.data;
         state.isLoading = false;
-        state.user = action.payload;
       })
-      .addCase(getUserData.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(updateUserAvatar.pending, (state) => {
-        state.isLoading = true;
-        state.error = false;
-      })
+      .addCase(getUserData.rejected, handleRejected)
+      .addCase(updateUserAvatar.pending, handlePending)
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
+        state.user.photo = action.payload.data.photo;
         state.isLoading = false;
-        state.user.photo = action.payload;
       })
-      .addCase(updateUserAvatar.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(updateUserData.pending, (state) => {
-        state.isLoading = true;
-        state.error = false;
-      })
+      .addCase(updateUserAvatar.rejected, handleRejected)
+      .addCase(updateUserData.pending, handlePending)
       .addCase(updateUserData.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.user = {
           ...state.user,
-          ...action.payload,
+          ...action.payload.data,
         };
-      })
-      .addCase(updateUserData.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
       })
+      .addCase(updateUserData.rejected, handleRejected)
       .addCase(logInWithGoogle.pending, (state) => {
         state.isLoggedIn = false;
         state.isLoading = true;
