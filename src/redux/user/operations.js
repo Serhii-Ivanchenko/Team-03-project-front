@@ -3,7 +3,7 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://watertracker-app-spy2.onrender.com";
 
-const setAuthHeader = (token) => {
+export const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
@@ -17,7 +17,9 @@ export const register = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await axios.post("/auth/register", userData);
-      setAuthHeader(response.data.token);
+      setAuthHeader(response.data.data.accessToken);
+      console.log("Full backend response:", response.data);
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.status);
@@ -31,7 +33,7 @@ export const logIn = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await axios.post("/auth/login", userData);
-      setAuthHeader(response.data.token);
+      setAuthHeader(response.data.data.accessToken);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.status);
@@ -123,12 +125,26 @@ export const updateUserAvatar = createAsyncThunk(
 
 export const logInWithGoogle = createAsyncThunk(
   "user/logInWithGoogle",
-  async ({ token, user }, { rejectWithValue }) => {
+  async (code, thunkAPI) => {
     try {
-      // Обробка успішної авторизації через Google
-      return { token, user };
+      // Запит на підтвердження Google логіну
+      const response = await axios.post("/auth/google/confirm-google-auth", {
+        code, // Передаємо код для авторизації
+      });
+
+      const { accessToken, user } = response.data.data;
+
+      // Встановлюємо заголовок з токеном для подальших запитів
+      setAuthHeader(accessToken);
+
+      // Зберігаємо токен у локальне сховище для відновлення сесії
+      localStorage.setItem("accessToken", accessToken);
+
+      // Повертаємо необхідні дані для оновлення стану
+      return { accessToken, user };
     } catch (error) {
-      return rejectWithValue(error.message);
+      // Якщо виникає помилка, відправляємо її у `rejected` стан
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
