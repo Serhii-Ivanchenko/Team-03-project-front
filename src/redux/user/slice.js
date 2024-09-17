@@ -11,45 +11,47 @@ import {
   updateUserData,
 } from "./operations.js";
 
+const handlePending = (state) => {
+  state.isLoggedIn = false;
+  state.isLoading = true;
+  state.error = null;
+};
+
+const handleRejected = (state, action) => {
+  state.isLoggedIn = false;
+  state.isLoading = false;
+  state.error = action.payload.message;
+};
+
 const userSlice = createSlice({
   name: "user",
   initialState: initialState.user,
   extraReducers: (builder) =>
     builder
-      .addCase(register.pending, (state, action) => {
-        state.isLoggedIn = false;
-        state.isLoading = false;
-        state.error = action.payload;
-      })
+      .addCase(register.pending, handlePending)
       .addCase(register.fulfilled, (state, action) => {
-        console.log("Received payload:", action.payload.data); // Додайте це
-
         state.user = { ...state.user, ...action.payload.data.user };
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
-
-        console.log("Saved token:", state.token); // Додайте це
-        console.log("Updated state:", state.user, state.token); // Переконайтесь, що новий стан правильно зберігається
+        state.isLoading = false;
       })
-      .addCase(register.rejected, (state) => {
-        state.isLoggedIn = false;
-      })
-      .addCase(logIn.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
+      .addCase(register.rejected, handleRejected)
+      .addCase(logIn.pending, handlePending)
       .addCase(logIn.fulfilled, (state, action) => {
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
-      .addCase(logIn.rejected, (state, action) => {
-        state.isLoggedIn = false;
-        state.isLoading = false;
-        state.error = action.payload;
-      })
+      .addCase(logIn.rejected, handleRejected)
+      .addCase(logOut.pending, handlePending)
       .addCase(logOut.fulfilled, (state) => {
         state.user = initialState.user;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(logOut.rejected, (state, action) => {
+        state.user = initialState.user;
+        handleRejected(state, action);
       })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
