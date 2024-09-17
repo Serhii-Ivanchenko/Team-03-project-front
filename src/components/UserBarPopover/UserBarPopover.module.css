@@ -1,4 +1,8 @@
 .popover {
+  position: absolute;
+  top: 100%;
+  /* right: 0; */
+  margin-top: 4px;
   display: inline-flex;
   padding: 14px 40px 14px 20px;
   flex-direction: column;
@@ -8,6 +12,13 @@
   border-radius: 15px;
   background: #FFF;
   box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.10);   
+  z-index: 100;
+}
+
+@media only screen and (min-width: 768px) {
+  .popover {
+    margin-top: 8px;
+  }
 }
 
 .button,
@@ -43,4 +54,8 @@
 
 .iconOut {
   stroke: rgba(50, 63, 71, 0.40);
+}
+
+.hidden {
+  display: none;
 }
