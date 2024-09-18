@@ -1,8 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:3000";
-// "https://watertracker-app-spy2.onrender.com";
+axios.defaults.baseURL = "https://watertracker-app-spy2.onrender.com";
 
 export const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
