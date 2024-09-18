@@ -1,7 +1,7 @@
-export const selectDayWaterItems = (state) => state.contacts.items.day;
+export const selectDayWaterItems = (state) => state.water.items.day;
 
-export const selectMonthWaterItems = (state) => state.contacts.items.month;
+export const selectMonthWaterItems = (state) => state.water.items.month;
 
-export const selectLoading = (state) => state.contacts.loading;
+export const selectLoading = (state) => state.water.loading;
 
-export const selectError = (state) => state.contacts.error;
+export const selectError = (state) => state.water.error;

@@ -1,0 +1,27 @@
+ .container{
+    width: 303px;
+    min-width: 276px;
+        height: 348px;
+        background-color: #f0eff4;
+        border-top: none;
+        border-radius: 30px;
+        margin-top: 40px;
+ }
+ 
+ 
+@media only screen and (min-width: 768px) {
+.container {
+        width: 640px;
+        height: 361px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .container {
+        width: 608px;
+        height: 361px;
+    }
+}
+
+ 
+ 

@@ -14,6 +14,12 @@
     background-position: center;
 }
 
+@media only screen and (max-width: 767px) and (min-resolution: 192dpi){
+    .mainbox{
+         background-image: url(../../assets/images/water_main_info/transparent_bottle_for_water_1_2x.webp);
+    }
+}
+
  @media only screen and (min-width: 768px){
     .mainbox{
         width: 704px;
@@ -23,10 +29,8 @@
         padding-bottom: 64px;
         padding-top: 32px;
 
-        background-image: url(../../assets/images/water_main_info/transparent_bottle_for_water_1_2x.webp);
+       
         background-size: 374px;
-        background-repeat: no-repeat;
-        background-position: center;
     }
  }
 

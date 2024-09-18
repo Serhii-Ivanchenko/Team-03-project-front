@@ -1,0 +1,61 @@
+.popover {
+  position: absolute;
+  top: 100%;
+  /* right: 0; */
+  margin-top: 4px;
+  display: inline-flex;
+  padding: 14px 40px 14px 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+  border-radius: 15px;
+  background: #FFF;
+  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.10);   
+  z-index: 100;
+}
+
+@media only screen and (min-width: 768px) {
+  .popover {
+    margin-top: 8px;
+  }
+}
+
+.button,
+.buttonOut {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.286em;
+  background: none;
+  border: none;
+}
+
+.button {
+  color: #323F47;
+}
+
+.buttonOut {
+  color: rgba(50, 63, 71, 0.40);
+}
+
+.icon,
+.iconOut {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  fill: none;
+}
+
+.icon {
+  stroke: #323F47;
+}
+
+.iconOut {
+  stroke: rgba(50, 63, 71, 0.40);
+}
+
+.hidden {
+  display: none;
+}

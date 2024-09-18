@@ -15,54 +15,78 @@
   align-items: center;
   gap: 28px;
   animation: modalFadeIn 0.3s ease-out;
+
+  border-radius: 15px;
+  border: none;
+
+  padding: 40px 14px;
+  width: 344px;
+  height: 267px;
+
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+
+.deleteModalTitle {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2em;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
 }
 
 .deleteModalTextContainer {
   display: flex;
+  justify-content: center;
   flex-direction: column;
   gap: 16px;
-  width: 304px;
-}
-
-.deleteModalTitle {
-  color: #323f47;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  text-align: center;
+  width: 316px;
+  height: 58px;
 }
 
 .deleteModalText {
-  color: #323f47;
   font-weight: 400;
   font-size: 14px;
-  line-height: 1.29;
+  line-height: 1.29em;
   letter-spacing: -0.01em;
   text-align: center;
+  color: #323f47;
 }
 
 .deleteModalBtnWrapper {
   display: flex;
-  gap: 9px;
+  align-items: flex-start;
+  justify-content: center;
   flex-direction: column;
+  gap: 9px;
   margin: 0 auto;
+  width: 304px;
+  height: 101px;
 }
 
 .deleteModalBtn,
 .deleteModalCancelBtn {
-  padding: 14px 129px;
-  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  font-weight: 700;
   border-radius: 30px;
-  font-size: 14px;
-  line-height: 1.29;
-  letter-spacing: -0.01em;
-  transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
+  padding: 14px 129px;
+  width: 304px;
+  height: 46px;
+
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .deleteModalBtn {
   background-color: #9be1a0;
-  color: #fff;
+  color: #323f47;
 }
 
 .deleteModalCancelBtn {
@@ -84,7 +108,19 @@
 
 @media (min-width: 768px) {
   .deleteModalContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     gap: 24px;
+
+    border-radius: 15px;
+    padding: 40px;
+    width: 516px;
+    height: 244px;
+
+    box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+    background: #fff;
   }
 
   .deleteModalTextContainer {
@@ -108,10 +144,17 @@
     gap: 10px;
   }
 
-  .deleteModalBtn, 
+  .deleteModalBtn,
   .deleteModalCancelBtn {
-    padding: 14px 50px;
     font-size: 16px;
     line-height: 1.5;
+  }
+
+  .deleteModalBtn {
+    padding: 18px 67px;
+  }
+
+  .deleteModalCancelBtn {
+    padding: 18px 59px;
   }
 }

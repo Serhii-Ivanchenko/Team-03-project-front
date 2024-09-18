@@ -1,0 +1,27 @@
+.container{
+    padding-bottom: 24px;
+    display: flex;
+    flex-wrap: nowrap;  
+    overflow-x: auto;
+    gap: 8px;
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    gap: 32px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .container {
+    gap: 16px;
+    }}
+
+.container::-webkit-scrollbar {
+  height: 8px;
+}
+  
+  .container::-webkit-scrollbar-thumb {
+    border-radius: 9px;
+    background: #323F47;
+  }

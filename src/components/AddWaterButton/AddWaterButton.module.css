@@ -1,0 +1,38 @@
+.addWaterButton {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    color: #323F47;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.5em;
+    letter-spacing: -0.16px;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .icon {
+    width: 18px;    
+    height: 18px;
+     stroke: #323F47;
+    fill: transparent;
+     
+  }
+
+  .containerSvg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;     
+    height: 30px;
+    border-radius: 50%;
+    background-color: #9BE1A0;
+
+  }
+  
+  .text {
+    font-weight: bold;
+  }
+  

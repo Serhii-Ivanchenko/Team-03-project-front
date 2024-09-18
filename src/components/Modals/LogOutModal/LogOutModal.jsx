@@ -1,6 +1,6 @@
-import "./LogOutModal.css";
+import css from "./LogOutModal.module.css";
 
-const LogOutModal = () => {
+const LogOutModal = ({ onClose }) => {
   return (
     <div className={css.logOutModalContainer}>
       <div className={css.logOutModalTextContainer}>
@@ -9,7 +9,9 @@ const LogOutModal = () => {
       </div>
       <div className={css.logOutModalBtnWrapper}>
         <button className={css.logOutModalBtn}>Log out</button>
-        <button className={css.logOutModalCancelBtn}>Cancel</button>
+        <button className={css.logOutModalCancelBtn} onClick={onClose}>
+          Cancel
+        </button>
       </div>
     </div>
   );
