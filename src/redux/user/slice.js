@@ -61,21 +61,21 @@ const userSlice = createSlice({
         state.isLoggedIn = true;
         state.isLoading = false;
       })
-      .addCase(logOut.rejected, (state, action) => {
-        handleRejected(state, action);
-      })
+      .addCase(logOut.rejected, handleRejected)
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
+        state.error = null;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        // state.user = action.payload;
-        state.token = action.payload; 
+        state.user = { ...state.user, ...action.payload.data.user };
+        state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
-      .addCase(refreshUser.rejected, (state) => {
+      .addCase(refreshUser.rejected, (state, action) => {
         state.token = null;
         state.isRefreshing = false;
+        state.error = action.payload;
       })
       .addCase(getUserData.pending, handlePending)
       .addCase(getUserData.fulfilled, (state, action) => {
@@ -104,21 +104,17 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(logInWithGoogle.fulfilled, (state, action) => {
-        console.log("Received payload:", action.payload);
-
         const { accessToken, user } = action.payload;
 
         state.user = { ...state.user, ...user };
         state.token = accessToken;
         state.isLoggedIn = true;
         state.isLoading = false;
-
-        console.log("Updated state:", state.user, state.token);
       })
       .addCase(logInWithGoogle.rejected, (state, action) => {
         state.isLoggedIn = false;
         state.isLoading = false;
-        state.error = action.payload; // Зберігаємо помилку для відображення
+        state.error = action.payload;
       }),
 });
 
