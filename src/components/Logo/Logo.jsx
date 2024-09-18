@@ -4,13 +4,9 @@ import css from "./Logo.module.css";
 
 const Logo = () => {
   return (
-    <div className={css.logo}>
       <svg className={css.logo} width={114} height={20}>
         <use className={css.logoicon} href={`${myIcon}#icon-AquaTrack`}></use>
       </svg>
-    
-     
-    </div>
   );
 }
 
