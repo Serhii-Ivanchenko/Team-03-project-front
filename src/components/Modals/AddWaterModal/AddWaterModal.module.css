@@ -1,0 +1,203 @@
+.addModalContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+
+  width: 343px;
+  height: 514px;
+
+  border-radius: 15px;
+  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .addModalContainer {
+    width: 478px;
+    height: 587px;
+    padding: 40px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .addModalContainer {
+    width: 518px;
+  }
+}
+
+.addModalTextContainer {
+  color: #323f47;
+}
+.addModalTitle {
+  width: 248px;
+  font-weight: 700;
+  line-height: 24px; /* 120% */
+  letter-spacing: -0.2px;
+  font-size: 20px;
+
+  @media (min-width: 768px) {
+    width: 347px;
+    font-size: 28px;
+    line-height: 32px; /* 114.286% */
+    letter-spacing: -0.28px;
+  }
+}
+.addModalSubTitle {
+  font-size: 16px;
+  line-height: 20px; /* 125% */
+  letter-spacing: -0.16px;
+
+  padding-top: 24px;
+  padding-bottom: 20px;
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+    line-height: 24px; /* 133.333% */
+    letter-spacing: -0.18px;
+  }
+}
+
+/*  */
+.addModalCounterTitle {
+  color: #2f2f2f;
+
+  font-size: 14px;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.14px;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.16px;
+  }
+}
+
+.addModalCounter {
+  display: flex;
+  gap: 8px;
+
+  padding-top: 8px;
+  padding-bottom: 16px;
+}
+
+.addModalCounterText {
+  display: flex;
+  padding: 11px 20px;
+  align-items: center;
+  border-radius: 30px;
+  background: #323f47;
+
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 22.4px;
+
+  @media (min-width: 768px) {
+    height: 43px;
+  }
+}
+
+.addModalTitleWaterUsed {
+  font-size: 16px;
+  line-height: 20px; /* 125% */
+  letter-spacing: -0.16px;
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+    line-height: 24px; /* 133.333% */
+    letter-spacing: -0.18px;
+  }
+}
+
+/* Button */
+.icon {
+  fill: none;
+  width: 40px;
+  height: 40px;
+  stroke: #323f47;
+
+  @media (min-width: 768px) {
+    height: 43px;
+    width: 43px;
+  }
+}
+
+.addModalCounterButtonPlus {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.addModalCounterButtonMinus {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.submitBtn {
+  cursor: pointer;
+  padding: 14px 40px;
+
+  border-radius: 30px;
+  border: 0;
+  background: #9be1a0;
+  font-size: 14px;
+  color: #323f47;
+
+  font-weight: 700;
+  line-height: 18px; /* 150% */
+  letter-spacing: -0.14px;
+
+  @media (min-width: 768px) {
+    padding: 18px 50px;
+
+    font-size: 16px;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.16px;
+  }
+}
+
+.submitBtn:hover {
+  background: #87d28d;
+}
+
+.closeBtn {
+  cursor: pointer;
+  position: absolute;
+  background: transparent;
+  border: none;
+  top: 20px;
+  right: 20px;
+}
+.iconClose {
+  stroke: #323f47;
+  width: 28px;
+  height: 28px;
+}
+
+/* Form */
+.formInput {
+  margin-top: 8px;
+  margin-bottom: 24px;
+  display: flex;
+  width: 100%;
+  padding-left: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+
+  border-radius: 15px;
+  border: 1px solid rgba(47, 47, 47, 0.15);
+
+  color: #2f2f2f;
+  text-align: left;
+
+  @media (min-width: 768px) {
+    padding: 16px;
+  }
+}
