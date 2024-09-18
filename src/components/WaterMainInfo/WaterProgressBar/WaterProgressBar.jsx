@@ -14,7 +14,7 @@ export default function WaterProgressBar() {
     const dailyNorma = user.dailyNorm
     const dayVal = dayValue.totalValue
     const progress = Math.round((dayVal / dailyNorma) * 100, 100)
-    // const progress = 50
+    // const progress = 98
     
     useEffect(() => {
         dispatch(getDayWater())
@@ -26,15 +26,21 @@ export default function WaterProgressBar() {
         <div className={css.barbox}>
             <p className={css.barday}>Today</p>
             <div className={css.barline}>
-                <div className={css.barlineFill}  style={{ width: `${progress}%` }}></div>
-                <div  className={css.barcircle} style={{ left: `calc(${progress}% - 10px)` }}></div>
+                <div className={css.barlineFill}  style={{ width: `calc(${progress}% + 10px)` }}></div>
+                <div  className={css.barcircle} style={{ left: `${progress}%` }}></div>
             </div>
-                <ul className={css.barpercent}>
-                <li className={css.listItem} style={{ left: `calc(${progress}% - 10px)` }}><div className={css.percent} >{progress}%</div>  </li>
-                <li><p>0%</p></li>
-                <li><p>50%</p></li>
-                <li><p>100%</p></li>
+
+               <div className={css.wrapper}>
+                <div className={css.listItem} style={{ left: `${progress}%` }}>
+                    <div className={css.percent} >{progress}%</div>
+                </div></div>
+            
+            <ul className={css.barpercent}>
+                <li className={progress >= 0 && progress < 10 ? css.hide0 : ''} style={{ left: '0%' }}><p>0%</p></li>
+                <li  className={progress >= 40 && progress < 60 ? css.hide50 : ''} style={{ left: '50%' }}><p>50%</p></li>
+                <li className={progress >= 90 ? css.hide100 : ''} style={{ left: '100%' }}><p>100%</p></li>
                 </ul>
             </div>
     );
 }
+

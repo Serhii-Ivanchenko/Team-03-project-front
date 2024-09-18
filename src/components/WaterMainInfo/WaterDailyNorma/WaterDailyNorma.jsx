@@ -4,11 +4,12 @@ import { selectUser } from '../../../redux/user/selectors';
 
 export default function WaterDailyNorma() {
     const user = useSelector(selectUser)
+    const dailyNorm = user.dailyNorm / 1000;
 
     return (
         <div className={css.normabox}>
             
-        <p key={user.id} className={css.normaAmount}>{user.dailyNorm} L</p>
+        <p key={user.id} className={css.normaAmount}>{dailyNorm} L</p>
         
             <p className={css.normaText}>My daily norma</p>
         </div>

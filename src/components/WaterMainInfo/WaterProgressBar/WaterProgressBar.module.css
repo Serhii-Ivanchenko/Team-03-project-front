@@ -94,7 +94,7 @@
 
      position: absolute;
      top: -3px;
-     left:0 ;
+     /* left: 50px; ; */
     transition: left 0.5s ease-out;
     
     
@@ -110,7 +110,8 @@
 
     display: flex;
     justify-content: space-between;
-    position: relative;   
+    /* gap: 50px; */
+       
 }
 
 @media only screen and (min-width: 768px) {
@@ -134,9 +135,49 @@
   
 }
 
+.wrapper{
+  position: relative;
+}
+
 .listItem{
   position: absolute;
   top: 0;
-  left: 0;
+  /* left: 0; */
 }
 
+/* .percent0{
+margin-right: auto;
+}
+.percent50{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-right: auto;
+  margin-left: auto; 
+}
+.percent100{
+  margin-left: auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .percent0 {
+      margin-right: 106px;
+    }
+  
+    .percent50 {
+      margin-right: 78px;
+    }
+} */
+
+.hide0 {
+color: transparent;
+
+}
+
+.hide50 {
+color: transparent;
+}
+
+.hide100 {
+  color: transparent;
+}
