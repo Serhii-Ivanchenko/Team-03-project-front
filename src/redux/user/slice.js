@@ -3,6 +3,7 @@ import { initialState } from "../initialState.js";
 import {
   getUserData,
   logIn,
+  logInWithGoogle,
   logOut,
   refreshUser,
   register,
@@ -83,6 +84,14 @@ const userSlice = createSlice({
       .addCase(updateUserData.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+      .addCase(logInWithGoogle.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+      })
+      .addCase(logInWithGoogle.rejected, (state) => {
+        state.isLoggedIn = false;
       }),
 });
 
