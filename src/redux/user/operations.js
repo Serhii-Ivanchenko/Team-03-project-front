@@ -76,7 +76,7 @@ export const refreshUser = createAsyncThunk(
       console.log("response data on front end", response.data);
 
       setAuthHeader(response.data.data.accessToken);
-      return response.data.accessToken;
+      return response.data;
     } catch (error) {
       clearAuthHeader();
       console.error("Error refreshing user:", error);
