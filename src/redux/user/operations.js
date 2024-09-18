@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://watertracker-app-spy2.onrender.com";
+axios.defaults.baseURL = "http://localhost:3000";
+// "https://watertracker-app-spy2.onrender.com";
 
 export const setAuthHeader = (token) => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -32,7 +33,9 @@ export const logIn = createAsyncThunk(
   "user/login",
   async (userData, thunkAPI) => {
     try {
-      const response = await axios.post("/auth/login", userData);
+      const response = await axios.post("/auth/login", userData, {
+        withCredentials: true,
+      });
       setAuthHeader(response.data.data.accessToken);
       return response.data;
     } catch (error) {
@@ -57,22 +60,23 @@ export const refreshUser = createAsyncThunk(
   "user/refresh",
   async (_, thunkAPI) => {
     try {
-      // const reduxState = thunkAPI.getState();
-      // const savedToken = reduxState.user.token;
-      // console.log("Saved Token:", savedToken);
+      const reduxState = thunkAPI.getState();
+      const token = reduxState.user.token;
+      console.log("token from state", token);
 
-      // setAuthHeader(savedToken);
+      setAuthHeader(token);
 
       const response = await axios.post(
         "/auth/refresh",
         {},
-        { withCredentials: true }
+        {
+          withCredentials: true,
+        }
       );
+      console.log("response data on front end", response.data);
 
-      const { accessToken } = response.data.data;
-      setAuthHeader(accessToken);
-
-      return accessToken;
+      setAuthHeader(response.data.data.accessToken);
+      return response.data;
     } catch (error) {
       clearAuthHeader();
       console.error("Error refreshing user:", error);
@@ -82,12 +86,11 @@ export const refreshUser = createAsyncThunk(
   {
     condition: (_, thunkAPI) => {
       const reduxState = thunkAPI.getState();
-      const savedToken = reduxState.auth.token;
+      const savedToken = reduxState.user.token;
       return savedToken !== null;
     },
   }
 );
-
 
 // Операція для отримання інформації про поточного користувача
 export const getUserData = createAsyncThunk(
