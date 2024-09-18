@@ -1,4 +1,5 @@
 import css from "./ForgotPassword.module.css";
+import { FiX } from "react-icons/fi";
 
 const Modal = ({ onClose, children }) => {
   const handleBackdropClick = (e) => {
@@ -11,7 +12,7 @@ const Modal = ({ onClose, children }) => {
     <div className={css.modalBackdrop} onClick={handleBackdropClick}>
       <div className={css.modalContent}>
         <button className={css.modalCloseButton} onClick={onClose}>
-          x
+          <FiX className={css.closeIcon}/>
         </button>
         {children}
       </div>
