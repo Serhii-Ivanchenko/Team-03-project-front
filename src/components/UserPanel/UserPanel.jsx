@@ -5,7 +5,6 @@ import { selectUser } from '../../redux/user/selectors.js';
 
 const UserPanel = ({ userName = 'User' }) => {
   const user = useSelector(selectUser);
-  console.log('userpanel', user);
   
   return (
     <div className={styles.userPanel}>

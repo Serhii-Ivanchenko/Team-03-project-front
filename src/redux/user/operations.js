@@ -33,7 +33,9 @@ export const logIn = createAsyncThunk(
   "user/login",
   async (userData, thunkAPI) => {
     try {
-      const response = await axios.post("/auth/login", userData);
+      const response = await axios.post("/auth/login", userData, {
+        withCredentials: true,
+      });
       setAuthHeader(response.data.data.accessToken);
       return response.data;
     } catch (error) {
@@ -58,15 +60,20 @@ export const refreshUser = createAsyncThunk(
   "user/refresh",
   async (_, thunkAPI) => {
     try {
-      // const reduxState = thunkAPI.getState();
-      // const token = reduxState.user.token;
-      // console.log(token);
+      const reduxState = thunkAPI.getState();
+      const token = reduxState.user.token;
+      console.log("token from state", token);
 
-      // setAuthHeader(token);
+      setAuthHeader(token);
 
-      const response = await axios.post("/auth/refresh", {
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        "/auth/refresh",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      console.log("response data on front end", response.data);
 
       setAuthHeader(response.data.data.accessToken);
       return response.data.accessToken;
