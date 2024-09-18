@@ -13,7 +13,7 @@ export default function WaterProgressBar() {
 
     const dailyNorma = user.dailyNorm
     const dayVal = dayValue.dayValue
-    const progress = Math.min((dayVal/ dailyNorma)* 100, 100)
+    const progress = Math.min((dayVal / dailyNorma) * 100, 100)
     // const progress = 100
     
     useEffect(() => {
@@ -29,7 +29,7 @@ export default function WaterProgressBar() {
                 <div className={css.barlineFill}  style={{ width: `${progress}%` }}></div>
                 <div  className={css.barcircle} style={{ left: `calc(${progress}% - 10px)` }}></div>
             </div>
-        
+            <div className={css.percent}>{progress}%</div>
             <ul className={css.barpercent}>
                 <li><p>0%</p></li>
                 <li><p>50%</p></li>
