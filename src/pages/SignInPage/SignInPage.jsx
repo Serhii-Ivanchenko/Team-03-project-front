@@ -8,7 +8,6 @@ const SignInPage = () => {
     <div className={css.container}>
       <Logo />
       <SignInForm />
-      <EditWaterModal/>
     </div>
   );
 };
