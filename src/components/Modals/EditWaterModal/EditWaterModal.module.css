@@ -3,7 +3,7 @@
   flex-direction: column;
   padding: 40px 20px;
 
-  width: 343px;
+  max-width: 343px;
   height: 514px;
 
   border-radius: 15px;
@@ -15,33 +15,25 @@
 
 @media (min-width: 768px) {
   .editModalContainer {
-    width: 478px;
+    max-width: 518px;
     height: 587px;
     padding: 40px;
   }
 }
 
-/* ????????????? */
-@media (min-width: 1440px) {
-  .editModalContainer {
-    width: 518px;
-  }
-}
-
-/* ????????????? */
-
 .editModalTextContainer {
   color: #323f47;
 }
 .editModalTitle {
-  width: 248px;
+  max-width: 248px;
   font-weight: 700;
   line-height: 24px; /* 120% */
   letter-spacing: -0.2px;
   font-size: 20px;
+  text-wrap: wrap;
 
   @media (min-width: 768px) {
-    width: 347px;
+    max-width: 347px;
     font-size: 28px;
     line-height: 32px; /* 114.286% */
     letter-spacing: -0.28px;
@@ -49,11 +41,11 @@
 }
 .editModalSubTitle {
   font-size: 16px;
-  line-height: 20px; /* 125% */
+  line-height: 1.25em; /* 125% */
   letter-spacing: -0.16px;
 
-  padding-top: 24px;
-  padding-bottom: 20px;
+  margin-top: 24px;
+  margin-bottom: 20px;
 
   @media (min-width: 768px) {
     font-size: 18px;
@@ -65,6 +57,7 @@
 /*  */
 .editModalCounterTitle {
   color: #2f2f2f;
+  margin-bottom: 8px;
 
   font-size: 14px;
   line-height: 18px; /* 128.571% */
@@ -81,9 +74,7 @@
 .editModalCounter {
   display: flex;
   gap: 8px;
-
-  padding-top: 8px;
-  padding-bottom: 16px;
+margin-bottom: 16px;
 }
 
 .editModalCounterText {
@@ -104,6 +95,7 @@
 }
 
 .editModalTitleWaterUsed {
+  margin-bottom: 8px;
   font-size: 16px;
   line-height: 20px; /* 125% */
   letter-spacing: -0.16px;
@@ -176,21 +168,20 @@
 }
 .iconClose {
   stroke: #323f47;
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
+  @media (min-width: 768px) {
+      width: 28px;
+      height: 28px;
+    }
 }
 
 /* Form */
 .formInput {
-  margin-top: 8px;
   margin-bottom: 24px;
   display: flex;
-
-  /* padding: 14px 390px 14px 16px; */
   width: 100%;
-  padding-left: 16px;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding: 14px 16px;
 
   align-items: flex-start;
   gap: 10px;
