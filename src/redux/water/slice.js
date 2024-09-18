@@ -9,7 +9,8 @@ import {
   getMonthWater,
   getMonthWaterByMonth,
 } from "./operations.js";
-import { logOut } from "../user/operations.js";
+import { logOut } from "../user/operations";
+import { logoutAction } from "../user/slice.js";
 
 const handlePending = (state) => {
   state.loading = true;
@@ -75,7 +76,8 @@ const waterSlice = createSlice({
       .addCase(getDayWater.pending, handlePending)
       .addCase(getDayWater.fulfilled, (state, action) => {
         state.loading = false;
-        state.items.day = action.payload;
+        state.items.day = action.payload.data;
+        state.items.totalValue = action.payload.totalValue;
       })
       .addCase(getDayWater.rejected, handleRejected)
       .addCase(getDayWaterByDate.pending, handlePending)
@@ -97,6 +99,12 @@ const waterSlice = createSlice({
       })
       .addCase(getMonthWaterByMonth.rejected, handleRejected)
       .addCase(logOut.fulfilled, (state) => {
+        state.items.day = [];
+        state.items.month = [];
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(logoutAction, (state) => {
         state.items.day = [];
         state.items.month = [];
         state.loading = false;

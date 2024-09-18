@@ -37,6 +37,16 @@ const handleRejectedIsLoggedIn = (state, action) => {
 const userSlice = createSlice({
   name: "user",
   initialState: initialState.user,
+  reducers: {
+    resetToken: (state, action) => {
+      state.token = action.payload;
+    },
+    logoutAction: (state) => {
+      state.user = initialState.user;
+      state.isLoggedIn = true;
+      state.isLoading = false;
+    },
+  },
   extraReducers: (builder) =>
     builder
       .addCase(register.pending, handlePendingIsLoggedIn)
@@ -67,8 +77,8 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = { ...state.user, ...action.payload.data.user };
-        state.token = action.payload.data.accessToken;
+        state.user = { ...state.user, ...action.payload.data };
+        // state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
@@ -118,4 +128,5 @@ const userSlice = createSlice({
       }),
 });
 
+export const { resetToken, logoutAction } = userSlice.actions;
 export default userSlice.reducer;

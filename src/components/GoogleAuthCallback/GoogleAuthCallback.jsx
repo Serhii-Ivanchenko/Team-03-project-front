@@ -1,7 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
-import { logInWithGoogle, setAuthHeader } from "../../redux/user/operations.js";
+import { logInWithGoogle } from "../../redux/user/operations.js";
+
 import { useDispatch } from "react-redux";
 
 const GoogleAuthCallback = () => {
