@@ -119,22 +119,18 @@ const userSlice = createSlice({
         state.loadingUser = false;
       })
       .addCase(updateUserData.rejected, handleRejectedUser)
-      .addCase(logInWithGoogle.pending, (state) => {
-        state.isLoggedIn = false;
-        state.loadingUser = true;
-        state.error = null;
-      })
+      .addCase(logInWithGoogle.pending, handlePendingIsLoggedIn)
       .addCase(logInWithGoogle.fulfilled, (state, action) => {
         const { accessToken, user } = action.payload;
 
         state.userData = { ...state.userData, ...user };
         state.token = accessToken;
         state.isLoggedIn = true;
-        state.loadingUser = false;
+        state.loadingAuth = false;
       })
       .addCase(logInWithGoogle.rejected, (state, action) => {
         state.isLoggedIn = false;
-        state.loadingUser = false;
+        state.loadingAuth = false;
         state.error = action.payload;
       }),
 });
