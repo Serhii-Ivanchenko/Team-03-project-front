@@ -5,18 +5,26 @@ import UserSettingsForm from '../UserSettingsForm/UserSettingsForm';
 import LogOutModal from '../Modals/LogOutModal/LogOutModal';
 import { useState } from 'react';
 
-const UserBarPopover = ({ isVisible }) => {
+const UserBarPopover = ({ isVisible, onClose }) => {
   const [isSettingsModalOpen, setSettingsModalOpen] = useState(false);
   const [isLogOutModalOpen, setLogOutModalOpen] = useState(false);
 
-  const openSettingsModal = () => setSettingsModalOpen(true);
+  const openSettingsModal = () => {
+    setSettingsModalOpen(true);
+    onClose();
+  };
+  
   const closeSettingsModal = () => setSettingsModalOpen(false);
 
-  const openLogOutModal = () => setLogOutModalOpen(true);
+  const openLogOutModal = () => {
+    setLogOutModalOpen(true);
+    onClose();
+  };
+  
   const closeLogOutModal = () => setLogOutModalOpen(false);
 
   return (
-    <div className={`${styles.popover} ${!isVisible ? styles.hidden : ''}`}>
+    <div className={`${styles.popover} ${isVisible ? styles.popoverVisible : ''}`}>
       <button className={styles.button} onClick={openSettingsModal}>
         <svg className={styles.icon}>
           <use href={`${iconMenu}#icon-settings`}></use>
