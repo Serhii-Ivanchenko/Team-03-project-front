@@ -78,7 +78,6 @@ const userSlice = createSlice({
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = { ...state.user, ...action.payload.data };
-        // state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
