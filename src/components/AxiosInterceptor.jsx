@@ -17,12 +17,11 @@ export function AxiosInterceptor() {
             const response = await axiosInstance.post("/auth/refresh");
 
             const { accessToken } = response.data.data;
-            console.log(accessToken);
 
             setAuthHeader(accessToken);
 
             dispatch(resetToken(accessToken));
-            console.log("return", originalRequest);
+
             originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
             return await axiosInstance(originalRequest);
           } catch (refreshError) {

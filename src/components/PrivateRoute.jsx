@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectAuth } from "../redux/user/selectors";
 import { Navigate } from "react-router-dom";
+import Loader from "./Loader/Loader.jsx";
 
 export default function PrivateRoute({
   component: Component,
@@ -9,7 +10,7 @@ export default function PrivateRoute({
   const { isLoggedIn, token } = useSelector(selectAuth);
 
   if (!isLoggedIn && token) {
-    return <p>Loading...</p>;
+    return <Loader/>;
   }
   if (!isLoggedIn && !token) {
     return <Navigate to={redirectTo} />;

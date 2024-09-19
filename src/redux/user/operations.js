@@ -12,8 +12,6 @@ export const register = createAsyncThunk(
     try {
       const response = await axiosInstance.post("/auth/register", userData);
       setAuthHeader(response.data.data.accessToken);
-      console.log("Full backend response:", response.data);
-
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.status);
@@ -59,7 +57,6 @@ export const refreshUser = createAsyncThunk(
       setAuthHeader(token);
 
       const response = await axiosInstance.get("/users/data");
-      console.log("response data on front end", response.data);
 
       return response.data;
     } catch (error) {

@@ -63,14 +63,14 @@ const userSlice = createSlice({
       .addCase(register.pending, handlePendingIsLoggedIn)
       .addCase(register.fulfilled, (state, action) => {
         state.userData = { ...state.userData, ...action.payload.data.user };
-        state.token = action.payload.data.accessToken;
+        // state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.loadingAuth = false;
       })
       .addCase(register.rejected, handleRejectedIsLoggedIn)
       .addCase(logIn.pending, handlePendingIsLoggedIn)
       .addCase(logIn.fulfilled, (state, action) => {
-        state.userData = { ...state.userData, ...action.payload.data.user };
+        // state.userData = { ...state.userData, ...action.payload.data.user };
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.loadingAuth = false;

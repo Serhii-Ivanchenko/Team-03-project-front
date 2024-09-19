@@ -4,6 +4,7 @@ export const initialState = {
       totalValue: null,
       day: [],
       month: [],
+      date: null,
     },
 
     loading: false,
