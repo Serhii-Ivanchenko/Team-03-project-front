@@ -62,8 +62,8 @@ const userSlice = createSlice({
     builder
       .addCase(register.pending, handlePendingIsLoggedIn)
       .addCase(register.fulfilled, (state, action) => {
-        state.userData = { ...state.userData, ...action.payload.data.user };
-        // state.token = action.payload.data.accessToken;
+        // state.userData = { ...state.userData, ...action.payload.data.user };
+        state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.loadingAuth = false;
       })
