@@ -1,7 +1,6 @@
 .popover {
   position: absolute;
   top: 100%;
-  /* right: 0; */
   margin-top: 4px;
   display: inline-flex;
   padding: 14px 40px 14px 20px;
@@ -13,6 +12,14 @@
   background: #FFF;
   box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.10);   
   z-index: 100;
+  opacity: 0; /* Початково приховано */
+  transform: translateY(-10px); /* Зміщено вгору */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.popoverVisible {
+  opacity: 1; /* Робимо видимим */
+  transform: translateY(0); /* Переміщуємо в початкову позицію */
 }
 
 @media only screen and (min-width: 768px) {

@@ -61,6 +61,8 @@
     width: 16px;
     height: 16px;
     stroke:#FFF;
+    cursor: pointer;
+
   }
 
   @media only screen and (min-width: 768px) {
