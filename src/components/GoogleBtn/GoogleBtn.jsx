@@ -1,6 +1,7 @@
 import css from "./GoogleBtn.module.css";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
+import { axiosInstance } from "../../services/api.js";
 
 const Button = ({ children, type = "button", onClick, ...props }) => {
   return (
@@ -13,7 +14,7 @@ const Button = ({ children, type = "button", onClick, ...props }) => {
 const GoogleBtn = ({ context }) => {
   const handleGoogleLogin = async () => {
     try {
-      const response = await axios.get("/auth/google/get-oauth-url");
+      const response = await axiosInstance.get("/auth/google/get-oauth-url");
       const { url } = response.data.data;
       // Перенаправляем пользователя на страницу авторизации Google
       window.location.href = url;

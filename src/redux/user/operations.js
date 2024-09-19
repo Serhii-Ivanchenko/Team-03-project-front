@@ -1,22 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-axios.defaults.baseURL = "https://watertracker-app-spy2.onrender.com";
-
-export const setAuthHeader = (token) => {
-  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-};
-
-const clearAuthHeader = () => {
-  axios.defaults.headers.common["Authorization"] = "";
-};
+import {
+  setAuthHeader,
+  clearAuthHeader,
+  axiosInstance,
+} from "../../services/api.js";
 
 // Операція для реєстрації користувача
 export const register = createAsyncThunk(
   "user/register",
   async (userData, thunkAPI) => {
     try {
-      const response = await axios.post("/auth/register", userData);
+      const response = await axiosInstance.post("/auth/register", userData);
       setAuthHeader(response.data.data.accessToken);
       console.log("Full backend response:", response.data);
 
@@ -32,7 +26,7 @@ export const logIn = createAsyncThunk(
   "user/login",
   async (userData, thunkAPI) => {
     try {
-      const response = await axios.post("/auth/login", userData, {
+      const response = await axiosInstance.post("/auth/login", userData, {
         withCredentials: true,
       });
       setAuthHeader(response.data.data.accessToken);
@@ -46,7 +40,7 @@ export const logIn = createAsyncThunk(
 // Операція для логауту користувача
 export const logOut = createAsyncThunk("user/logout", async (_, thunkAPI) => {
   try {
-    const response = await axios.post("/auth/logout");
+    const response = await axiosInstance.post("/auth/logout");
     clearAuthHeader();
     return response.data;
   } catch (error) {
@@ -61,20 +55,12 @@ export const refreshUser = createAsyncThunk(
     try {
       const reduxState = thunkAPI.getState();
       const token = reduxState.user.token;
-      console.log("token from state", token);
 
       setAuthHeader(token);
 
-      const response = await axios.post(
-        "/auth/refresh",
-        {},
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axiosInstance.get("/users/data");
       console.log("response data on front end", response.data);
 
-      setAuthHeader(response.data.data.accessToken);
       return response.data;
     } catch (error) {
       clearAuthHeader();
@@ -96,7 +82,7 @@ export const getUserData = createAsyncThunk(
   "user/getUserData",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/users/data");
+      const response = await axiosInstance.get("/users/data");
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -109,7 +95,7 @@ export const updateUserData = createAsyncThunk(
   "user/updateUserData",
   async (userDataToUpdate, thunkAPI) => {
     try {
-      const response = await axios.patch(`/users/update`, userDataToUpdate);
+      const response = await axiosInstance.patch(`/users/update`, userDataToUpdate);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -125,7 +111,7 @@ export const updateUserAvatar = createAsyncThunk(
       const formData = new FormData();
       formData.append("photo", newAvatar);
 
-      const response = await axios.patch("/users/photo", formData, {
+      const response = await axiosInstance.patch("/users/photo", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -142,7 +128,7 @@ export const logInWithGoogle = createAsyncThunk(
   "user/logInWithGoogle",
   async (code, thunkAPI) => {
     try {
-      const response = await axios.post("/auth/google/confirm-google-auth", {
+      const response = await axiosInstance.post("/auth/google/confirm-google-auth", {
         code,
       });
       const { accessToken, user } = response.data.data;
@@ -160,7 +146,7 @@ export const resetPassword = createAsyncThunk(
   "user/resetPassword",
   async (email, { rejectWithValue }) => {
     try {
-      const response = await axios.post("/users/reset-password", { email });
+      const response = await axiosInstance.post("/users/reset-password", { email });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
