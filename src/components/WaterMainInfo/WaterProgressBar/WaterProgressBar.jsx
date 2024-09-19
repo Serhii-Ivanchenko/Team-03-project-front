@@ -13,8 +13,8 @@ export default function WaterProgressBar() {
 
     const dailyNorma = user.dailyNorm
     const dayVal = dayValue.totalValue
-    const progress = Math.round((dayVal / dailyNorma) * 100, 100)
-    // const progress = 98
+    // const progress = Math.round((dayVal / dailyNorma) * 100, 100)
+    const progress = 82;
     
     useEffect(() => {
         dispatch(getDayWater())
@@ -23,24 +23,66 @@ export default function WaterProgressBar() {
 
 
     return (
-        <div className={css.barbox}>
-            <p className={css.barday}>Today</p>
-            <div className={css.barline}>
-                <div className={css.barlineFill}  style={{ width: `calc(${progress}% + 10px)` }}></div>
-                <div  className={css.barcircle} style={{ left: `${progress}%` }}></div>
-            </div>
+      // <div className={css.barbox}>
+      //     <p className={css.barday}>Today</p>
+      //     <div className={css.barline}>
+      //         <div className={css.barlineFill}  style={{ width: `calc(${progress}% + 10px)` }}></div>
+      //         <div  className={css.barcircle} style={{ left: `${progress}%` }}></div>
+      //     </div>
 
-               <div className={css.wrapper}>
-                <div className={css.listItem} style={{ left: `${progress}%` }}>
-                    <div className={css.percent} >{progress}%</div>
-                </div></div>
-            
-            <ul className={css.barpercent}>
-                <li className={progress >= 0 && progress < 10 ? css.hide0 : ''} style={{ left: '0%' }}><p>0%</p></li>
-                <li  className={progress >= 40 && progress < 60 ? css.hide50 : ''} style={{ left: '50%' }}><p>50%</p></li>
-                <li className={progress >= 90 ? css.hide100 : ''} style={{ left: '100%' }}><p>100%</p></li>
-                </ul>
+      //        <div className={css.wrapper}>
+      //         <div className={css.listItem} style={{ left: `${progress}%` }}>
+      //             <div className={css.percent} >{progress}%</div>
+      //         </div></div>
+
+      //     <ul className={css.barpercent}>
+      //         <li className={progress >= 0 && progress < 10 ? css.hide0 : ''} style={{ left: '0%' }}><p>0%</p></li>
+      //         <li  className={progress >= 40 && progress < 60 ? css.hide50 : ''} style={{ left: '50%' }}><p>50%</p></li>
+      //         <li className={progress >= 90 ? css.hide100 : ''} style={{ left: '100%' }}><p>100%</p></li>
+      //         </ul>
+      //     </div>
+
+      <div className={css.barbox}>
+        <p className={css.barday}>Today</p>
+        <div className={css.barline}>
+          <div
+            className={css.barlineFill}
+            style={{ width: `calc(${progress}% + 10px)` }}
+                ></div>
+                
+          <div className={css.barcircle} style={{ left: `${progress}%` }}></div>
+        </div>
+
+        <div className={css.wrapper}>
+          {/* Приховуємо динамічні відсотки, якщо progress = 0%, 50% або 100% */}
+          <div className={css.listItem} style={{ left: `${progress}%` }}>
+            <div
+              className={`${css.percent} ${
+                (progress >= 0 && progress < 5) ||
+                (progress >= 40 && progress < 60) ||
+                progress >= 82
+                  ? css.hidePercent
+                  : ""
+              }`}
+            >
+              {progress}%
             </div>
+          </div>
+        </div>
+
+        <ul className={css.barpercent}>
+          {/* Статичні відсотки залишаються видимими */}
+          <li style={{ left: "0%" }}>
+            <p>0%</p>
+          </li>
+          <li style={{ left: "50%" }}>
+            <p>50%</p>
+          </li>
+          <li style={{ left: "100%" }}>
+            <p>100%</p>
+          </li>
+        </ul>
+      </div>
     );
 }
 
