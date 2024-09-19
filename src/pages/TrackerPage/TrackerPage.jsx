@@ -45,9 +45,9 @@ export default function TrackerPage() {
 
   console.log("waterData", waterData);
 
-  const Loading = isLoading || isLoadingUserData || isLoadingTracker;
+  const loading = isLoading || isLoadingUserData || isLoadingTracker;
 
-  return Loading ? (
+  return loading ? (
     <Loader />
   ) : (
     <div className={styles.container}>
