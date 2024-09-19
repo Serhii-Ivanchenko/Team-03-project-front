@@ -8,6 +8,13 @@
    
 }
 
+@media only screen and (min-width: 768px) {
+.item {
+        gap: 18px;
+        
+    }
+}
+
 .infoday{
     display: flex;
     flex-direction: column;
@@ -16,6 +23,13 @@
     align-items: center;
         justify-content: center;
         gap: 4px;
+}
+
+@media only screen and (min-width: 768px) {
+.infoday {
+        width: 38px;
+        height: 65px;
+    }
 }
 
 .btn{
@@ -44,14 +58,21 @@
         font-size: 14px;
         line-height: 1.28571;
         letter-spacing: -0.01em;
-        text-align: center;
         color: #323f47;
         border: none;
         align-items: center;
     background-color: #fff;
-    color: #323f47;
 }
-.colorGrey{
+
+@media only screen and (min-width: 768px) {
+    .colorwhite {
+            width: 38px;
+            height: 38px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+}
+.colorgrey{
     border-radius: 50%;
         width: 28px;
         height: 28px;
@@ -69,7 +90,16 @@ background: rgba(50, 63, 71, 0.2);
 color: #323f47;
 }
 
-.colorDarkGrey{
+@media only screen and (min-width: 768px) {
+    .colorgrey {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+}
+
+.colordarkgrey{
     border-radius: 50%;
         width: 28px;
         height: 28px;
@@ -80,11 +110,19 @@ color: #323f47;
         line-height: 1.28571;
         letter-spacing: -0.01em;
         text-align: center;
-        color: #323f47;
         border: none;
         align-items: center;
 background-color: #323f47;
 color:#9be1a0;
+}
+
+@media only screen and (min-width: 768px) {
+    .colordarkgrey {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+        line-height: 1.5;
+    }
 }
 
 .percent{
@@ -93,4 +131,11 @@ color:#9be1a0;
         font-size: 10px;
         line-height: 1;
         color: rgba(47, 47, 47, 0.6);
+}
+
+@media only screen and (min-width: 768px) {
+.percent {
+        font-size: 12px;
+        line-height: 1.86;
+    }
 }

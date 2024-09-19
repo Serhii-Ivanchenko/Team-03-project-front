@@ -1,6 +1,6 @@
 import css from "./DeleteWaterModal.module.css";
 
-const DeleteWaterModal = () => {
+const DeleteWaterModal = ({ onClose }) => {
   return (
     <div className={css.deleteModalContainer}>
       <div className={css.deleteModalTextContainer}>
@@ -10,10 +10,8 @@ const DeleteWaterModal = () => {
         </p>
       </div>
       <div className={css.deleteModalBtnWrapper}>
-        <button className={css.deleteModalBtn}>
-          Delete
-        </button>
-        <button className={css.deleteModalCancelBtn}>
+        <button className={css.deleteModalBtn}>Delete</button>
+        <button className={css.deleteModalCancelBtn} onClick={onClose}>
           Cancel
         </button>
       </div>

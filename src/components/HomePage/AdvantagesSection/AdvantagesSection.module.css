@@ -1,12 +1,122 @@
 .img{
 background-image: url(../../../assets/images/main_page/main_page_desktop_girl_1x.webp);
 background-repeat: no-repeat;
-/* background-position:right; */
 width: 672px;
 height: 736px;
 border-radius: 30px;
-/* padding-left: 32px; */
 margin-top:32px;
-/* margin-left: 32px; */
 float: right;
 }
+.habitbtn{
+    background: #323F47;
+color: #FFF;
+
+
+}
+.statistics, .habitbtn, .rate{
+     border-radius: 30px;
+    padding: 11px 16px;
+    border:none;
+    text-align: center;
+font-family: Poppins;
+font-size: 12px;
+font-style: normal;
+font-weight: 700;
+line-height: 12px; 
+letter-spacing: -0.12px;
+
+}
+.statistics{
+    background:#9BE1A0;
+}
+.rate{
+    background: #FFF;
+}
+.infoStaticsBtn{
+    display: flex;
+gap:10px;
+    margin-top: 594px;
+    margin-right: 32px;
+justify-content: flex-end;
+}
+.ratebtn{
+        display: flex;
+    justify-content: flex-end;
+       padding-top: 10px;
+    padding-right: 114px;
+    
+}
+.circle{
+    border-radius: 50px;
+    background-color: #9BE1A0;
+    width: 8px;
+    height: 8px;
+     display: inline-block;
+}
+.customers{
+    border:none;
+    height: 40px;
+    border-radius: 30px;
+    display: inline-flex;
+padding: 10px 20px;
+align-items: center;
+gap: 52px;
+background-color: #FFF;
+
+color: #323F47;
+
+font-family: Poppins;
+font-size: 15px;
+font-style: normal;
+font-weight: 700;
+line-height: 22.4px;
+}
+.happy{
+    color: #9BE1A0;
+}
+
+
+@media screen and (max-width: 768px) {
+
+.img{
+background-image: url(../../../assets/images/main_page/main_page_mobile_girl_1x.webp);
+width: 343px;
+height: 353px;
+
+}
+.infoStaticsBtn{
+    margin-top: 265px;
+}
+
+
+}
+
+
+@media screen and (max-width: 375px) {
+  /* Styles for small phones */
+  .mainContainer {
+    width: 343px;
+    height: 411px;
+  }
+
+  .title{
+    font-size: 38px;
+font-style: normal;
+font-weight: 700;
+line-height: 38px;
+  }
+
+  .welcome {
+  padding: 74px 16px;
+}
+.btn{
+padding:14px 19px;
+}
+
+.btnSingIn{
+  padding:14px 28px;
+}
+
+}
+
+

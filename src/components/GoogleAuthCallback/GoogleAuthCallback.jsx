@@ -1,28 +1,22 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
+import { logInWithGoogle, setAuthHeader } from "../../redux/user/operations.js";
+import { useDispatch } from "react-redux";
 
 const GoogleAuthCallback = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const handleGoogleLogin = async () => {
+    const handleGoogleLogin = () => {
       const queryParams = new URLSearchParams(location.search);
       const code = queryParams.get("code");
-
-      console.log('cod from url', code);
-      
-
       if (code) {
-        try {
-          const response = await axios.post("/auth/google/confirm-google-auth", { code });
-          const { accessToken } = response.data.data;
-          localStorage.setItem("accessToken", accessToken);
-          navigate("/");
-        } catch (error) {
-          console.error("Error logging in with Google:", error);
-        }
+        dispatch(logInWithGoogle(code)).then(() => {
+          navigate("/tracker");
+        });
       }
     };
 

@@ -1,15 +1,20 @@
 .layout {
+  border-radius: 30px;
+  background: #f0eff4;
   @media (min-width: 1400px) {
     align-items: flex-start;
-    padding-top: 130px;
+    padding-top: 66px;
+    width: 100%;
   }
 }
 .signUpContainer {
   width: 100%;
-  margin-top: 225px;
+  margin-bottom: 100px;
+  height: 100%;
 
   @media (min-width: 768px) {
     width: 436px;
+    margin: 0 auto;
   }
 }
 .title {
@@ -29,37 +34,36 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
-}
+  gap: 16px;
 
-.field {
-  font-weight: 700;
-  line-height: 1.28;
-  letter-spacing: -0.01em;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 8px;
-  margin-bottom: 16px;
-  position: relative;
-
-  @media (min-width768px) {
-    line-height: 1.5;
-    margin-bottom: 20px;
+  @media (min-width: 768px) {
+    max-width: 436px;
   }
 }
 
-.field:last-of-type {
-  margin-bottom: 0;
+.field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.label {
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -1%;
+  text-align: left;
+  color: #2f2f2f;
+  margin-bottom: 8px;
 }
 .input {
-  line-height: 11.28;
-  letter-spacing: -0.01em;
-  border: 1px solid #2f2f2f33;
-  border-radius: 15px;
+  width: 100%;
   padding: 16px;
-  height: 50px;
-  transition: all 0.7s ease-in-out;
+
+  line-height: 18px;
+  letter-spacing: -1%;
+  text-align: left;
+  color: #2f2f2f;
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  border-radius: 15px;
   background-color: transparent;
 
   @media (min-width: 768px) {
@@ -67,8 +71,15 @@
     height: 56px;
   }
 }
+input:not(:last-of-type) {
+  margin-bottom: 10px;
+}
 .input::placeholder {
   color: #2f2f2f99;
+}
+.input:hover,
+input:focus {
+  border: 1px solid rgba(47, 47, 47, 0.4);
 }
 
 .submit {
@@ -120,6 +131,15 @@
     line-height: 1.5;
   }
 }
+.errorMessage {
+  color: #ef5050;
+  font-size: 13px;
+}
+.inputError {
+  border: 1px solid #ef5050;
+  color: #ef5050;
+  transition: all 0.7s ease-in-out;
+}
 
 .showPasswordBtn {
   display: none;
@@ -128,11 +148,9 @@
     display: block;
     position: absolute;
     right: 20px;
-    bottom: 16px;
+    top: 18px;
     background-color: transparent;
     border: none;
-    width: 20px;
-    height: 20px;
   }
 }
 
@@ -145,26 +163,9 @@
   height: 20px;
   border: none;
 }
-.errorField {
-  margin-bottom: 4px;
-}
 
-.errorsMessage {
-  color: #ef5050;
-  margin-bottom: 8px;
-  font-size: 13px;
-}
-
-.inputError {
-  border: 1px solid #ef5050;
-  color: #ef5050;
-  transition: all 0.7s ease-in-out;
-}
-
-.errorField:last-of-type {
-  margin-bottom: 32px;
-}
-
-.errorField:last-of-type {
-  margin-bottom: 8px;
+.inputField {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
