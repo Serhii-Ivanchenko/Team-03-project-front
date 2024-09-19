@@ -3,7 +3,7 @@ import WaterDetailedInfo from "../../components/WaterDetailedInfo/WaterDetailedI
 import WaterMainInfo from "../../components/WaterMainInfo/WaterMainInfo.jsx";
 import styles from "./TrackerPage.module.css";
 import { useEffect } from "react";
-import { getDayWaterByDate } from "../../redux/water/operations.js";
+import { getDayWaterByDate, getMonthWaterByMonth } from "../../redux/water/operations.js";
 import {
   selectDayWaterItems,
   selectLoading,
@@ -28,6 +28,7 @@ export default function TrackerPage() {
     const fetchWaterData = async () => {
       await dispatch(getUserData());
       await dispatch(getDayWaterByDate("2024-09-12"));
+      await dispatch(getMonthWaterByMonth('2024-08'));
     };
 
     fetchWaterData();
