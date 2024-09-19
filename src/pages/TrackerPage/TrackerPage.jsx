@@ -33,19 +33,11 @@ export default function TrackerPage() {
 
   useEffect(() => {
     const fetchWaterData = async () => {
-      await setTimeout(async () => {
-        await Promise.all([
-          dispatch(getUserData()),
-          dispatch(getDayWaterByDate("2024-09-12")),
-          dispatch(getMonthWaterByMonth("2024-08")),
-        ]);
-      }, 3000);
-
-      // await Promise.all([
-      //   dispatch(getUserData()),
-      //   dispatch(getDayWaterByDate("2024-09-12")),
-      //   dispatch(getMonthWaterByMonth("2024-08")),
-      // ]);
+      await Promise.all([
+        dispatch(getUserData()),
+        dispatch(getDayWaterByDate("2024-09-12")),
+        dispatch(getMonthWaterByMonth("2024-08")),
+      ]);
     };
 
     fetchWaterData();
