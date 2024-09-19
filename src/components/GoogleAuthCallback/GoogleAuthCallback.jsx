@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useEffect } from "react";
 import { logInWithGoogle } from "../../redux/user/operations.js";
 

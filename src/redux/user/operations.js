@@ -1,19 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-// import axios from "axios";
-import { axiosInstance } from "../../services/api.js";
-import { setAuthHeader } from "../../services/api.js";
-
-
-axiosInstance.defaults.baseURL = "https://watertracker-app-spy2.onrender.com";
-
-
-
-const clearAuthHeader = () => {
-  axiosInstance.defaults.headers.common["Authorization"] = "";
-};
-
-
-
+import {
+  setAuthHeader,
+  clearAuthHeader,
+  axiosInstance,
+} from "../../services/api.js";
 
 // Операція для реєстрації користувача
 export const register = createAsyncThunk(
@@ -68,17 +58,9 @@ export const refreshUser = createAsyncThunk(
 
       setAuthHeader(token);
 
-      // const response = await axiosInstance.post(
-      //   "/auth/refresh",
-      //   {},
-      //   {
-      //     withCredentials: true,
-      //   }
-      // );
       const response = await axiosInstance.get("/users/data");
       console.log("response data on front end", response.data);
 
-      // setAuthHeader(response.data.data.accessToken);
       return response.data;
     } catch (error) {
       clearAuthHeader();

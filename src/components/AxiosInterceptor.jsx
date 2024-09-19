@@ -6,33 +6,35 @@ import { useEffect } from "react";
 export function AxiosInterceptor() {
   const dispatch = useDispatch();
 
-  axiosInstance.interceptors.response.use(
-    (response) => response,
-    async (error) => {
-      const originalRequest = error.config;
-      if (error.response.status === 401 && !originalRequest._retry) {
-        originalRequest._retry = true;
-        try {
-          const response = await axiosInstance.post("/auth/refresh");
+  useEffect(() => {
+    axiosInstance.interceptors.response.use(
+      (response) => response,
+      async (error) => {
+        const originalRequest = error.config;
+        if (error.response.status === 401 && !originalRequest._retry) {
+          originalRequest._retry = true;
+          try {
+            const response = await axiosInstance.post("/auth/refresh");
 
-          const { accessToken } = response.data.data;
-          console.log(accessToken);
+            const { accessToken } = response.data.data;
+            console.log(accessToken);
 
-          setAuthHeader(accessToken);
+            setAuthHeader(accessToken);
 
-          dispatch(resetToken(accessToken));
-          console.log("return", originalRequest);
-          originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
-          return await axiosInstance(originalRequest);
-        } catch (refreshError) {
+            dispatch(resetToken(accessToken));
+            console.log("return", originalRequest);
+            originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
+            return await axiosInstance(originalRequest);
+          } catch (refreshError) {
             dispatch(logoutAction());
-          return Promise.reject(refreshError);
+            return Promise.reject(refreshError);
+          }
         }
-        }
-        
-      return Promise.reject(error);
-    }
-  );
+
+        return Promise.reject(error);
+      }
+    );
+  }, [dispatch]);
 
   return null;
 }
