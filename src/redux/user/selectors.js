@@ -10,4 +10,6 @@ export const selectLoadingUser = (state) => state.user.loadingUser;
 
 export const selectLoadingAuth = (state) => state.user.loadingAuth;
 
+export const selectLoadingTracker = (state) => state.user.loadingTracker;
+
 export const selectError = (state) => state.user.error;

@@ -3,20 +3,27 @@ import WaterDetailedInfo from "../../components/WaterDetailedInfo/WaterDetailedI
 import WaterMainInfo from "../../components/WaterMainInfo/WaterMainInfo.jsx";
 import styles from "./TrackerPage.module.css";
 import { useEffect } from "react";
-import { getDayWaterByDate, getMonthWaterByMonth } from "../../redux/water/operations.js";
+import {
+  getDayWaterByDate,
+  getMonthWaterByMonth,
+} from "../../redux/water/operations.js";
 import {
   selectDayWaterItems,
   selectLoading,
 } from "../../redux/water/selectors.js";
 import Loader from "../../components/Loader/Loader.jsx";
 import { getUserData } from "../../redux/user/operations.js";
-import { selectLoadingUser } from "../../redux/user/selectors.js";
+import {
+  selectLoadingTracker,
+  selectLoadingUser,
+} from "../../redux/user/selectors.js";
 
 export default function TrackerPage() {
   const dispatch = useDispatch();
   const waterData = useSelector(selectDayWaterItems);
   const isLoading = useSelector(selectLoading);
   const isLoadingUserData = useSelector(selectLoadingUser);
+  const isLoadingTracker = useSelector(selectLoadingTracker);
 
   const date = new Date(Date.now());
   const year = date.getFullYear();
@@ -26,9 +33,19 @@ export default function TrackerPage() {
 
   useEffect(() => {
     const fetchWaterData = async () => {
-      await dispatch(getUserData());
-      await dispatch(getDayWaterByDate("2024-09-12"));
-      await dispatch(getMonthWaterByMonth('2024-08'));
+      await setTimeout(async () => {
+        await Promise.all([
+          dispatch(getUserData()),
+          dispatch(getDayWaterByDate("2024-09-12")),
+          dispatch(getMonthWaterByMonth("2024-08")),
+        ]);
+      }, 3000);
+
+      // await Promise.all([
+      //   dispatch(getUserData()),
+      //   dispatch(getDayWaterByDate("2024-09-12")),
+      //   dispatch(getMonthWaterByMonth("2024-08")),
+      // ]);
     };
 
     fetchWaterData();
@@ -36,7 +53,9 @@ export default function TrackerPage() {
 
   console.log("waterData", waterData);
 
-  return isLoading || isLoadingUserData ? (
+  const Loading = isLoading || isLoadingUserData || isLoadingTracker;
+
+  return Loading ? (
     <Loader />
   ) : (
     <div className={styles.container}>
