@@ -46,17 +46,17 @@ export const editWaterItem = createAsyncThunk(
 );
 
 // Операція для отримання даних за поточний день
-export const getDayWater = createAsyncThunk(
-  "water/getDayWater",
-  async (_, thunkAPI) => {
-    try {
-      const response = await axiosInstance.get("/water/day");      
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// export const getDayWater = createAsyncThunk(
+//   "water/getDayWater",
+//   async (_, thunkAPI) => {
+//     try {
+//       const response = await axiosInstance.get("/water/day");      
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 // Операція для отримання даних за конкретну дату
 export const getDayWaterByDate = createAsyncThunk(
@@ -72,17 +72,17 @@ export const getDayWaterByDate = createAsyncThunk(
 );
 
 // Операція для отримання даних за поточний місяць
-export const getMonthWater = createAsyncThunk(
-  "water/getMonthWater",
-  async (_, thunkAPI) => {
-    try {
-      const response = await axiosInstance.get("/water/month");
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// export const getMonthWater = createAsyncThunk(
+//   "water/getMonthWater",
+//   async (_, thunkAPI) => {
+//     try {
+//       const response = await axiosInstance.get("/water/month");
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 // Операція для отримання даних за конкретний місяць
 export const getMonthWaterByMonth = createAsyncThunk(

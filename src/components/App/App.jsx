@@ -35,7 +35,7 @@ export default function App() {
   ) : (
     <SharedLayout>
       <Toaster position="top-right" reverseOrder={false} />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader/>}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
