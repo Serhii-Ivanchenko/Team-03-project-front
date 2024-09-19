@@ -11,7 +11,7 @@ export const initialState = {
   },
 
   user: {
-    user: {
+    userData: {
       name: null,
       email: null,
       gender: null,

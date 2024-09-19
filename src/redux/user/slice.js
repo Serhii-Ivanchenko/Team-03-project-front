@@ -42,8 +42,9 @@ const userSlice = createSlice({
       state.token = action.payload;
     },
     logoutAction: (state) => {
-      state.user = initialState.user;
-      state.isLoggedIn = true;
+      state.userData = initialState.user.userData;
+      state.token = null;
+      state.isLoggedIn = false;
       state.isLoading = false;
     },
   },
@@ -51,7 +52,7 @@ const userSlice = createSlice({
     builder
       .addCase(register.pending, handlePendingIsLoggedIn)
       .addCase(register.fulfilled, (state, action) => {
-        state.user = { ...state.user, ...action.payload.data.user };
+        state.userData = { ...state.userData, ...action.payload.data.user };
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.isLoading = false;
@@ -59,7 +60,7 @@ const userSlice = createSlice({
       .addCase(register.rejected, handleRejectedIsLoggedIn)
       .addCase(logIn.pending, handlePendingIsLoggedIn)
       .addCase(logIn.fulfilled, (state, action) => {
-        state.user = { ...state.user, ...action.payload.data.user };
+        state.userData = { ...state.userData, ...action.payload.data.user };
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.isLoading = false;
@@ -67,8 +68,9 @@ const userSlice = createSlice({
       .addCase(logIn.rejected, handleRejectedIsLoggedIn)
       .addCase(logOut.pending, handlePending)
       .addCase(logOut.fulfilled, (state) => {
-        state.user = initialState.user;
-        state.isLoggedIn = true;
+        state.userData = initialState.user;
+        state.token = null;
+        state.isLoggedIn = false;
         state.isLoading = false;
       })
       .addCase(logOut.rejected, handleRejected)
@@ -77,7 +79,7 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = { ...state.user, ...action.payload.data };
+        state.userData = { ...state.userData, ...action.payload.data };
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
@@ -88,20 +90,20 @@ const userSlice = createSlice({
       })
       .addCase(getUserData.pending, handlePending)
       .addCase(getUserData.fulfilled, (state, action) => {
-        state.user = action.payload.data;
+        state.userData = action.payload.data;
         state.isLoading = false;
       })
       .addCase(getUserData.rejected, handleRejected)
       .addCase(updateUserAvatar.pending, handlePending)
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
-        state.user.photo = action.payload.data.photo;
+        state.userData.photo = action.payload.data.photo;
         state.isLoading = false;
       })
       .addCase(updateUserAvatar.rejected, handleRejected)
       .addCase(updateUserData.pending, handlePending)
       .addCase(updateUserData.fulfilled, (state, action) => {
-        state.user = {
-          ...state.user,
+        state.userData = {
+          ...state.userData,
           ...action.payload.data,
         };
         state.isLoading = false;
@@ -115,7 +117,7 @@ const userSlice = createSlice({
       .addCase(logInWithGoogle.fulfilled, (state, action) => {
         const { accessToken, user } = action.payload;
 
-        state.user = { ...state.user, ...user };
+        state.userData = { ...state.userData, ...user };
         state.token = accessToken;
         state.isLoggedIn = true;
         state.isLoading = false;

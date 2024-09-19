@@ -105,10 +105,7 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(logoutAction, (state) => {
-        state.items.day = [];
-        state.items.month = [];
-        state.loading = false;
-        state.error = null;
+        state = initialState.water;
       }),
 });
 
