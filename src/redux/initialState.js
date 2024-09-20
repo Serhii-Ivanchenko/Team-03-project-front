@@ -26,6 +26,7 @@ export const initialState = {
     isRefreshing: false,
     loadingUser: false,
     loadingAuth: false,
+    loadingTracker: false,
     error: null,
   },
 };
