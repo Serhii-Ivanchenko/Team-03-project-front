@@ -3,9 +3,11 @@ import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { resetPassword } from "../../redux/user/operations";
 import css from "./ForgotPassword.module.css";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPasswordModalContent = ({ onClose }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
@@ -14,6 +16,7 @@ const ForgotPasswordModalContent = ({ onClose }) => {
       await dispatch(resetPassword(email));
       toast.success("Check your email");
       onClose();
+      navigate("/reset-password");
     } catch (error) {
       console.log(error);
       toast.error("Something wrong. Try again!");
