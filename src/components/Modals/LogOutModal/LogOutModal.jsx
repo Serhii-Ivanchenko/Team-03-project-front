@@ -3,15 +3,20 @@ import css from "./LogOutModal.module.css";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../../redux/user/operations.js";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const LogOutModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
-    dispatch(logOut()).then(() => {
-      navigate("/");
-    });
+    dispatch(logOut()).unwrap()
+          .then(() => {
+            navigate("/");
+          })
+          .catch(() => {
+            toast.error("Logout failed. Please try again.");
+          });
     onClose();
   };
 
