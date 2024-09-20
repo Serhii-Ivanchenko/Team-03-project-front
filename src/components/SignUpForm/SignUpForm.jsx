@@ -8,9 +8,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import GoogleBtn from "../GoogleBtn/GoogleBtn";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { useState } from "react";
 import iconSprite from "../../assets/images/icons/icons.svg";
+import { axiosInstance } from "../../services/api";
 
 export const AuthFormLayout = ({ children, className }) => {
   return <div className={clsx(css.layout, { className })}>{children}</div>;
@@ -61,7 +61,7 @@ const SignUpForm = () => {
 
   const handleGoogleSignUp = async () => {
     try {
-      const response = await axios.get("/users/get-oauth-url");
+      const response = await axiosInstance.get("/users/get-oauth-url");
       const { url } = response.data.data;
       window.location.href = url;
     } catch (error) {
