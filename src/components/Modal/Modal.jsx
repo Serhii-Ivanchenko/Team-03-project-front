@@ -36,7 +36,6 @@ export default function Modal({ isOpen, onClose, children }) {
       bodyOpenClassName="modal-open"
     >
       <>
-        {/* <button onClick={onClose}>close</button> */}
         {children}
       </>
     </ReactModal>
