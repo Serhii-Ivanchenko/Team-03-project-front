@@ -16,9 +16,6 @@ export function AxiosInterceptor() {
           originalRequest._retry = true;
           try {
             const accessToken = await dispatch(refreshToken()).unwrap();
-              // axiosInstance.post("/auth/refresh");
-
-            // const { accessToken } = response.data.data;
 
             setAuthHeader(accessToken);
 
