@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { resetPasswordFormSchema } from "../../validationSchemas/authFormSchema";
@@ -7,17 +6,17 @@ import css from "./ResetPasswordForm.module.css";
 import clsx from "clsx";
 import { useState } from "react";
 import iconSprite from "../../assets/images/icons/icons.svg";
-import toast from "react-hot-toast";
-import { resetPassword } from "../../redux/user/operations";
+// import toast from "react-hot-toast";
+// import { resetPassword } from "../../redux/user/operations";
 
-const ResetPasswordForm = () => {
-  const dispatch = useDispatch();
+const ResetPasswordForm = ({ onSubmit }) => {
+  // const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
     handleSubmit,
-    reset,
+
     formState: { errors },
   } = useForm({
     resolver: yupResolver(resetPasswordFormSchema),
@@ -28,20 +27,20 @@ const ResetPasswordForm = () => {
     },
   });
 
-  const onSubmit = async (data) => {
-    const { password } = data;
+  // const onSubmit = async (data) => {
+  //   const { password } = data;
 
-    dispatch(resetPassword({ password }))
-      .unwrap()
-      .then(() => {
-        toast.success("Password has been reset successfully!");
-        reset();
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Password reset failed. Please try again.");
-      });
-  };
+  //   dispatch(resetPassword({ password }))
+  //     .unwrap()
+  //     .then(() => {
+  //       toast.success("Password has been reset successfully!");
+  //       reset();
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       toast.error("Password reset failed. Please try again.");
+  //     });
+  // };
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);

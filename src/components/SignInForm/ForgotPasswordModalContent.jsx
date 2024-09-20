@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
-import { resetPassword } from "../../redux/user/operations";
+import { sendResetPassword } from "../../redux/user/operations";
 import css from "./ForgotPassword.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -13,13 +13,13 @@ const ForgotPasswordModalContent = ({ onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(resetPassword(email));
-      toast.success("Check your email");
+      await dispatch(sendResetPassword(email)).unwrap();
+      toast.success("Check your email for the reset link.");
       onClose();
-      navigate("/reset-password");
+      navigate("/reset-password"); // Перенаправлення на сторінку після успішної відправки
     } catch (error) {
-      console.log(error);
-      toast.error("Something wrong. Try again!");
+      console.error(error);
+      toast.error("Something went wrong. Please try again.");
     }
   };
 
@@ -38,7 +38,7 @@ const ForgotPasswordModalContent = ({ onClose }) => {
           />
         </label>
         <button type="submit" className={css.modalSubmit}>
-          Send email{" "}
+          Send email
         </button>
       </form>
       <button className={css.modalClose} onClick={onClose}>
