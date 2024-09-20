@@ -3,12 +3,12 @@
   height: 411px;
   padding: 24px 16px;
   background-color: #F0EFF4;
-  
+
   border-radius: 30px;
 }
 
 .welcome {
-margin-top: 74px;
+  margin-top: 74px;
 }
 
 .descr {
@@ -27,12 +27,12 @@ margin-top: 74px;
   font-weight: 700;
   line-height: 1em;
   font-family: "Poppins", sans-serif;
-  color: #323f47; 
+  color: #323f47;
   letter-spacing: -0.01em;
 }
 
 .btn {
-padding: 14px 19px;
+  padding: 14px 19px;
   margin-right: 10px;
   font-family: "Poppins", sans-serif;
   font-weight: 700;
@@ -44,6 +44,7 @@ padding: 14px 19px;
   background-color: #9be1a0;
   border-radius: 30px;
 }
+
 .btn:hover {
   background-color: #87d28d;
 }
@@ -55,7 +56,7 @@ padding: 14px 19px;
   font-weight: 700;
   font-size: 14px;
   line-height: 1.29em;
-  letter-spacing: -0.14px;
+  letter-spacing: -0.01em;
   text-align: center;
   color: #323f47;
 
@@ -80,35 +81,39 @@ padding: 14px 19px;
   .mainContainer {
     max-width: 704px;
     height: 498px;
-    padding: 32px 0 0 32px;
-  }
-  .welcome {
-    margin-left: 32px;
-    margin-top: 50px;;
+    padding: 32px;
   }
 
- 
+  .welcome {
+    margin-left: 32px;
+    margin-top: 50px;
+    ;
+  }
+
+
   .title {
     font-size: 64px;
-    line-height: 70px;
-    letter-spacing: -0.64px;
+    line-height: 1.09em;
   }
 
   .descr {
+    font-size: 16px;
+    line-height: 1.5em;
+  }
 
-font-size: 16px;
-font-weight: 400;
-line-height: 24px; 
-letter-spacing: 0.96px;
-}
- 
-.btn, .btnSingIn {
-padding: 18px 40px;
-  margin-right: 16px;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: -0.16px;
-}
+  .btn {
+    margin-right: 16px;
+    padding: 18px 40px;
+    font-size: 16px;
+    line-height: 1.5em;
+    letter-spacing: -0.01em;
+  }
+
+  .btnSingIn {
+    padding: 17px 40px;
+    font-size: 16px;
+    line-height: 1.5em;
+  }
 
 }
 
@@ -130,9 +135,10 @@ padding: 18px 40px;
   }
 
   .welcome {
-    margin: 132px 32px  0;
+    margin: 132px 32px 0;
   }
-/* 
+
+  /* 
   .singup {
     padding-right: 16px;
   } */
