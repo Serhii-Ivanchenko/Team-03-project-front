@@ -13,8 +13,8 @@ export default function WaterProgressBar() {
 
     const dailyNorma = user.dailyNorm
     const dayVal = dayValue.totalValue
-    const progress = Math.round((dayVal / dailyNorma) * 100, 100)
-    // const progress = 98
+    // const progress = Math.round((dayVal / dailyNorma) * 100)
+    const progress = 100
     
     useEffect(() => {
         dispatch(getDayWater())
