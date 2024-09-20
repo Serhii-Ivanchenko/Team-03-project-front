@@ -169,7 +169,7 @@ margin-right: auto;
     }
 } */
 
-.hide0 {
+/* .hide0 {
 color: transparent;
 
 }
@@ -179,5 +179,9 @@ color: transparent;
 }
 
 .hide100 {
+  color: transparent;
+} */
+
+.hidePercent{
   color: transparent;
 }
