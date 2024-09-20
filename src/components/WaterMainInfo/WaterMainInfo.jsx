@@ -5,6 +5,7 @@ import css from './WaterMainInfo.module.css'
 import myIcon from '../../assets/images/icons/icons.svg'
 import Modal from "../Modal/Modal";
 import { useState } from "react";
+import AddWaterModal from "../Modals/AddWaterModal/AddWaterModal";
 
 export default function WaterMainInfo() {
 
@@ -28,7 +29,9 @@ const openModal = () => {
             <WaterProgressBar  />
             <AddWaterButton openModal={openModal} />
              {
-          modalIsOpen && <Modal isOpen={modalIsOpen} onClose={handleModalClose}></Modal>
+          modalIsOpen && <Modal isOpen={modalIsOpen} onClose={handleModalClose}>
+            <AddWaterModal/>
+          </Modal>
 }
         </div>
     );

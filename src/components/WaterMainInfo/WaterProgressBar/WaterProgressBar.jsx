@@ -1,30 +1,55 @@
 import css from './WaterProgressBar.module.css';
-// import { useSelector } from 'react-redux';
-// import { selectTotalValue } from '../../../redux/water/selectors';
-// import { getDayWaterByDate } from '../../../redux/water/operations';
-// import { useDispatch } from 'react-redux';
-// import { selectUser } from '../../../redux/user/selectors';
-// import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { selectTotalValue } from '../../../redux/water/selectors';
+import { getDayWaterByDate } from '../../../redux/water/operations';
+import { useDispatch } from 'react-redux';
+import { selectUser } from '../../../redux/user/selectors';
+import { useEffect } from 'react';
+import { selectDate } from '../../../redux/water/selectors';
 
 export default function WaterProgressBar() {
-    // const dayValue = useSelector(selectTotalValue);
-    // const user = useSelector(selectUser)
-    // const dispatch = useDispatch()
+    const dayValue = useSelector(selectTotalValue);
+    const user = useSelector(selectUser);
+    const date = useSelector(selectDate);
+    const dispatch = useDispatch();
 
-    // const dailyNorma = user.dailyNorm
-    // const dayVal = dayValue.totalValue
-    // const progress = Math.min(Math.round((dayVal / dailyNorma) * 100), 100)
-    const progress = Math.min(Math.round(123), 100)
+    const dailyNorma = user.dailyNorm;
+    const totalValue = dayValue;
+    const progress = Math.min(Math.round((totalValue / dailyNorma) * 100), 100);
+    // const progress = Math.min(Math.round(80), 100)
+
+
+
+    // const dateData = (date) => {
+    //     const today = Date.now();
+    //     const selectedDate = date;
+    //     return selectedDate === today ? "Today" : selectedDate;
+    // }
     
-    // useEffect(() => {
-    //     dispatch(getDayWaterByDate())
-    // }, [dispatch])
+
+
+    const dateData = () => {
+        const today = new Date().toISOString().split('T')[0];
+        console.log(today);
+        
+        const selectedDate = typeof date === 'string' ? date : new Date(date).toISOString().split('T')[0];
+        console.log(selectedDate);
+        
+        return selectedDate === today ? "Today" : selectedDate;
+    };
+
+    useEffect(() => {
+        if(date){
+         const day = new Date(date).toISOString().split('T')[0];
+            dispatch(getDayWaterByDate(day))
+        }
+    }, [dispatch, date])
     
 
 
     return (
         <div className={css.barbox}>
-            <p className={css.barday}>Today</p>
+            <p className={css.barday}>{dateData(date)}</p>
             <div className={css.barline}>
                 <div className={css.barlineFill}  style={{ width: `calc(${progress}% + 10px)` }}></div>
                 <div  className={css.barcircle} style={{ left: `${progress}%` }}></div>
@@ -37,8 +62,8 @@ export default function WaterProgressBar() {
             </div>
             
             <ul className={css.barpercent}>
-                <li ><p>0%</p></li>
-                <li  ><p>50%</p></li>
+                <li className={css.percent0}><p>0%</p></li>
+                <li className={css.percent50} ><p>50%</p></li>
                 <li ><p>100%</p></li>
                 </ul>
             </div>
