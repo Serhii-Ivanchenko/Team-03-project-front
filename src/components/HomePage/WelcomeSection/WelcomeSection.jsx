@@ -12,7 +12,7 @@ const WelcomeSection = () => {
         <p className={css.descr}>Record daily water intake and track</p>
         <h1 className={css.title}>Water consumption tracker</h1>
         <Link className={css.singup} to="/signup">
-          <button className={css.btn}>Try Tracker</button>
+          <button className={css.btn}>Try tracker</button>
         </Link>
         <Link className={css.singin} to="/signin">
           <button className={css.btnSingIn}>Sing In</button>

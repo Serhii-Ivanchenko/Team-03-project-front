@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signInFormSchema } from "../../validationSchemas/authFormSchema";
@@ -12,6 +12,7 @@ import iconSprite from "../../assets/images/icons/icons.svg";
 import ForgotPasswordModalContent from "./ForgotPasswordModalContent";
 import Modal from "./Modal";
 import toast from "react-hot-toast";
+import { selectError } from "../../redux/user/selectors.js";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -32,30 +33,49 @@ const SignInForm = () => {
     },
   });
 
+// const error = useSelector(selectError);
+
   const onSubmit = async (data) => {
     const { email, password } = data;
     const newEmail = email.toLowerCase();
 
-    try {
-      const resultAction = await dispatch(logIn({ email: newEmail, password }));
-
-      if (logIn.fulfilled.match(resultAction)) {
-        toast.success("Logged in successfully!");
-        reset();
-      } else if (logIn.rejected.match(resultAction)) {
-        const errorStatus = resultAction.payload;
-        if (errorStatus === 401) {
-          toast.error("Wrong email or password.");
-        } else if (errorStatus === 409) {
+    dispatch(logIn({ email: newEmail, password }))
+      .unwrap()
+      .then(() => {
+          toast.success("Logged in successfully!");
+          reset();
+      })
+      .catch((err) => {
+        console.log(err);
+        
+        if (err === 409) {
           toast.error("User already exists.");
         } else {
           toast.error("Login failed. Please try again.");
+
         }
-      }
-    } catch (error) {
-      console.error("Error during login:", error);
-      toast.error("An unexpected error occurred.");
-    }
+      });
+    
+    // try {
+    //   const resultAction = await dispatch(logIn({ email: newEmail, password }));
+
+    //   if (logIn.fulfilled.match(resultAction)) {
+    //     toast.success("Logged in successfully!");
+    //     reset();
+    //   } else if (logIn.rejected.match(resultAction)) {
+    //     const errorStatus = resultAction.payload;
+    //     if (errorStatus === 401) {
+    //       toast.error("Wrong email or password.");
+    //     } else if (errorStatus === 409) {
+    //       toast.error("User already exists.");
+    //     } else {
+    //       toast.error("Login failed. Please try again.");
+    //     }
+    //   }
+    // } catch (error) {
+    //   console.error("Error during login:", error);
+    //   toast.error("An unexpected error occurred.");
+    // }
   };
 
   const handleClickShowPassword = () => {
