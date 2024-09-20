@@ -5,6 +5,7 @@ import {
   logIn,
   logInWithGoogle,
   logOut,
+  refreshToken,
   refreshUser,
   register,
   updateUserAvatar,
@@ -140,7 +141,10 @@ const userSlice = createSlice({
         // state.loadingAuth = false;
         state.loadingTracker = true;
       })
-      .addCase(logInWithGoogle.rejected, handleRejectedIsLoggedIn),
+      .addCase(logInWithGoogle.rejected, handleRejectedIsLoggedIn)
+      .addCase(refreshToken.fulfilled, (state, action) => {
+        state.token = action.payload;
+      }),
 });
 
 export const { resetToken, logoutAction } = userSlice.actions;

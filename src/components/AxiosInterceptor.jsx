@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { axiosInstance, setAuthHeader } from "../services/api.js";
 import { logoutAction, resetToken } from "../redux/user/slice.js";
 import { useEffect } from "react";
+import { refreshToken } from "../redux/user/operations.js";
 
 export function AxiosInterceptor() {
   const dispatch = useDispatch();
@@ -14,9 +15,10 @@ export function AxiosInterceptor() {
         if (error.response.status === 401 && !originalRequest._retry) {
           originalRequest._retry = true;
           try {
-            const response = await axiosInstance.post("/auth/refresh");
+            const accessToken = await dispatch(refreshToken()).unwrap();
+              // axiosInstance.post("/auth/refresh");
 
-            const { accessToken } = response.data.data;
+            // const { accessToken } = response.data.data;
 
             setAuthHeader(accessToken);
 
