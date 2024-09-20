@@ -4,9 +4,9 @@
     gap: 16px;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1440px) {
   .homePage {
-    flex-direction: column;
+    flex-direction: row;
     gap: 32px;
   }
 }
