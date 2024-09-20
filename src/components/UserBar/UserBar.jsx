@@ -12,9 +12,13 @@ const UserBar = ({ userName }) => {
     setIsPopoverOpen((prev) => !prev);
   };
 
+  const closePopover = () => {
+    setIsPopoverOpen(false);
+  };
+
   return (
     <div className={styles.userBarContainer}>
-      <button className={styles.userBar} onClick={togglePopover}>
+      <button className={styles.userBar}>
         <span className={styles.userName}>{userName}</span>
         <img
           src={avatar1x}
@@ -22,11 +26,11 @@ const UserBar = ({ userName }) => {
           alt={`${userName}'s avatar`}
           className={styles.avatar}
         />
-        <svg className={styles.icon}>
+        <svg className={styles.icon} onClick={togglePopover}>
           <use href={`${iconArrow}#icon-arrow-${isPopoverOpen ? 'up' : 'down'}`}></use>
         </svg>
       </button>
-      <UserBarPopover isVisible={isPopoverOpen} />
+      <UserBarPopover isVisible={isPopoverOpen} onClose={closePopover} />    
     </div>
   );
 };

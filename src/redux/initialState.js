@@ -1,8 +1,10 @@
 export const initialState = {
   water: {
     items: {
+      totalValue: null,
       day: [],
       month: [],
+      date: null,
     },
 
     loading: false,
@@ -10,7 +12,7 @@ export const initialState = {
   },
 
   user: {
-    user: {
+    userData: {
       name: null,
       email: null,
       gender: null,
@@ -22,7 +24,9 @@ export const initialState = {
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
-    isLoading: false,
+    loadingUser: false,
+    loadingAuth: false,
+    loadingTracker: false,
     error: null,
   },
 };

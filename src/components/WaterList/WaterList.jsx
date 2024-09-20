@@ -1,8 +1,29 @@
+import  { useRef, useEffect } from 'react';
 import WaterItem from '../WaterItem/WaterItem';
 import styles from './WaterList.module.css';
 
-
 const WaterList = () => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+
+    const handleWheel = (event) => {
+      if (container) {
+        event.preventDefault();
+        container.scrollLeft += event.deltaY;
+      }
+    };
+
+
+    container.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+     
+      container.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
+
   // Тимчасовий масив даних для прикладу
   const waterItems = [
     { id: 1, quantity: '250 ml', time: '08:00' },
@@ -12,10 +33,15 @@ const WaterList = () => {
   ];
 
   return (
-    <div className={styles.container}>
-      {waterItems.map(item => (
-        <WaterItem key={item.id} quantity={item.quantity} time={item.time} />
-      ))}
+    <div className={styles.containerWrapper}>
+      <div
+        ref={containerRef}
+        className={styles.container}
+      >
+        {waterItems.map(item => (
+          <WaterItem key={item.id} quantity={item.quantity} time={item.time} />
+        ))}
+      </div>
     </div>
   );
 };

@@ -4,12 +4,11 @@ import {
   addWaterItem,
   deleteWaterItem,
   editWaterItem,
-  getDayWater,
   getDayWaterByDate,
-  getMonthWater,
   getMonthWaterByMonth,
 } from "./operations.js";
-import { logOut } from "../user/operations.js";
+import { logOut } from "../user/operations";
+import { logoutAction } from "../user/slice.js";
 
 const handlePending = (state) => {
   state.loading = true;
@@ -72,28 +71,19 @@ const waterSlice = createSlice({
         }
       })
       .addCase(editWaterItem.rejected, handleRejected)
-      .addCase(getDayWater.pending, handlePending)
-      .addCase(getDayWater.fulfilled, (state, action) => {
-        state.loading = false;
-        state.items.day = action.payload;
-      })
-      .addCase(getDayWater.rejected, handleRejected)
       .addCase(getDayWaterByDate.pending, handlePending)
       .addCase(getDayWaterByDate.fulfilled, (state, action) => {
+       
+        state.items.date = action.payload.date;
+        state.items.totalValue = action.payload.totalValue;
         state.loading = false;
-        state.items.day = action.payload;
+        state.items.day = action.payload.data;
       })
       .addCase(getDayWaterByDate.rejected, handleRejected)
-      .addCase(getMonthWater.pending, handlePending)
-      .addCase(getMonthWater.fulfilled, (state, action) => {
-        state.loading = false;
-        state.items.month = action.payload;
-      })
-      .addCase(getMonthWater.rejected, handleRejected)
       .addCase(getMonthWaterByMonth.pending, handlePending)
       .addCase(getMonthWaterByMonth.fulfilled, (state, action) => {
         state.loading = false;
-        state.items.month = action.payload;
+        state.items.month = action.payload.data;
       })
       .addCase(getMonthWaterByMonth.rejected, handleRejected)
       .addCase(logOut.fulfilled, (state) => {
@@ -101,6 +91,9 @@ const waterSlice = createSlice({
         state.items.month = [];
         state.loading = false;
         state.error = null;
+      })
+      .addCase(logoutAction, (state) => {
+        state = initialState.water;
       }),
 });
 
