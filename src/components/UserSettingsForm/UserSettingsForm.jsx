@@ -1,31 +1,77 @@
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import css from "../UserSettingsForm/UserSettingsForm.module.css";
+import {
+  selectName,
+  selectEmail,
+  selectGender,
+  selectPhoto,
+  selectWeight,
+  selectActiveTime,
+  selectDailyNorm,
+} from "../../redux/user/selectors";
 import { FiUpload } from "react-icons/fi";
 import { BsExclamationLg } from "react-icons/bs";
 import { MdRadioButtonChecked } from "react-icons/md";
 import { IoMdRadioButtonOff } from "react-icons/io";
+import { useEffect, useState } from "react";
+import {
+  getUserData,
+  // updateUserAvatar,
+  updateUserData,
+} from "../../redux/user/operations";
 
 const schema = yup.object({
-  gender: yup.string().oneOf(["male", "female"]),
-  name: yup.string().min(2, "Too Short!").max(40, "Too Long!"),
-  email: yup.string().email("Must be a valid email"),
+  gender: yup
+    .string()
+    .required("Gender should be required")
+    .oneOf(["woman", "man"]),
+  name: yup
+    .string()
+    .required("Name should be required")
+    .min(2, "Too Short!")
+    .max(40, "Too Long!"),
+  email: yup
+    .string()
+    .required("Email should be required")
+    .email("Must be a valid email"),
   weight: yup
     .number()
-    .typeError("Weight must be a number")
-    .positive("Weight must be a positive number"),
+    .typeError("Weight should be a number")
+    .required("Weight should be required")
+    .positive("Weight should be a positive number"),
   activeTime: yup
     .number()
-    .typeError("Activity must be a number")
-    .positive("Activity must be a positive number"),
+    .typeError("Active Time should be a number")
+    .required("Active time should be required")
+    .positive("Active Time should be a positive number"),
   dailyNorm: yup
     .number()
-    .typeError("Daily norma must be a number")
-    .positive("Daily norma must be a positive number"),
+    .typeError("Daily norma should be a number")
+    .required("Daily norma time should be required")
+    .positive("Daily norma should be a positive number"),
 });
 
-export default function UserSettingsForm() {
+export default function UserSettingsForm({ onClose }) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserData());
+  }, [dispatch]);
+
+  const userName = useSelector(selectName);
+  const userEmail = useSelector(selectEmail);
+  const userGender = useSelector(selectGender);
+  const userPhoto = useSelector(selectPhoto);
+  const userWeight = useSelector(selectWeight);
+  const userActiveTime = useSelector(selectActiveTime);
+  const userDailyNorm = useSelector(selectDailyNorm);
+
+  const [avatar, setAvatar] = useState(userPhoto);
+
   const {
     register,
     handleSubmit,
@@ -33,27 +79,87 @@ export default function UserSettingsForm() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    mode: "onChange",
+    defaultValues: {
+      gender: userGender ?? "woman",
+      name: userName ?? "",
+      email: userEmail ?? "",
+      weight: userWeight ?? 0,
+      activeTime: userActiveTime ?? 0,
+      dailyNorm: userDailyNorm ?? 0,
+    },
   });
-  const selectedOption = watch("gender");
 
-  const onSubmit = (data) => console.log(data);
+  const selectedOption = watch("gender");
+  const selectedWeightByUser = watch("weight");
+  const selectedActiveTimeByUser = watch("activeTime");
+
+  const womanNorma = (
+    Number(selectedWeightByUser) * 0.03 +
+    Number(selectedActiveTimeByUser) * 0.4
+  ).toFixed(1);
+
+  const manNorma = (
+    Number(selectedWeightByUser) * 0.04 +
+    Number(selectedActiveTimeByUser) * 0.6
+  ).toFixed(1);
+
+  const handleChange = (e) => {
+    setAvatar(URL.createObjectURL(e.target.files[0]));
+    // console.log(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const onSubmit = (data) => {
+    const userData = {
+      name: data.name,
+      email: data.email,
+      gender: data.gender,
+      weight: data.weight,
+      activeTime: data.activeTime,
+      dailyNorm: data.dailyNorm,
+    };
+
+    dispatch(updateUserData(userData))
+      .unwrap()
+      .then(() => {
+        toast.success("Saved successfully!");
+        onClose();
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Something went wrong,please try again");
+      });
+
+    // dispatch(updateUserAvatar(avatar))
+    //   .unwrap()
+    //   .then(() => {
+    //     toast.success("Avatar updated!");
+    //     onClose();
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     setAvatar(userPhoto);
+    //     toast.error("Something went wrong,please try again");
+    //   });
+  };
 
   return (
     <div className={css.settingsFormModal}>
-      <button type="button" className={css.closeBtn}>
+      <button type="button" className={css.closeBtn} onClick={onClose}>
         <svg className={css.closeBtnIcon}>
           <use href="../../../src/assets/images/icons/icons.svg#icon-x"></use>
         </svg>
       </button>
-
       <h2 className={css.settingsHeader}>Settings</h2>
-      <img src="" alt="User`s avatar" className={css.avatar} />
+      <img src={avatar} alt="User`s avatar" className={css.avatar} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
+          name={"photo"}
           type="file"
           {...register("photo")}
           className={css.avatarInput}
           id="userAvatar"
+          onChange={handleChange}
         />
         <label htmlFor="userAvatar" className={css.uploadPhotoBtn}>
           <FiUpload color="#2f2f2f" />
@@ -189,7 +295,9 @@ export default function UserSettingsForm() {
               <p className={css.label}>
                 The required amount of water in liters per day:
               </p>
-              <p className={css.waterNorma}>1.5 L</p>
+              <p className={css.waterNorma}>
+                {selectedOption === "woman" ? womanNorma : manNorma} L
+              </p>
             </div>
             <div className={css.userNormaWrapper}>
               <label className={css.settingsFormLabel} htmlFor="userNorma">
