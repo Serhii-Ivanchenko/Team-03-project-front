@@ -15,8 +15,8 @@ export default function WaterProgressBar() {
 
     const dailyNorma = user.dailyNorm;
     const totalValue = dayValue;
-    // const progress = Math.min(Math.round((totalValue / dailyNorma) * 100), 100);
-    const progress = Math.min(Math.round(9), 100)
+    const progress = Math.min(Math.round((totalValue / dailyNorma) * 100), 100);
+    // const progress = Math.min(Math.round(9), 100)
 
 
 
