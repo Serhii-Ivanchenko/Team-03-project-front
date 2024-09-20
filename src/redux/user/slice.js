@@ -14,7 +14,7 @@ import {
 // register logIn logInWithGoogle
 const handlePendingIsLoggedIn = (state) => {
   state.isLoggedIn = false;
-  state.loadingAuth = true;
+  // state.loadingAuth = true;
   state.error = null;
   state.loadingTracker = true;
 };
@@ -23,20 +23,21 @@ const handlePendingIsLoggedIn = (state) => {
 const handleRejectedIsLoggedIn = (state, action) => {
   state.token = null;
   state.isLoggedIn = false;
-  state.loadingAuth = false;
+  // state.loadingAuth = false;
   state.loadingTracker = false;
   state.error = action.payload;
 };
 
 // logOut
 const handlePendingAuth = (state) => {
-  state.loadingAuth = true;
+  // state.loadingAuth = true;
+  state.loadingTracker = true;
   state.error = null;
 };
 
 // logOut
 const handleRejectedAuth = (state, action) => {
-  state.loadingAuth = false;
+  // state.loadingAuth = false;
   state.loadingTracker = false;
   state.error = action.payload;
 };
@@ -65,7 +66,7 @@ const userSlice = createSlice({
       state.userData = initialState.user.userData;
       state.token = null;
       state.isLoggedIn = false;
-      state.loadingAuth = false;
+      // state.loadingAuth = false;
       state.loadingTracker = false;
     },
   },
@@ -75,14 +76,14 @@ const userSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
-        state.loadingAuth = false;
+        // state.loadingAuth = false;
       })
       .addCase(register.rejected, handleRejectedIsLoggedIn)
       .addCase(logIn.pending, handlePendingIsLoggedIn)
       .addCase(logIn.fulfilled, (state, action) => {
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
-        state.loadingAuth = false;
+        // state.loadingAuth = false;
       })
       .addCase(logIn.rejected, handleRejectedIsLoggedIn)
       .addCase(logOut.pending, handlePendingAuth)
@@ -90,7 +91,7 @@ const userSlice = createSlice({
         state.userData = initialState.user;
         state.token = null;
         state.isLoggedIn = false;
-        state.loadingAuth = false;
+        // state.loadingAuth = false;
         state.loadingTracker = false;
       })
       .addCase(logOut.rejected, handleRejectedAuth)
@@ -136,7 +137,7 @@ const userSlice = createSlice({
       .addCase(logInWithGoogle.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;
         state.isLoggedIn = true;
-        state.loadingAuth = false;
+        // state.loadingAuth = false;
         state.loadingTracker = true;
       })
       .addCase(logInWithGoogle.rejected, handleRejectedIsLoggedIn),
