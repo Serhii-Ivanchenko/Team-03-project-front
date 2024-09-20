@@ -13,8 +13,8 @@ export default function WaterProgressBar() {
 
     const dailyNorma = user.dailyNorm
     const dayVal = dayValue.totalValue
-    // const progress = Math.round((dayVal / dailyNorma) * 100)
-    const progress = 100
+    const progress = Math.round((dayVal / dailyNorma) * 100, 100)
+    // const progress = 98
     
     useEffect(() => {
         dispatch(getDayWater())
@@ -30,11 +30,11 @@ export default function WaterProgressBar() {
                 <div  className={css.barcircle} style={{ left: `${progress}%` }}></div>
             </div>
 
-               <div className={css.wrapper}>
+              <div className={css.wrapper}>
                 <div className={css.listItem} style={{ left: `${progress}%` }}>
-                    <div className={css.percent}>{progress}%</div>
+                    <div className={css.percent} >{progress}%</div>
                 </div></div>
-            
+
             <ul className={css.barpercent}>
                 <li className={progress >= 0 && progress < 10 ? css.hide0 : ''} style={{ left: '0%' }}><p>0%</p></li>
                 <li  className={progress >= 40 && progress < 60 ? css.hide50 : ''} style={{ left: '50%' }}><p>50%</p></li>
