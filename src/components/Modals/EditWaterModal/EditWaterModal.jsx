@@ -2,7 +2,7 @@ import css from "./EditWaterModal.module.css";
 import iconSprite from "../../../assets/images/icons/icons.svg";
 import { useForm } from "react-hook-form";
 
-const EditWaterModal = (onClose) => {
+const EditWaterModal = ({onClose}) => {
   const {
     register,
     handleSubmit,

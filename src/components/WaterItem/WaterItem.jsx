@@ -12,28 +12,26 @@ const WaterItem = ({ quantity, time }) => {
 
   const openDeleteModal = () => {
     if (!isDeleteModalOpen) {
-      setIsDeleteModalOpen(true)
-      console.log('Opening modal');
-      ;
+      setIsDeleteModalOpen(true);
+      console.log('Opening delete modal');
     }
   };
 
   const closeDeleteModal = () => {
     setIsDeleteModalOpen(false);
-    console.log('Closing modal');
+    console.log('Closing delete modal');
   };
 
   const openEditModal = () => {
     if (!isEditModalOpen) {
       setIsEditModalOpen(true);
-      console.log('Opening modal');
-
+      console.log('Opening edit modal');
     }
   };
 
   const closeEditModal = () => {
     setIsEditModalOpen(false);
-    console.log('Closing modal');
+    console.log('Closing edit modal');
   };
 
   useEffect(() => {
@@ -64,13 +62,18 @@ const WaterItem = ({ quantity, time }) => {
         </p>
       </div>
       <div className={styles.actionIconsContainer}>
-        <svg className={styles.iconAction} onClick={openEditModal}>
-          <use href={`${iconUpdate}#icon-edit-2`}></use>
-        </svg>
-        <svg className={styles.iconAction} onClick={openDeleteModal}>
-          <use href={`${iconUpdate}#icon-trash-04`}></use>
-        </svg>
+        <button className={styles.iconButton} onClick={openEditModal} aria-label="Edit">
+          <svg className={styles.iconAction}>
+            <use href={`${iconUpdate}#icon-edit-2`}></use>
+          </svg>
+        </button>
+        <button className={styles.iconButton} onClick={openDeleteModal} aria-label="Delete">
+          <svg className={styles.iconAction}>
+            <use href={`${iconUpdate}#icon-trash-04`}></use>
+          </svg>
+        </button>
       </div>
+
       {isEditModalOpen && (
         <Modal isOpen={isEditModalOpen} onClose={closeEditModal}>
           <EditWaterModal onClose={closeEditModal} />
@@ -84,6 +87,5 @@ const WaterItem = ({ quantity, time }) => {
     </li>
   );
 };
-
 
 export default WaterItem;
