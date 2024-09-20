@@ -54,7 +54,7 @@
      width: 200px; 
     display: flex;
     flex-direction: row;
-    justify-content: right;
+    justify-content:space-between;
     text-align: center;
     align-items: center;
 
@@ -73,8 +73,10 @@
 .boxpagination{
     display: flex;
         flex-direction: row;
-         justify-content: center; 
-         align-items: center;
+        flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 220px;
          height: 20px;
 margin-top : 1px; 
          gap: 16 px; 
