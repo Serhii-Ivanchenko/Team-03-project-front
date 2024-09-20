@@ -59,16 +59,16 @@ const SignUpForm = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleGoogleSignUp = async () => {
-    try {
-      const response = await axios.get("/users/get-oauth-url");
-      const { url } = response.data.data;
-      window.location.href = url;
-    } catch (error) {
-      console.error("Error getting Google OAuth URL:", error);
-      toast.error("Error getting Google OAuth URL");
-    }
-  };
+  // const handleGoogleSignUp = async () => {
+  //   try {
+  //     const response = await axios.get("/users/get-oauth-url");
+  //     const { url } = response.data.data;
+  //     window.location.href = url;
+  //   } catch (error) {
+  //     console.error("Error getting Google OAuth URL:", error);
+  //     toast.error("Error getting Google OAuth URL");
+  //   }
+  // };
   // const handleConfirmGoogleAuth = async (code) => {
   //   try {
   //     const response = await axios.post("/confirm-google-auth", { code });

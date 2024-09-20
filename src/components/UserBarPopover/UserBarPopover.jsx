@@ -24,7 +24,9 @@ const UserBarPopover = ({ isVisible, onClose }) => {
   const closeLogOutModal = () => setLogOutModalOpen(false);
 
   return (
-    <div className={`${styles.popover} ${isVisible ? styles.popoverVisible : ''}`}>
+    <div
+      className={`${styles.popover} ${isVisible ? styles.popoverVisible : ""}`}
+    >
       <button className={styles.button} onClick={openSettingsModal}>
         <svg className={styles.icon}>
           <use href={`${iconMenu}#icon-settings`}></use>
@@ -40,13 +42,13 @@ const UserBarPopover = ({ isVisible, onClose }) => {
 
       {isSettingsModalOpen && (
         <Modal isOpen={isSettingsModalOpen} onClose={closeSettingsModal}>
-          <UserSettingsForm />
+          <UserSettingsForm onClose={closeLogOutModal} />
         </Modal>
       )}
 
       {isLogOutModalOpen && (
         <Modal isOpen={isLogOutModalOpen} onClose={closeLogOutModal}>
-          <LogOutModal />
+          <LogOutModal onClose={closeLogOutModal} />
         </Modal>
       )}
     </div>
