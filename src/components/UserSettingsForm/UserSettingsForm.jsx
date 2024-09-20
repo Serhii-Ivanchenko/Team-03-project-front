@@ -58,10 +58,6 @@ const schema = yup.object({
 export default function UserSettingsForm({ onClose }) {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUserData());
-  }, [dispatch]);
-
   const userName = useSelector(selectName);
   const userEmail = useSelector(selectEmail);
   const userGender = useSelector(selectGender);
