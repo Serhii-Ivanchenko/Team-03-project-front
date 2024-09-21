@@ -1,5 +1,7 @@
 import ReactModal from "react-modal";
 import css from "./Modal.module.css";
+import { useEffect } from "react";
+import clsx from "clsx";
 
 // !! Це треба використати в компоненті, в якому викликається відкриття модалки:
 //  const [modalIsOpen, setIsOpen] = useState(false);
@@ -17,20 +19,32 @@ import css from "./Modal.module.css";
 //   modalIsOpen && <Modal isOpen={modalIsOpen} onClose={handleModalClose} />;
 // }
 
-export default function Modal({ isOpen, onClose, children }) {
+export default function Modal({
+  isOpen,
+  onClose,
+  children,
+  isSettingsModalOpen,
+}) {
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove("modal-open");
+    };
+  }, [isOpen]);
+
   return (
     <ReactModal
-      className={css.modal}
+      className={clsx(
+        css.modal,
+        isSettingsModalOpen && css.isSettingsModalOpen
+      )}
       overlayClassName={css.overlay}
       isOpen={isOpen}
       shouldCloseOnEsc={true}
       ariaHideApp={false}
       onRequestClose={onClose}
+      bodyOpenClassName="modal-open"
     >
-      <>
-        {/* <button onClick={onClose}>close</button> */}
-        {children}
-      </>
+      <>{children}</>
     </ReactModal>
   );
 }

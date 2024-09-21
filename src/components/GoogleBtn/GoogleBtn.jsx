@@ -1,6 +1,6 @@
 import css from "./GoogleBtn.module.css";
 import { FcGoogle } from "react-icons/fc";
-import axios from "axios";
+// import axios from "axios";
 import { axiosInstance } from "../../services/api.js";
 
 const Button = ({ children, type = "button", onClick, ...props }) => {

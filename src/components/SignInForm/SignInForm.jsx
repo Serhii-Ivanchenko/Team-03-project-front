@@ -12,6 +12,7 @@ import iconSprite from "../../assets/images/icons/icons.svg";
 import ForgotPasswordModalContent from "./ForgotPasswordModalContent";
 import Modal from "./Modal";
 import toast from "react-hot-toast";
+import GoogleBtn from "../GoogleBtn/GoogleBtn";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
@@ -32,30 +33,48 @@ const SignInForm = () => {
     },
   });
 
+  // const error = useSelector(selectError);
+
   const onSubmit = async (data) => {
     const { email, password } = data;
     const newEmail = email.toLowerCase();
 
-    try {
-      const resultAction = await dispatch(logIn({ email: newEmail, password }));
-
-      if (logIn.fulfilled.match(resultAction)) {
+    dispatch(logIn({ email: newEmail, password }))
+      .unwrap()
+      .then(() => {
         toast.success("Logged in successfully!");
         reset();
-      } else if (logIn.rejected.match(resultAction)) {
-        const errorStatus = resultAction.payload;
-        if (errorStatus === 401) {
-          toast.error("Wrong email or password.");
-        } else if (errorStatus === 409) {
+      })
+      .catch((err) => {
+        console.log(err);
+
+        if (err === 409) {
           toast.error("User already exists.");
         } else {
           toast.error("Login failed. Please try again.");
         }
-      }
-    } catch (error) {
-      console.error("Error during login:", error);
-      toast.error("An unexpected error occurred.");
-    }
+      });
+
+    // try {
+    //   const resultAction = await dispatch(logIn({ email: newEmail, password }));
+
+    //   if (logIn.fulfilled.match(resultAction)) {
+    //     toast.success("Logged in successfully!");
+    //     reset();
+    //   } else if (logIn.rejected.match(resultAction)) {
+    //     const errorStatus = resultAction.payload;
+    //     if (errorStatus === 401) {
+    //       toast.error("Wrong email or password.");
+    //     } else if (errorStatus === 409) {
+    //       toast.error("User already exists.");
+    //     } else {
+    //       toast.error("Login failed. Please try again.");
+    //     }
+    //   }
+    // } catch (error) {
+    //   console.error("Error during login:", error);
+    //   toast.error("An unexpected error occurred.");
+    // }
   };
 
   const handleClickShowPassword = () => {
@@ -117,6 +136,8 @@ const SignInForm = () => {
           <button type="submit" className={css.submit}>
             Sign in
           </button>
+          <p className={css.text}>or</p>
+          <GoogleBtn context={"Sign Up with Google"} onClick={() => {}} />
           <button
             type="button"
             className={css.forgotPswBtn}
@@ -125,6 +146,7 @@ const SignInForm = () => {
             Forgot password?
           </button>
         </form>
+
         <div className={css.inviteOnLogIn}>
           <p className={css.inviteText}>
             Don`t have an account?{" "}

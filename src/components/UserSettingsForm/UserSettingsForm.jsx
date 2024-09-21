@@ -1,59 +1,112 @@
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import css from "../UserSettingsForm/UserSettingsForm.module.css";
+import { selectUser } from "../../redux/user/selectors";
 import { FiUpload } from "react-icons/fi";
 import { BsExclamationLg } from "react-icons/bs";
 import { MdRadioButtonChecked } from "react-icons/md";
 import { IoMdRadioButtonOff } from "react-icons/io";
+import { useState } from "react";
+import { updateUserAvatar, updateUserData } from "../../redux/user/operations";
+import { userSettingsFormschema } from "../../validationSchemas/userSettingsFormSchema";
 
-const schema = yup.object({
-  gender: yup.string().oneOf(["male", "female"]),
-  name: yup.string().min(2, "Too Short!").max(40, "Too Long!"),
-  email: yup.string().email("Must be a valid email"),
-  weight: yup
-    .number()
-    .typeError("Weight must be a number")
-    .positive("Weight must be a positive number"),
-  activeTime: yup
-    .number()
-    .typeError("Activity must be a number")
-    .positive("Activity must be a positive number"),
-  dailyNorm: yup
-    .number()
-    .typeError("Daily norma must be a number")
-    .positive("Daily norma must be a positive number"),
-});
+export default function UserSettingsForm({ onClose }) {
+  const dispatch = useDispatch();
 
-export default function UserSettingsForm() {
+  const { name, email, gender, photo, weight, activeTime, dailyNorm } =
+    useSelector(selectUser);
+
+  const [avatar, setAvatar] = useState(photo);
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(userSettingsFormschema),
+    mode: "onChange",
+    defaultValues: {
+      gender: gender ?? "woman",
+      name: name ?? "",
+      email: email ?? "",
+      weight: weight ?? 0,
+      activeTime: activeTime ?? 0,
+      dailyNorm: dailyNorm ?? 0,
+    },
   });
-  const selectedOption = watch("gender");
 
-  const onSubmit = (data) => console.log(data);
+  const selectedOption = watch("gender");
+  const selectedWeightByUser = watch("weight");
+  const selectedActiveTimeByUser = watch("activeTime");
+
+  const womanNorma = (
+    Number(selectedWeightByUser) * 0.03 +
+    Number(selectedActiveTimeByUser) * 0.4
+  ).toFixed(1);
+
+  const manNorma = (
+    Number(selectedWeightByUser) * 0.04 +
+    Number(selectedActiveTimeByUser) * 0.6
+  ).toFixed(1);
+
+  const handleChange = (e) => {
+    const newAvatar = e.target.files[0];
+    setAvatar(URL.createObjectURL(newAvatar));
+
+    dispatch(updateUserAvatar(newAvatar))
+      .unwrap()
+      .then(() => {
+        toast.success("Avatar updated!");
+      })
+      .catch((err) => {
+        console.log(err);
+        setAvatar(photo);
+        toast.error("Avatar wasn`t updated,please try again");
+      });
+  };
+
+  const onSubmit = (data) => {
+    const userData = {
+      name: data.name,
+      email: data.email,
+      gender: data.gender,
+      weight: data.weight,
+      activeTime: data.activeTime,
+      dailyNorm: data.dailyNorm,
+    };
+
+    dispatch(updateUserData(userData))
+      .unwrap()
+      .then(() => {
+        toast.success("Settings saved successfully!");
+        onClose();
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Settings weren`t saved,please try again");
+      });
+  };
 
   return (
     <div className={css.settingsFormModal}>
-      <button type="button" className={css.closeBtn}>
+      <button type="button" className={css.closeBtn} onClick={onClose}>
         <svg className={css.closeBtnIcon}>
           <use href="../../../src/assets/images/icons/icons.svg#icon-x"></use>
         </svg>
       </button>
-
       <h2 className={css.settingsHeader}>Settings</h2>
-      <img src="" alt="User`s avatar" className={css.avatar} />
+      <img src={avatar} alt="User`s avatar" className={css.avatar} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
+          name={"photo"}
           type="file"
           {...register("photo")}
           className={css.avatarInput}
           id="userAvatar"
+          onChange={handleChange}
         />
         <label htmlFor="userAvatar" className={css.uploadPhotoBtn}>
           <FiUpload color="#2f2f2f" />
@@ -189,7 +242,9 @@ export default function UserSettingsForm() {
               <p className={css.label}>
                 The required amount of water in liters per day:
               </p>
-              <p className={css.waterNorma}>1.5 L</p>
+              <p className={css.waterNorma}>
+                {selectedOption === "woman" ? womanNorma : manNorma} L
+              </p>
             </div>
             <div className={css.userNormaWrapper}>
               <label className={css.settingsFormLabel} htmlFor="userNorma">

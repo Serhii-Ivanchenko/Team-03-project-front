@@ -92,7 +92,10 @@ export const updateUserData = createAsyncThunk(
   "user/updateUserData",
   async (userDataToUpdate, thunkAPI) => {
     try {
-      const response = await axiosInstance.patch(`/users/update`, userDataToUpdate);
+      const response = await axiosInstance.patch(
+        `/users/update`,
+        userDataToUpdate
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -125,9 +128,12 @@ export const logInWithGoogle = createAsyncThunk(
   "user/logInWithGoogle",
   async (code, thunkAPI) => {
     try {
-      const response = await axiosInstance.post("/auth/google/confirm-google-auth", {
-        code,
-      });
+      const response = await axiosInstance.post(
+        "/auth/google/confirm-google-auth",
+        {
+          code,
+        }
+      );
       const { accessToken, user } = response.data.data;
       setAuthHeader(accessToken);
       localStorage.setItem("accessToken", accessToken);
@@ -139,14 +145,56 @@ export const logInWithGoogle = createAsyncThunk(
 );
 
 // для зміни паролю користувача
-export const resetPassword = createAsyncThunk(
+export const sendResetPassword = createAsyncThunk(
   "user/resetPassword",
   async (email, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.post("/users/reset-password", { email });
+      const response = await axiosInstance.post("/users/send-reset-email", {
+        email,
+      });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
+  }
+);
+export const resetPassword = createAsyncThunk(
+  "user/resetPassword",
+  async ({ token, password }, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.post("/users/reset-pswrd", {
+        token,
+        password,
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+//Token refresh
+export const refreshToken = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    try {
+      const reduxState = thunkAPI.getState();
+      const token = reduxState.user.token;
+
+      setAuthHeader(token);
+
+      const response = await axiosInstance.post("/auth/refresh");
+
+      return response.data.data.accessToken;
+    } catch (error) {
+      clearAuthHeader();
+      return thunkAPI.rejectWithValue(error.response.status);
+    }
+  },
+  {
+    condition: (_, thunkAPI) => {
+      const reduxState = thunkAPI.getState();
+      const savedToken = reduxState.user.token;
+      return savedToken !== null;
+    },
   }
 );

@@ -1,138 +1,165 @@
 .mainContainer {
-  background-color: #f0eff4;
+  max-width: 343px;
+  height: 411px;
+  padding: 24px 16px;
+  background-color: #F0EFF4;
+
   border-radius: 30px;
-  width: 672px;
-  height: 732px;
-  gap: 32px;
-  margin-top: 32px;
-  /* margin-left: 32px; */
-  float:left;
-  
+}
+
+.welcome {
+  margin-top: 74px;
 }
 
 .descr {
-color: #2F2F2F;
-font-size: 16px;
-font-weight: 400;
-line-height: 24px; 
-letter-spacing: 0.96px;
-
-  padding-bottom: 16px;
-}
-.logoMain{
-   margin-left: 32px;
-   margin-top: 32px;
-}
-
-.welcome {
-  padding: 132px 62px;
+  margin-bottom: 16px;
+  color: #2f2f2f;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.29em;
+  letter-spacing: 0.06em;
 }
 
 .title {
-  font-family: "Poppins", sans-serif;
+  margin-bottom: 32px;
+  font-size: 38px;
+  font-style: normal;
   font-weight: 700;
-  font-size: 80px;
-  line-height: 95%;
-  letter-spacing: -0.01em;
+  line-height: 1em;
+  font-family: "Poppins", sans-serif;
   color: #323f47;
-  padding-bottom: 32px;
-}
-
-.singup {
-  padding-right: 16px;
+  letter-spacing: -0.01em;
 }
 
 .btn {
-  padding-right: 16px;
-  text-decoration: none;
+  padding: 14px 19px;
+  margin-right: 10px;
   font-family: "Poppins", sans-serif;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 150%;
+  font-size: 14px;
+  line-height: 1.29em;
   letter-spacing: -0.01em;
-  text-align: center;
   color: #323f47;
   border: none;
   background-color: #9be1a0;
-  padding: 18px 40px;
   border-radius: 30px;
 }
 
-.btn:hover{
-    background-color: #87D28D;
+.btn:hover {
+  background-color: #87d28d;
 }
+
 .btnSingIn {
-  padding-right: 16px;
+  padding: 14px 28px;
   text-decoration: none;
   font-family: "Poppins", sans-serif;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 150%;
+  font-size: 14px;
+  line-height: 1.29em;
   letter-spacing: -0.01em;
   text-align: center;
   color: #323f47;
 
-  padding: 18px 40px;
   border-radius: 30px;
-  border: 1px solid #323F47;
-}
-.btnSingIn:hover{
-    border: 1px solid #87D28D;
-    color:#87D28D;
-    
+  border: 1px solid #323f47;
 }
 
-@media screen and (max-width: 768px) {
-  /* Styles for laptop or smaller devices */
+.btnSingIn:hover {
+  border: 1px solid #87d28d;
+  color: #87d28d;
+}
+
+
+
+
+/* ======================= SCREEN 768px ====================================================== */
+
+
+
+
+@media screen and (min-width: 768px) {
   .mainContainer {
-    width: 704px;
+    max-width: 704px;
     height: 498px;
-  }
-.welcome {
-  padding: 50px 64px;
-}
-
-.title {
-
-  font-size: 64px;
-  line-height: 109.375%;
-letter-spacing: -0.64px;
-}
-
-.descr{
-  font-size: 14px;
-  line-height: 18px; /* 128.571% */
-letter-spacing: 0.84px;
-}
-
-
-
-
-}
-
-@media screen and (max-width: 375px) {
-  /* Styles for small phones */
-  .mainContainer {
-    width: 343px;
-    height: 411px;
-  }
-
-  .title{
-    font-size: 38px;
-font-style: normal;
-font-weight: 700;
-line-height: 38px;
+    padding: 32px;
   }
 
   .welcome {
-  padding: 74px 16px;
-}
-.btn{
-padding:14px 19px;
+    margin-left: 32px;
+    margin-top: 50px;
+    ;
+  }
+
+
+  .title {
+    font-size: 64px;
+    line-height: 1.09em;
+  }
+
+  .descr {
+    font-size: 16px;
+    line-height: 1.5em;
+  }
+
+  .btn {
+    margin-right: 16px;
+    padding: 18px 40px;
+    font-size: 16px;
+    line-height: 1.5em;
+    letter-spacing: -0.01em;
+  }
+
+  .btnSingIn {
+    padding: 17px 40px;
+    font-size: 16px;
+    line-height: 1.5em;
+  }
+
 }
 
-.btnSingIn{
-  padding:14px 28px;
-}
+/* ======================= SCREEN 1440px ================================================ */
+
+
+@media screen and (min-width: 1440px) {
+  .mainContainer {
+    width: 672px;
+    height: 736px;
+    float: left;
+  }
+
+
+  .title {
+    font-size: 80px;
+    line-height: 95%;
+    letter-spacing: -0.01em;
+    /* padding-bottom: 32px; */
+  }
+
+  .welcome {
+    margin: 132px 32px 0;
+  }
+
+  /* 
+  .singup {
+    padding-right: 16px;
+  } */
+
+  /* .btn {
+    padding-right: 16px;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    padding: 18px 40px;
+  } */
+
+  /* .btnSingIn {
+  padding-right: 16px;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  padding: 18px 40px;
+} */
+
+
 
 }
