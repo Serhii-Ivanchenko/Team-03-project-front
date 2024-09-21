@@ -94,7 +94,8 @@
 
      position: absolute;
      top: -3px;
-     left: 0; 
+     /* left: 50px; ; */
+    transition: left 0.5s ease-out;
     
     
 }
@@ -109,6 +110,8 @@
 
     display: flex;
     justify-content: space-between;
+    /* gap: 50px; */
+       
 }
 
 @media only screen and (min-width: 768px) {
@@ -116,4 +119,58 @@
     font-size: 12px;
     line-height: 1.9;
   }
+}
+
+.percent {
+  font-family: "Poppins",
+    sans-serif;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 1;
+  color: #9be1a0;
+}
+
+@media only screen and (min-width: 768px) {
+  .percent {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 1.8;
+    color: #9be1a0;
+    width: inherit;
+
+  }
+}
+
+.wrapper{
+  position: relative;
+}
+
+.listItem{
+  position: absolute;
+  top: 0;
+  /* left: 0; */
+}
+
+.percent0 {
+  margin-right: 73px;
+}
+
+.percent50 {
+  margin-right: 49px;
+}
+
+@media only screen and (min-width: 768px) {
+  .percent0 {
+    margin-right: 106px;
+  }
+
+  .percent50 {
+    margin-right: 78px;
+  }
+}
+
+.hidePercent {
+  display: none;
+  /* Приховує динамічні відсотки */
 }

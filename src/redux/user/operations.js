@@ -150,3 +150,30 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
+
+//Token refresh
+export const refreshToken = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    try {
+      const reduxState = thunkAPI.getState();
+      const token = reduxState.user.token;
+
+      setAuthHeader(token);
+
+      const response = await axiosInstance.post("/auth/refresh");
+
+      return response.data.data.accessToken;
+    } catch (error) {
+      clearAuthHeader();
+      return thunkAPI.rejectWithValue(error.response.status);
+    }
+  },
+  {
+    condition: (_, thunkAPI) => {
+      const reduxState = thunkAPI.getState();
+      const savedToken = reduxState.user.token;
+      return savedToken !== null;
+    },
+  }
+);

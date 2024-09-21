@@ -7,43 +7,31 @@ import {
   getDayWaterByDate,
   // getMonthWaterByMonth,
 } from "../../redux/water/operations.js";
-import {
-  selectDayWaterItems,
-  selectLoading,
-} from "../../redux/water/selectors.js";
 import Loader from "../../components/Loader/Loader.jsx";
 import { getUserData } from "../../redux/user/operations.js";
 import {
   selectLoadingTracker,
-  selectLoadingUser,
 } from "../../redux/user/selectors.js";
 
 export default function TrackerPage() {
   const dispatch = useDispatch();
-  const waterData = useSelector(selectDayWaterItems);
-  const isLoading = useSelector(selectLoading);
-  const isLoadingUserData = useSelector(selectLoadingUser);
   const isLoadingTracker = useSelector(selectLoadingTracker);
 
-  const date = new Date(Date.now());
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  const today = `${year}-${month}-${day}`;
+  const date = new Date();
+  const month = date.toISOString().substring(0, 7);
+  const today = date.toISOString().substring(0, 10);
 
   useEffect(() => {
     const fetchWaterData = async () => {
       await Promise.all([
         dispatch(getUserData()),
-        dispatch(getDayWaterByDate("2024-09-12")),
-        // dispatch(getMonthWaterByMonth("2024-08")),
+        dispatch(getDayWaterByDate(today)),
+        // dispatch(getMonthWaterByMonth(month)),
       ]);
     };
 
     fetchWaterData();
   }, [dispatch, today]);
-
-  console.log("waterData", waterData);
 
   // const loading = isLoading || isLoadingUserData || isLoadingTracker;
 

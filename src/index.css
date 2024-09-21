@@ -45,6 +45,9 @@ body {
   background-color: #ffffff;
   overflow-x: hidden;
 }
+body.modal-open {
+  overflow: hidden;
+}
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 html::-webkit-scrollbar {
