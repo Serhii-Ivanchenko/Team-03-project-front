@@ -24,17 +24,21 @@ export default function WaterProgressBar() {
   //     return selectedDate === today ? "Today" : selectedDate;
   // }
 
+  const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = { day: 'numeric', month: 'long' };
+  return `${date.toLocaleDateString('en-US', options).replace(/\s/, ', ')}`;
+ };
+
   const dateData = () => {
     const today = new Date().toISOString().split("T")[0];
-    console.log(today);
-
+    
     const selectedDate =
       typeof date === "string"
         ? date
         : new Date(date).toISOString().split("T")[0];
-    console.log(selectedDate);
 
-    return selectedDate === today ? "Today" : selectedDate;
+    return selectedDate === today ? "Today" : formatDate(selectedDate);
   };
 
   useEffect(() => {
