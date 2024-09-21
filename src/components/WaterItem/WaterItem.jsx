@@ -1,6 +1,6 @@
 import styles from "./WaterItem.module.css";
 import iconUpdate from "../../assets/images/icons/icons.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Modal from '../Modal/Modal';
 import DeleteWaterModal from '../Modals/DeleteWaterModal/DeleteWaterModal';
 import EditWaterModal from '../Modals/EditWaterModal/EditWaterModal';
@@ -12,41 +12,23 @@ const WaterItem = ({ quantity, time }) => {
 
   const openDeleteModal = () => {
     if (!isDeleteModalOpen) {
-      setIsDeleteModalOpen(true)
-      console.log('Opening modal');
-      ;
+      setIsDeleteModalOpen(true);
     }
   };
 
   const closeDeleteModal = () => {
     setIsDeleteModalOpen(false);
-    console.log('Closing modal');
   };
 
   const openEditModal = () => {
     if (!isEditModalOpen) {
       setIsEditModalOpen(true);
-      console.log('Opening modal');
-
     }
   };
 
   const closeEditModal = () => {
     setIsEditModalOpen(false);
-    console.log('Closing modal');
   };
-
-  useEffect(() => {
-    if (isEditModalOpen || isDeleteModalOpen) {
-      console.log('A modal is open');
-    } else {
-      console.log('No modals are open');
-    }
-
-    return () => {
-      console.log('Cleaning up modals');
-    };
-  }, [isEditModalOpen, isDeleteModalOpen]);
 
   return (
     <li className={styles.item}>
@@ -64,13 +46,18 @@ const WaterItem = ({ quantity, time }) => {
         </p>
       </div>
       <div className={styles.actionIconsContainer}>
-        <svg className={styles.iconAction} onClick={openEditModal}>
-          <use href={`${iconUpdate}#icon-edit-2`}></use>
-        </svg>
-        <svg className={styles.iconAction} onClick={openDeleteModal}>
-          <use href={`${iconUpdate}#icon-trash-04`}></use>
-        </svg>
+        <button className={styles.iconButton} onClick={openEditModal} aria-label="Edit">
+          <svg className={styles.iconAction}>
+            <use href={`${iconUpdate}#icon-edit-2`}></use>
+          </svg>
+        </button>
+        <button className={styles.iconButton} onClick={openDeleteModal} aria-label="Delete">
+          <svg className={styles.iconAction}>
+            <use href={`${iconUpdate}#icon-trash-04`}></use>
+          </svg>
+        </button>
       </div>
+
       {isEditModalOpen && (
         <Modal isOpen={isEditModalOpen} onClose={closeEditModal}>
           <EditWaterModal onClose={closeEditModal} />
@@ -84,6 +71,5 @@ const WaterItem = ({ quantity, time }) => {
     </li>
   );
 };
-
 
 export default WaterItem;
