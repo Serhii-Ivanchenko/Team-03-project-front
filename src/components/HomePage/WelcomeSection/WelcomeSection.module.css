@@ -43,6 +43,7 @@
   border: none;
   background-color: #9be1a0;
   border-radius: 30px;
+  cursor: pointer;
 }
 
 .btn:hover {
@@ -59,7 +60,7 @@
   letter-spacing: -0.01em;
   text-align: center;
   color: #323f47;
-
+ cursor: pointer;
   border-radius: 30px;
   border: 1px solid #323f47;
 }
