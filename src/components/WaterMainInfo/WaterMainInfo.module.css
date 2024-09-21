@@ -1,6 +1,6 @@
 .mainbox{
     border-radius: 30px;
-    width: 343px;
+    width: inherit;
     height: 415px;
     padding-right: 16px;
     padding-left: 16px;
