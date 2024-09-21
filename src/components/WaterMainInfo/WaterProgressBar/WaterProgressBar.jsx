@@ -32,13 +32,11 @@ export default function WaterProgressBar() {
 
   const dateData = () => {
     const today = new Date().toISOString().split("T")[0];
-    console.log(today);
-
+    
     const selectedDate =
       typeof date === "string"
         ? date
         : new Date(date).toISOString().split("T")[0];
-    console.log(selectedDate);
 
     return selectedDate === today ? "Today" : formatDate(selectedDate);
   };
