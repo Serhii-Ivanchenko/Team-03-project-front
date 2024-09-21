@@ -2,7 +2,7 @@ import css from "./AddWaterModal.module.css";
 import iconSprite from "../../../assets/images/icons/icons.svg";
 import { useForm } from "react-hook-form";
 
-const AddWaterModal = (onClose) => {
+const AddWaterModal = ({onClose}) => {
   const {
     register,
     handleSubmit,
