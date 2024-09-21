@@ -3,26 +3,39 @@ import iconMenu from '../../assets/images/icons/icons.svg';
 import Modal from '../Modal/Modal';
 import UserSettingsForm from '../UserSettingsForm/UserSettingsForm';
 import LogOutModal from '../Modals/LogOutModal/LogOutModal';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
-const UserBarPopover = ({ isVisible }) => {
+const UserBarPopover = ({ isVisible, onClose }) => {
   const [isSettingsModalOpen, setSettingsModalOpen] = useState(false);
   const [isLogOutModalOpen, setLogOutModalOpen] = useState(false);
+  const popoverRef = useRef(null);
 
-  const openSettingsModal = () => {
-    setSettingsModalOpen(true);
-  };
-
+  const openSettingsModal = () => setSettingsModalOpen(true);
   const closeSettingsModal = () => setSettingsModalOpen(false);
-
-  const openLogOutModal = () => {
-    setLogOutModalOpen(true);
-  };
-
+  const openLogOutModal = () => setLogOutModalOpen(true);
   const closeLogOutModal = () => setLogOutModalOpen(false);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (popoverRef.current && !popoverRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    if (isVisible) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isVisible, onClose]);
+
   return (
-    <div className={`${styles.popover} ${isVisible ? styles.popoverVisible : styles.hidden}`}>
+    <div
+      ref={popoverRef}
+      className={`${styles.popover} ${isVisible ? styles.popoverVisible : styles.hidden}`}
+    >
       <button className={styles.button} onClick={openSettingsModal}>
         <svg className={styles.icon}>
           <use href={`${iconMenu}#icon-settings`}></use>
@@ -38,13 +51,13 @@ const UserBarPopover = ({ isVisible }) => {
 
       {isSettingsModalOpen && (
         <Modal isOpen={isSettingsModalOpen} onClose={closeSettingsModal}>
-          <UserSettingsForm />
+          <UserSettingsForm onClose={closeSettingsModal} />
         </Modal>
       )}
 
       {isLogOutModalOpen && (
         <Modal isOpen={isLogOutModalOpen} onClose={closeLogOutModal}>
-          <LogOutModal />
+          <LogOutModal onClose={closeLogOutModal} />
         </Modal>
       )}
     </div>

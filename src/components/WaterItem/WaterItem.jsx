@@ -1,6 +1,6 @@
 import styles from "./WaterItem.module.css";
 import iconUpdate from "../../assets/images/icons/icons.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Modal from '../Modal/Modal';
 import DeleteWaterModal from '../Modals/DeleteWaterModal/DeleteWaterModal';
 import EditWaterModal from '../Modals/EditWaterModal/EditWaterModal';
@@ -13,38 +13,22 @@ const WaterItem = ({ quantity, time }) => {
   const openDeleteModal = () => {
     if (!isDeleteModalOpen) {
       setIsDeleteModalOpen(true);
-      console.log('Opening delete modal');
     }
   };
 
   const closeDeleteModal = () => {
     setIsDeleteModalOpen(false);
-    console.log('Closing delete modal');
   };
 
   const openEditModal = () => {
     if (!isEditModalOpen) {
       setIsEditModalOpen(true);
-      console.log('Opening edit modal');
     }
   };
 
   const closeEditModal = () => {
     setIsEditModalOpen(false);
-    console.log('Closing edit modal');
   };
-
-  useEffect(() => {
-    if (isEditModalOpen || isDeleteModalOpen) {
-      console.log('A modal is open');
-    } else {
-      console.log('No modals are open');
-    }
-
-    return () => {
-      console.log('Cleaning up modals');
-    };
-  }, [isEditModalOpen, isDeleteModalOpen]);
 
   return (
     <li className={styles.item}>
