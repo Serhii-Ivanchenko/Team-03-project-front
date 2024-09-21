@@ -93,6 +93,7 @@ input:focus {
   background: #9be1a0;
   transition: all 0.7s ease-in-out;
   cursor: pointer;
+  margin-bottom: 16px;
 
   @media (min-width: 768px) {
     height: 60px;

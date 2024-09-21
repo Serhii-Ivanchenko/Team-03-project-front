@@ -191,4 +191,5 @@ input:focus {
   color: rgba(47, 47, 47, 0.5);
   line-height: 1.28;
   letter-spacing: -0.01em;
+  /* margin: 0; */
 }
