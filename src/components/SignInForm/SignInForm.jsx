@@ -33,8 +33,6 @@ const SignInForm = () => {
     },
   });
 
-  // const error = useSelector(selectError);
-
   const onSubmit = async (data) => {
     const { email, password } = data;
     const newEmail = email.toLowerCase();
@@ -54,27 +52,6 @@ const SignInForm = () => {
           toast.error("Login failed. Please try again.");
         }
       });
-
-    // try {
-    //   const resultAction = await dispatch(logIn({ email: newEmail, password }));
-
-    //   if (logIn.fulfilled.match(resultAction)) {
-    //     toast.success("Logged in successfully!");
-    //     reset();
-    //   } else if (logIn.rejected.match(resultAction)) {
-    //     const errorStatus = resultAction.payload;
-    //     if (errorStatus === 401) {
-    //       toast.error("Wrong email or password.");
-    //     } else if (errorStatus === 409) {
-    //       toast.error("User already exists.");
-    //     } else {
-    //       toast.error("Login failed. Please try again.");
-    //     }
-    //   }
-    // } catch (error) {
-    //   console.error("Error during login:", error);
-    //   toast.error("An unexpected error occurred.");
-    // }
   };
 
   const handleClickShowPassword = () => {

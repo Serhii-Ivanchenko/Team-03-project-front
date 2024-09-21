@@ -1,0 +1,53 @@
+.modalContent {
+  padding: 40px 14px;
+  background-color: white;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 344px;
+  width: 100%;
+  position: relative;
+
+  @media (min-width: 768px) {
+    padding: 40px;
+
+    max-width: 516px;
+  }
+}
+
+.modalTitle {
+  margin-bottom: 20px;
+  font-size: 20px;
+  @media (min-width: 768px) {
+    font-size: 28px;
+  }
+}
+
+.modalClose {
+  margin-top: 10px;
+  background-color: transparent;
+  border: none;
+  color: #323f47;
+  cursor: pointer;
+}
+
+.modalCloseButton {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 20px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.closeIcon {
+  width: 24px;
+  height: 24px;
+  @media (min-width: 768px) {
+    width: 28px;
+    height: 28px;
+  }
+}

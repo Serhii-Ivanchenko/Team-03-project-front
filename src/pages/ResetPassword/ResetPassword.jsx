@@ -3,7 +3,7 @@ import AdvantagesSection from "../../components/HomePage/AdvantagesSection/Advan
 import Logo from "../../components/Logo/Logo";
 import ResetPasswordForm from "../../components/ResetPasswordForm/ResetPasswordForm";
 import css from "./ResetPassword.module.css";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { resetPassword } from "../../redux/user/operations";
 import toast from "react-hot-toast";
 
@@ -11,11 +11,19 @@ const ResetPassword = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token"); // Отримання токену з URL
+  const navigate = useNavigate();
 
-  const handleResetPassword = async (password) => {
+  const handleResetPassword = async (data) => {
+    const { password, confirmPassword } = data;
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match.");
+      return;
+    }
+
     try {
       await dispatch(resetPassword({ token, password })).unwrap();
       toast.success("Password reset successful!");
+      navigate("/signin");
     } catch (error) {
       console.error("Password reset failed", error);
       toast.error("Failed to reset password. Please try again.");
