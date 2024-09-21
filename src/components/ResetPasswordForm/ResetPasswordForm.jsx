@@ -6,13 +6,9 @@ import css from "./ResetPasswordForm.module.css";
 import clsx from "clsx";
 import { useState } from "react";
 import iconSprite from "../../assets/images/icons/icons.svg";
-// import toast from "react-hot-toast";
-// import { resetPassword } from "../../redux/user/operations";
 
 const ResetPasswordForm = ({ onSubmit }) => {
-  // const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -26,21 +22,6 @@ const ResetPasswordForm = ({ onSubmit }) => {
       confirmPassword: "",
     },
   });
-
-  // const onSubmit = async (data) => {
-  //   const { password } = data;
-
-  //   dispatch(resetPassword({ password }))
-  //     .unwrap()
-  //     .then(() => {
-  //       toast.success("Password has been reset successfully!");
-  //       reset();
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       toast.error("Password reset failed. Please try again.");
-  //     });
-  // };
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
