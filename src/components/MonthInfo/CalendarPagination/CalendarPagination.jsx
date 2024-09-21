@@ -60,16 +60,16 @@ const options = {
   let calendarMonth = queryMonth.toISOString().substring(0, 7);
   
    useEffect(() => {
-    const fetchWaterData = async () => {
-      await Promise.all([
-        // dispatch(getUserData()),
-        // dispatch(getDayWaterByDate("2024-09-12")),
+     const fetchWaterData = async () => {
+       await Promise.all([
+         // dispatch(getUserData()),
+         // dispatch(getDayWaterByDate("2024-09-12")),
          dispatch(getMonthWaterByMonth(calendarMonth)),
-      ]);
-    };
+       ]);
+     };
 
-    fetchWaterData();
-  }, [dispatch, calendarMonth,waterDailyNorm]);
+     fetchWaterData();
+   }, [dispatch, calendarMonth, waterDailyNorm]);
 
   // console.log("waterMonthData", waterMonthData);
 
@@ -77,25 +77,32 @@ const options = {
   return (
     <div className={css.containerpagin}>
       <div className={css.mainbox}>
-      <p className={css.name}>Month</p>
-    <div className={css.mainboxpagination}>
+        <p className={css.name}>Month</p>
+        <div className={css.mainboxpagination}>
+          <div className={css.boxpagination}>
+            <button className={css.iconstep} onClick={handleClickLeft}>
+              <FiChevronLeft className={css.arrowIcon} />
+            </button>
+            <p className={css.namemonth}> {strMonth} </p>
+            <button className={css.iconstep} onClick={handleClickRight}>
+              <FiChevronRight className={css.arrowIcon} />
+            </button>
+          </div>
 
-      <div className={css.boxpagination}>
-      
-        <button className={css.iconstep} onClick={handleClickLeft}> <FiChevronLeft /> </button> 
-        <p className={css.namemonth} > {strMonth} </p>
-        <button className={css.iconstep} onClick={handleClickRight}> <FiChevronRight /> </button> 
-
+          <div className={css.pieIconWrapper}>
+            <svg className={css.iconpie}>
+              <use href={`${myIcon}#icon-pie-chart-02`}></use>
+            </svg>
+          </div>
+        </div>
       </div>
-
-      <svg className={css.iconpie} >
-            <use  href={`${myIcon}#icon-pie-chart-02`}></use>
-      </svg>
-      </div>
-      </div>
-      <Calendar monthData={waterMonthData} waterDailyNorm={waterDailyNorm}
-        waterSelectDate={waterSelectDate} onCalendarClick={calendarClick} />
+      <Calendar
+        monthData={waterMonthData}
+        waterDailyNorm={waterDailyNorm}
+        waterSelectDate={waterSelectDate}
+        onCalendarClick={calendarClick}
+      />
     </div>
-  )
+  );
 }
 
