@@ -5,7 +5,7 @@ import styles from "./TrackerPage.module.css";
 import { useEffect } from "react";
 import {
   getDayWaterByDate,
-  getMonthWaterByMonth,
+  // getMonthWaterByMonth,
 } from "../../redux/water/operations.js";
 import Loader from "../../components/Loader/Loader.jsx";
 import { getUserData } from "../../redux/user/operations.js";
@@ -26,7 +26,7 @@ export default function TrackerPage() {
       await Promise.all([
         dispatch(getUserData()),
         dispatch(getDayWaterByDate(today)),
-        dispatch(getMonthWaterByMonth(month)),
+        // dispatch(getMonthWaterByMonth(month)),
       ]);
     };
 
