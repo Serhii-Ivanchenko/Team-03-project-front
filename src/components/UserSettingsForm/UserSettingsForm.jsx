@@ -2,75 +2,23 @@ import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import css from "../UserSettingsForm/UserSettingsForm.module.css";
-import {
-  selectName,
-  selectEmail,
-  selectGender,
-  selectPhoto,
-  selectWeight,
-  selectActiveTime,
-  selectDailyNorm,
-} from "../../redux/user/selectors";
+import { selectUser } from "../../redux/user/selectors";
 import { FiUpload } from "react-icons/fi";
 import { BsExclamationLg } from "react-icons/bs";
 import { MdRadioButtonChecked } from "react-icons/md";
 import { IoMdRadioButtonOff } from "react-icons/io";
-import { useEffect, useState } from "react";
-import {
-  getUserData,
-  // updateUserAvatar,
-  updateUserData,
-} from "../../redux/user/operations";
-
-const schema = yup.object({
-  gender: yup
-    .string()
-    .required("Gender should be required")
-    .oneOf(["woman", "man"]),
-  name: yup
-    .string()
-    .required("Name should be required")
-    .min(2, "Too Short!")
-    .max(40, "Too Long!"),
-  email: yup
-    .string()
-    .required("Email should be required")
-    .email("Must be a valid email"),
-  weight: yup
-    .number()
-    .typeError("Weight should be a number")
-    .required("Weight should be required")
-    .positive("Weight should be a positive number"),
-  activeTime: yup
-    .number()
-    .typeError("Active Time should be a number")
-    .required("Active time should be required")
-    .positive("Active Time should be a positive number"),
-  dailyNorm: yup
-    .number()
-    .typeError("Daily norma should be a number")
-    .required("Daily norma time should be required")
-    .positive("Daily norma should be a positive number"),
-});
+import { useState } from "react";
+import { updateUserAvatar, updateUserData } from "../../redux/user/operations";
+import { userSettingsFormschema } from "../../validationSchemas/userSettingsFormSchema";
 
 export default function UserSettingsForm({ onClose }) {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUserData());
-  }, [dispatch]);
+  const { name, email, gender, photo, weight, activeTime, dailyNorm } =
+    useSelector(selectUser);
 
-  const userName = useSelector(selectName);
-  const userEmail = useSelector(selectEmail);
-  const userGender = useSelector(selectGender);
-  const userPhoto = useSelector(selectPhoto);
-  const userWeight = useSelector(selectWeight);
-  const userActiveTime = useSelector(selectActiveTime);
-  const userDailyNorm = useSelector(selectDailyNorm);
-
-  const [avatar, setAvatar] = useState(userPhoto);
+  const [avatar, setAvatar] = useState(photo);
 
   const {
     register,
@@ -78,15 +26,15 @@ export default function UserSettingsForm({ onClose }) {
     watch,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(userSettingsFormschema),
     mode: "onChange",
     defaultValues: {
-      gender: userGender ?? "woman",
-      name: userName ?? "",
-      email: userEmail ?? "",
-      weight: userWeight ?? 0,
-      activeTime: userActiveTime ?? 0,
-      dailyNorm: userDailyNorm ?? 0,
+      gender: gender ?? "woman",
+      name: name ?? "",
+      email: email ?? "",
+      weight: weight ?? 0,
+      activeTime: activeTime ?? 0,
+      dailyNorm: dailyNorm ?? 0,
     },
   });
 
@@ -105,8 +53,19 @@ export default function UserSettingsForm({ onClose }) {
   ).toFixed(1);
 
   const handleChange = (e) => {
-    setAvatar(URL.createObjectURL(e.target.files[0]));
-    // console.log(URL.createObjectURL(e.target.files[0]));
+    const newAvatar = e.target.files[0];
+    setAvatar(URL.createObjectURL(newAvatar));
+
+    dispatch(updateUserAvatar(newAvatar))
+      .unwrap()
+      .then(() => {
+        toast.success("Avatar updated!");
+      })
+      .catch((err) => {
+        console.log(err);
+        setAvatar(photo);
+        toast.error("Something went wrong,please try again");
+      });
   };
 
   const onSubmit = (data) => {
@@ -129,18 +88,6 @@ export default function UserSettingsForm({ onClose }) {
         console.log(err);
         toast.error("Something went wrong,please try again");
       });
-
-    // dispatch(updateUserAvatar(avatar))
-    //   .unwrap()
-    //   .then(() => {
-    //     toast.success("Avatar updated!");
-    //     onClose();
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     setAvatar(userPhoto);
-    //     toast.error("Something went wrong,please try again");
-    //   });
   };
 
   return (
