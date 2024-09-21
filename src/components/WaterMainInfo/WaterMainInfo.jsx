@@ -30,7 +30,7 @@ const openModal = () => {
             <AddWaterButton openModal={openModal} />
              {
           modalIsOpen && <Modal isOpen={modalIsOpen} onClose={handleModalClose}>
-            <AddWaterModal/>
+            <AddWaterModal onClose={handleModalClose}/>
           </Modal>
 }
         </div>
