@@ -1,9 +1,9 @@
-import styles from './UserBarPopover.module.css';
-import iconMenu from '../../assets/images/icons/icons.svg';
-import Modal from '../Modal/Modal';
-import UserSettingsForm from '../UserSettingsForm/UserSettingsForm';
-import LogOutModal from '../Modals/LogOutModal/LogOutModal';
-import { useState } from 'react';
+import styles from "./UserBarPopover.module.css";
+import iconMenu from "../../assets/images/icons/icons.svg";
+import Modal from "../Modal/Modal";
+import UserSettingsForm from "../UserSettingsForm/UserSettingsForm";
+import LogOutModal from "../Modals/LogOutModal/LogOutModal";
+import { useState } from "react";
 
 const UserBarPopover = ({ isVisible, onClose }) => {
   const [isSettingsModalOpen, setSettingsModalOpen] = useState(false);
@@ -13,14 +13,14 @@ const UserBarPopover = ({ isVisible, onClose }) => {
     setSettingsModalOpen(true);
     onClose();
   };
-  
+
   const closeSettingsModal = () => setSettingsModalOpen(false);
 
   const openLogOutModal = () => {
     setLogOutModalOpen(true);
     onClose();
   };
-  
+
   const closeLogOutModal = () => setLogOutModalOpen(false);
 
   return (
@@ -41,7 +41,11 @@ const UserBarPopover = ({ isVisible, onClose }) => {
       </button>
 
       {isSettingsModalOpen && (
-        <Modal isOpen={isSettingsModalOpen} onClose={closeSettingsModal}>
+        <Modal
+          isOpen={isSettingsModalOpen}
+          onClose={closeSettingsModal}
+          isSettingsModalOpen={isSettingsModalOpen}
+        >
           <UserSettingsForm onClose={closeSettingsModal} />
         </Modal>
       )}
