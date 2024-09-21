@@ -1,0 +1,14 @@
+.switcherContainer {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .label {
+    font-size: 16px;
+  }
+  
+  input[type="radio"] {
+    margin-right: 8px;
+    accent-color: #9be1a0;
+  }
