@@ -15,13 +15,13 @@ export const userSettingsFormschema = Yup.object({
     .typeError("Weight should be a number")
     .required("Weight should be required")
     .positive("Weight should be a positive number")
-    .min(10, "Weight should be more than 10 kg")
+    .min(0, "Weight should be 0 or more kg")
     .max(350, "Weight should be less than 350 kg"),
   activeTime: Yup.number()
     .typeError("Active Time should be a number")
     .required("Active time should be required")
     .positive("Active Time should be a positive number")
-    .min(0.5, "Active Time should be more than 0.5 hours")
+    .min(0, "Active Time should be 0 or more hours")
     .max(24, "Active Time should be less than 24 hours"),
   dailyNorm: Yup.number()
     .typeError("Daily norma should be a number")
