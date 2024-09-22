@@ -204,7 +204,8 @@
   }
 }
 
-/* .formInput[type="time"]::-webkit-calendar-picker-indicator {
-  display: none;
-  -webkit-appearance: none;
-} */
+.errorMessage {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
