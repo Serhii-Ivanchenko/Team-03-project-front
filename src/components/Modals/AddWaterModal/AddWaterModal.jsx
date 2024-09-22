@@ -27,6 +27,8 @@ const AddWaterModal = ({ onClose }) => {
       waterUsed: localStorage.getItem("waterUsed") || count,
       recordingTime: localStorage.getItem("recordingTime") || "",
     },
+    mode: "onChange",
+    reValidateMode: "onChange",
   });
 
   const recordingTime = useWatch({ control, name: "recordingTime" });
@@ -67,17 +69,15 @@ const AddWaterModal = ({ onClose }) => {
       .unwrap()
       .then(() => {
         toast.success("Add data successfully!");
-        reset();
         onClose();
+
+        localStorage.removeItem("waterCount");
+        localStorage.removeItem("waterUsed");
+        localStorage.removeItem("recordingTime");
       })
       .catch((err) => {
         console.log(err);
-
-        if (err === 409) {
-          toast.error("User already exists.");
-        } else {
-          toast.error("Something went wrong");
-        }
+        toast.error("Something went wrong");
       });
   };
 
@@ -111,7 +111,7 @@ const AddWaterModal = ({ onClose }) => {
           <label>
             <input
               className={css.formInput}
-              placeholder="00:00"
+              placeholder="7:00"
               {...register("recordingTime", {
                 required: "Recording time is required",
                 pattern: {
