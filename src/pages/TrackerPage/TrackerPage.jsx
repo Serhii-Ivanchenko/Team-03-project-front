@@ -18,7 +18,6 @@ export default function TrackerPage() {
   const isLoadingTracker = useSelector(selectLoadingTracker);
 
   const date = new Date();
-  const month = date.toISOString().substring(0, 7);
   const today = date.toISOString().substring(0, 10);
 
   useEffect(() => {
@@ -26,14 +25,11 @@ export default function TrackerPage() {
       await Promise.all([
         dispatch(getUserData()),
         dispatch(getDayWaterByDate(today)),
-        // dispatch(getMonthWaterByMonth(month)),
       ]);
     };
 
     fetchWaterData();
   }, [dispatch, today]);
-
-  // const loading = isLoading || isLoadingUserData || isLoadingTracker;
 
   return isLoadingTracker ? (
     <Loader />
