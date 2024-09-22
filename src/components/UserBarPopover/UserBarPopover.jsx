@@ -50,7 +50,11 @@ const UserBarPopover = ({ isVisible, onClose }) => {
       </button>
 
       {isSettingsModalOpen && (
-        <Modal isOpen={isSettingsModalOpen} onClose={closeSettingsModal}>
+        <Modal
+          isOpen={isSettingsModalOpen}
+          onClose={closeSettingsModal}
+          isSettingsModalOpen={isSettingsModalOpen}
+        >
           <UserSettingsForm onClose={closeSettingsModal} />
         </Modal>
       )}
