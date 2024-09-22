@@ -21,6 +21,7 @@ const AddWaterModal = ({ onClose }) => {
     handleSubmit,
     setValue,
     register,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -59,6 +60,18 @@ const AddWaterModal = ({ onClose }) => {
     setCount((prevCount) => (prevCount > 0 ? prevCount - 50 : 0));
   };
 
+  const formatTime = (value) => {
+    const cleaned = value.replace(/\D/g, "");
+    const hours = cleaned.slice(0, 2);
+    const minutes = cleaned.slice(2, 4);
+    return `${hours}${minutes ? `:${minutes}` : ""}`;
+  };
+
+  const handleTimeChange = (e) => {
+    const formattedTime = formatTime(e.target.value);
+    setValue("recordingTime", formattedTime);
+  };
+
   const onSubmit = (data) => {
     const newWaterItem = {
       date: new Date().toISOString().split("T")[0],
@@ -70,7 +83,7 @@ const AddWaterModal = ({ onClose }) => {
       .then(() => {
         toast.success("Add data successfully!");
         onClose();
-
+        reset();
         localStorage.removeItem("waterCount");
         localStorage.removeItem("waterUsed");
         localStorage.removeItem("recordingTime");
@@ -120,6 +133,7 @@ const AddWaterModal = ({ onClose }) => {
                 },
               })}
               type="text"
+              onChange={handleTimeChange}
             />
           </label>
 
