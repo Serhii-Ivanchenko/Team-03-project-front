@@ -1,8 +1,6 @@
-// import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styles from './ChooseDate.module.css';
 import {selectDate} from '../../redux/water/selectors';
-// import {getDayWaterByDate} from '../../redux/water/operations';
 
 
 const formatDate = (dateString) => {

@@ -15,6 +15,7 @@
     border-radius: 30px;
     background: #323F47;
     border: none;
+    max-width: 100%;
   }
 
   @media only screen and (min-width: 768px) {
@@ -27,6 +28,7 @@
     width: 38px;
     height: 38px;
     border-radius: 38px;
+    flex-shrink: 0;
   }
 
   @media only screen and (min-width: 768px) {
@@ -62,6 +64,7 @@
     height: 16px;
     stroke:#FFF;
     cursor: pointer;
+    flex-shrink: 0;
 
   }
 

@@ -13,7 +13,7 @@
   box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.10);   
   z-index: 100;
   overflow: hidden;
-  transform: translateY(-20px);
+  transform: translateY(-5px);
   transition: max-height 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 .popoverVisible {
@@ -45,14 +45,14 @@
   line-height: 1.286em;
   background: none;
   border: none;
-}
-
-.button {
-  color: #323F47;
-}
-
-.buttonOut {
+  cursor: pointer;
   color: rgba(50, 63, 71, 0.40);
+  transition: color 0.3s ease;
+}
+
+.button:hover,
+.buttonOut:hover {
+  color: #323F47;
 }
 
 .icon,
@@ -61,12 +61,12 @@
   height: 16px;
   margin-right: 8px;
   fill: none;
+  stroke: rgba(50, 63, 71, 0.40);
+  transition: stroke 0.3s ease;
 }
 
-.icon {
+.button:hover .icon,
+.buttonOut:hover .iconOut {
   stroke: #323F47;
 }
 
-.iconOut {
-  stroke: rgba(50, 63, 71, 0.40);
-}
