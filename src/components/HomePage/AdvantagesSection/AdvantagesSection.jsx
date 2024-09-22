@@ -5,8 +5,10 @@ import boy1x from "../../../assets/images/main_page/boy_avatar_1x.webp";
 import boy2x from "../../../assets/images/main_page/boy_avatar_2x.webp";
 import secondGirl1x from "../../../assets/images/main_page/second_girl_avatar_1x.webp";
 import secondGirl2x from "../../../assets/images/main_page/second_girl_avatar_2x.webp";
+import { useTranslation } from "react-i18next";
 
 const AdvantagesSection = () => {
+  const { t } = useTranslation();
   return (
     <div className={css.advSection}>
       <div className={css.happyContainer}>
@@ -63,24 +65,28 @@ const AdvantagesSection = () => {
 
         <div className={css.happyCustomers}>
           <p className={css.happyText}>
-            Our <span className={css.accent}>happy</span> customers
+            {t("advantages.our")}
+            <span className={css.accent}> {t("advantages.happy")} </span>
+            {t("advantages.customers")}
           </p>
         </div>
       </div>
-
       <div className={css.btnWrapper}>
         <div className={css.infoStaticsBtn}>
           <button className={css.habitbtn}>
-            <span className={css.circle}></span> Habit drive
+            <span className={css.circle}></span>
+            {t("advantages.habit_drive")}
           </button>
-          <button className={css.statistics}>View statistics</button>
+          <button className={css.statistics}>
+            {t("advantages.view_statistics")}
+          </button>
         </div>
         <div className={css.ratebtn}>
-          <button className={css.rate}>Personal rate setting</button>
+          <button className={css.rate}>{t("advantages.personal_rate")}</button>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default AdvantagesSection
+export default AdvantagesSection;

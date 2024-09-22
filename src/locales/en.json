@@ -1,0 +1,136 @@
+{
+  "l": "L",
+  "add_water": "Add water",
+  "today": "Today",
+  "logging_in_google": "Logging in with Google...",
+  "welcome": {
+    "description": "Record daily water intake and track your habits",
+    "title": "Water Consumption Tracker",
+    "try_tracker": "Try Tracker",
+    "sing_in": "Sign In"
+  },
+  "advantages": {
+    "our": "Our",
+    "happy": "happy",
+    "customers": "customers",
+    "habit_drive": "Habit drive",
+    "view_statistics": "View statistics",
+    "personal_rate": "Personal rate setting"
+  },
+  "loading_message": "Loading, please wait...",
+  "add_water_modal": {
+    "addWater": "Add water",
+    "chooseValue": "Choose a value:",
+    "amountOfWater": "Amount of water:",
+    "recordingTime": "Recording time:",
+    "enterWaterValue": "Enter the value of the water used:",
+    "save": "Save"
+  },
+  "delete_water_modal": {
+    "deleteEntry": "Delete entry",
+    "deleteConfirmation": "Are you sure you want to delete the entry?",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
+  "edit_water_modal": {
+    "editAmount": "Edit the entered amount of water",
+    "correctData": "Correct entered data:",
+    "amountOfWater": "Amount of water:",
+    "recordingTime": "Recording time:",
+    "enterWaterValue": "Enter the value of the water used:",
+    "save": "Save"
+  },
+  "logout_modal": {
+    "logOut": "Log out",
+    "confirmLeave": "Do you really want to leave?",
+    "logOutError": "Logout failed. Please try again.",
+    "cancel": "Cancel"
+  },
+  "month": "Month",
+  "reset_password": {
+    "changePassword": "Change your password",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "enterNewPassword": "Enter new password",
+    "errorPassword": "Please enter a password.",
+    "errorConfirmPassword": "Please confirm your password."
+  },
+  "notFound": {
+    "title": "OOOOPS!!! Page not found",
+    "linkText": "Return to Homepage"
+  },
+  "signIn": {
+    "title": "Sign In",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "password_placeholder": "Enter your password",
+    "or": "or",
+    "google_signup": "Sign Up with Google",
+    "forgot_password": "Forgot password?",
+    "invite_text": "Don't have an account?",
+    "sign_up": "Sing Up",
+    "login_success": "Logged in successfully!",
+    "user_exists": "User already exists",
+    "generic_error": "Login failed. Please try again"
+  },
+  "forgotPassword": {
+    "title": "Reset Password",
+    "email_placeholder": "Enter your email",
+    "success_message": "Check your email for the reset link",
+    "error_message": "Something went wrong. Try again!",
+    "send_email": "Send email",
+    "close": "Close"
+  },
+  "signUp": {
+    "title": "Sign Up",
+    "email": "Email",
+    "email_placeholder": "Enter your email",
+    "password": "Password",
+    "password_placeholder": "Enter your password",
+    "repeat_password": "Repeat password",
+    "signup_success": "Registration successful!",
+    "user_exists": "User already exists",
+    "registration_failed": "Registration failed. Please try again",
+    "signup_button": "Sign Up",
+    "google_signup": "Sign Up with Google",
+    "invite_text": "Already have an account?",
+    "sign_in": "Sign In"
+  },
+  "user_bar": {
+    "settings": "Settings",
+    "logOut": "Log out"
+  },
+  "user_greeting": "Hello",
+  "settings": {
+    "header": "Settings",
+    "upload_photo": "Upload a photo",
+    "gender": "Your gender identity",
+    "man": "Man",
+    "woman": "Woman",
+    "name": "Your name",
+    "email": "Email",
+    "daily_norm": "My daily norma",
+    "active_time_hours": "Active time in hours",
+    "weight": "Your weight in kilograms:",
+    "active_time": "The time of active participation in sports:",
+    "water_norm": "The required amount of water in liters per day:",
+    "user_norma": "Write down how much water you will drink:",
+    "save": "Save",
+    "error_messages": {
+      "name": "Please enter your name.",
+      "email": "Please enter a valid email.",
+      "weight": "Please enter your weight.",
+      "active_time": "Please enter your activity time.",
+      "daily_norm": "Please enter your water intake norm."
+    },
+    "formulas": {
+      "for_woman": "For woman:",
+      "for_man": "For man:"
+    },
+    "notes": {
+      "description": "* V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports."
+    }
+  },
+  "no_records": "No records about water consumption"
+}
