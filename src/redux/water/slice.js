@@ -23,19 +23,19 @@ const handleRejected = (state, action) => {
 const waterSlice = createSlice({
   name: "water",
   initialState: initialState.water,
- reducers: {
-   changeActualDate: (state, action) => {
-     state.items.date = action.payload;
+  reducers: {
+    changeActualDate: (state, action) => {
+      state.items.date = action.payload;
     },
   },
-
 
   extraReducers: (builder) =>
     builder
       .addCase(addWaterItem.pending, handlePending)
       .addCase(addWaterItem.fulfilled, (state, action) => {
         state.loading = false;
-        state.items.day.push(action.payload);
+        const newItem = { ...action.payload.data, id: action.payload.data._id };
+        state.items.day.push(newItem);
       })
       .addCase(addWaterItem.rejected, handleRejected)
       .addCase(deleteWaterItem.pending, handlePending)
@@ -80,7 +80,6 @@ const waterSlice = createSlice({
       .addCase(editWaterItem.rejected, handleRejected)
       .addCase(getDayWaterByDate.pending, handlePending)
       .addCase(getDayWaterByDate.fulfilled, (state, action) => {
-       
         state.items.date = action.payload.date;
         state.items.totalValue = action.payload.totalValue;
         state.loading = false;

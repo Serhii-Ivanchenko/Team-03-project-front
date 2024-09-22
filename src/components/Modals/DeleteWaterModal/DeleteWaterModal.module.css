@@ -3,6 +3,7 @@
     opacity: 0;
     transform: scale(0.9);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -13,6 +14,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 28px;
   animation: modalFadeIn 0.3s ease-out;
 
@@ -27,6 +29,38 @@
   background: #fff;
 }
 
+@media only screen and (min-width: 768px) {
+  .deleteModalContainer {
+    gap: 24px;
+    padding: 40px;
+    width: 516px;
+    height: 244px;
+  }
+}
+
+.modalCloseButton {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 20px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.closeIcon {
+  width: 24px;
+  height: 24px;
+
+  @media (min-width: 768px) {
+    width: 28px;
+    height: 28px;
+  }
+}
+
 .deleteModalTitle {
   font-weight: 700;
   font-size: 20px;
@@ -36,13 +70,24 @@
   color: #323f47;
 }
 
+@media only screen and (min-width: 768px) {
+  .deleteModalTitle {
+    font-size: 28px;
+    line-height: 1.14em;
+  }
+}
+
 .deleteModalTextContainer {
   display: flex;
   justify-content: center;
   flex-direction: column;
   gap: 16px;
-  width: 316px;
-  height: 58px;
+}
+
+@media only screen and (min-width: 768px) {
+  .deleteModalTextContainer {
+    gap: 24px;
+  }
 }
 
 .deleteModalText {
@@ -54,107 +99,84 @@
   color: #323f47;
 }
 
+@media only screen and (min-width: 768px) {
+  .deleteModalText {
+    font-size: 18px;
+    line-height: 1.33em;
+  }
+}
+
 .deleteModalBtnWrapper {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   gap: 9px;
-  margin: 0 auto;
-  width: 304px;
-  height: 101px;
 }
 
-.deleteModalBtn,
-.deleteModalCancelBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 10px;
-  font-weight: 700;
-  border-radius: 30px;
-  border: none;
-  padding: 14px 129px;
-  width: 304px;
-  height: 46px;
-
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
-}
-
-.deleteModalBtn {
-  background-color: #9be1a0;
-  color: #323f47;
-}
-
-.deleteModalCancelBtn {
-  background-color: #f0eff4;
-  color: #323f474d;
-}
-
-.deleteModalBtn:hover {
-  background-color: #6ac96e;
-  box-shadow: 0 0 10px 2px #6ac96e;
-  transform: scale(1.05);
-}
-
-.deleteModalCancelBtn:hover {
-  color: #2f2f2f;
-  transform: scale(1.05);
-  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
-}
-
-@media (min-width: 768px) {
-  .deleteModalContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 24px;
-
-    border-radius: 15px;
-    padding: 40px;
-    width: 516px;
-    height: 244px;
-
-    box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
-    background: #fff;
-  }
-
-  .deleteModalTextContainer {
-    width: 436px;
-    gap: 24px;
-  }
-
-  .deleteModalTitle {
-    font-size: 28px;
-    line-height: 1.14;
-  }
-
-  .deleteModalText {
-    font-size: 18px;
-    line-height: 1.33;
-  }
-
+@media only screen and (min-width: 768px) {
   .deleteModalBtnWrapper {
     flex-direction: row;
     justify-content: center;
     gap: 10px;
   }
+}
+
+.deleteModalBtn,
+.deleteModalCancelBtn {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  text-wrap: nowrap;
+  justify-content: center;
+
+  border-radius: 30px;
+  border: none;
+  width: 304px;
+  height: 46px;
+}
+
+@media only screen and (min-width: 768px) {
 
   .deleteModalBtn,
   .deleteModalCancelBtn {
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.5em;
   }
+}
 
+.deleteModalBtn {
+  background-color: #9be1a0;
+  color: #323f47;
+  transition: background-color 0.3s ease-in-out;
+}
+
+@media only screen and (min-width: 768px) {
   .deleteModalBtn {
-    padding: 18px 67px;
+    width: 173px;
+    height: 60px;
   }
+}
 
+.deleteModalCancelBtn {
+  background-color: #f0eff4;
+  color: rgba(50, 63, 71, 0.30);
+  transition: color 0.3s ease-in-out;
+}
+
+@media only screen and (min-width: 768px) {
   .deleteModalCancelBtn {
-    padding: 18px 59px;
+    width: 176px;
+    height: 60px;
   }
+}
+
+.deleteModalBtn:hover {
+  background-color: #87d28d;
+}
+
+.deleteModalCancelBtn:hover {
+  color: #323F47;
 }

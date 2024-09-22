@@ -19,8 +19,9 @@ export const deleteWaterItem = createAsyncThunk(
   "water/deleteItem",
   async (waterItemId, thunkAPI) => {
     try {
-      const response = await axiosInstance.delete(`/water/${waterItemId}`);
-      return response.data;
+      await axiosInstance.delete(`/water/${waterItemId}`);
+      
+      return { id: waterItemId };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
