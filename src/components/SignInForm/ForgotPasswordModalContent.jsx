@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
-import { resetPassword } from "../../redux/user/operations";
+import { sendResetPassword } from "../../redux/user/operations";
 import css from "./ForgotPassword.module.css";
 
 const ForgotPasswordModalContent = ({ onClose }) => {
@@ -10,14 +10,26 @@ const ForgotPasswordModalContent = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await dispatch(resetPassword(email));
-      toast.success("Check your email");
-      onClose();
-    } catch (error) {
-      console.log(error);
-      toast.error("Something wrong. Try again!");
-    }
+
+dispatch(sendResetPassword(email))
+  .unwrap()
+  .then(() => {
+    toast.success("Check your email for the reset link.");
+    onClose();
+  })
+  .catch((err) => {
+    console.error(err);
+    toast.error("Something went wrong. Please try again.");
+  });
+
+    // try {
+    //   await dispatch(sendResetPassword(email)).unwrap();
+    //   toast.success("Check your email for the reset link.");
+    //   onClose();
+    // } catch (error) {
+    //   console.error(error);
+    //   toast.error("Something went wrong. Please try again.");
+    // }
   };
 
   return (
@@ -35,7 +47,7 @@ const ForgotPasswordModalContent = ({ onClose }) => {
           />
         </label>
         <button type="submit" className={css.modalSubmit}>
-          Send email{" "}
+          Send email
         </button>
       </form>
       <button className={css.modalClose} onClick={onClose}>

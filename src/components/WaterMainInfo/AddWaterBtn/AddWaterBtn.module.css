@@ -14,6 +14,8 @@
     border: none;
     color: #fff;
     stroke: #fff;
+
+    cursor: pointer;
 }
 
 .btnbox:hover{
@@ -21,6 +23,12 @@
     stroke:#9be1a0 ;
     
 }
+
+/* .btnbox:focus{
+    color: #9be1a0;
+    stroke: #9be1a0;
+    transition: 0,5s;
+} */
 
 @media only screen and (min-width: 768px) {
 .btnbox {

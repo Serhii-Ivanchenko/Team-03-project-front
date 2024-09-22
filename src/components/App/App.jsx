@@ -10,6 +10,7 @@ import { selectIsRefreshing } from "../../redux/user/selectors.js";
 import Loader from "../Loader/Loader.jsx";
 import { Toaster } from "react-hot-toast";
 import GoogleAuthCallback from "../GoogleAuthCallback/GoogleAuthCallback.jsx";
+import ResetPassword from "../../pages/ResetPassword/ResetPassword.jsx";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const SignUpPage = lazy(() => import("../../pages/SignUpPage/SignUpPage.jsx"));
@@ -35,7 +36,7 @@ export default function App() {
   ) : (
     <SharedLayout>
       <Toaster position="top-right" reverseOrder={false} />
-      <Suspense fallback={<Loader/>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
@@ -63,6 +64,17 @@ export default function App() {
             }
           />
           <Route path="/confirm-google-auth" element={<GoogleAuthCallback />} />
+
+          <Route
+            path="/reset-password"
+            element={
+              <RestrictedRoute
+                redirectTo="/signin"
+                component={<ResetPassword />}
+              />
+            }
+          />
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>

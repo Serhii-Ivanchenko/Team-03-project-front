@@ -5,10 +5,12 @@ import css from './WaterMainInfo.module.css'
 import myIcon from '../../assets/images/icons/icons.svg'
 import Modal from "../Modal/Modal";
 import { useState } from "react";
+import AddWaterModal from "../Modals/AddWaterModal/AddWaterModal";
 
 export default function WaterMainInfo() {
 
-const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
+
     
 const openModal = () => {
   setIsOpen(true);
@@ -24,10 +26,12 @@ const openModal = () => {
                 <use className={css.logoiconUse} href={`${myIcon}#icon-AquaTrack`}></use>
             </svg>
             <WaterDailyNorma />
-            <WaterProgressBar />
+            <WaterProgressBar  />
             <AddWaterButton openModal={openModal} />
              {
-  modalIsOpen && <Modal isOpen={modalIsOpen} onClose={handleModalClose} />
+          modalIsOpen && <Modal isOpen={modalIsOpen} onClose={handleModalClose}>
+            <AddWaterModal onClose={handleModalClose}/>
+          </Modal>
 }
         </div>
     );

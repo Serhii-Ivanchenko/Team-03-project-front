@@ -34,25 +34,39 @@ const SignUpForm = () => {
     const { email, password } = data;
     const newEmail = email.toLowerCase();
 
-    try {
-      const resultAction = await dispatch(
-        registerUser({ email: newEmail, password })
-      );
-      if (registerUser.fulfilled.match(resultAction)) {
-        reset();
-        toast.success("Registration successful!");
-      } else if (registerUser.rejected.match(resultAction)) {
-        const errorStatus = resultAction.payload;
-        if (errorStatus === 409) {
+ dispatch(registerUser({ email: newEmail, password }))
+   .unwrap()
+   .then(() => {
+     reset();
+     toast.success("Registration successful!");
+   })
+   .catch((err) => {
+     if (err=== 409) {
           toast.error("User already exists.");
         } else {
           toast.error("Registration failed. Please try again.");
         }
-      }
-    } catch (error) {
-      console.error("Error during registration:", error);
-      toast.error("An unexpected error occurred.");
-    }
+   });
+
+    // try {
+    //   const resultAction = await dispatch(
+    //     registerUser({ email: newEmail, password })
+    //   );
+    //   if (registerUser.fulfilled.match(resultAction)) {
+    //     reset();
+    //     toast.success("Registration successful!");
+    //   } else if (registerUser.rejected.match(resultAction)) {
+    //     const errorStatus = resultAction.payload;
+    //     if (errorStatus === 409) {
+    //       toast.error("User already exists.");
+    //     } else {
+    //       toast.error("Registration failed. Please try again.");
+    //     }
+    //   }
+    // } catch (error) {
+    //   console.error("Error during registration:", error);
+    //   toast.error("An unexpected error occurred.");
+    // }
   };
 
   const handleClickShowPassword = () => {

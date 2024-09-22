@@ -7,7 +7,7 @@ export default function HomePage() {
 
   return (
     <div className={css.homePage}>
-      <WelcomeSection className={css.wel} />
+      <WelcomeSection />
       <AdvantagesSection />
     </div>
   );

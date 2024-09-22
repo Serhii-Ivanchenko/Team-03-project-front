@@ -22,13 +22,14 @@
     height: 44px;
     align-items: center;
         justify-content: center;
-        gap: 4px;
+        gap: 6px;
 }
 
 @media only screen and (min-width: 768px) {
 .infoday {
         width: 38px;
         height: 65px;
+        gap: 4px;
     }
 }
 
@@ -62,6 +63,7 @@
         border: none;
         align-items: center;
     background-color: #fff;
+    cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {
@@ -87,7 +89,7 @@
         border: none;
         align-items: center;
 background: rgba(50, 63, 71, 0.2);
-color: #323f47;
+cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {
@@ -114,6 +116,7 @@ color: #323f47;
         align-items: center;
 background-color: #323f47;
 color:#9be1a0;
+cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {

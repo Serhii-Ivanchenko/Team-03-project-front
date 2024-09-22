@@ -23,6 +23,13 @@ const handleRejected = (state, action) => {
 const waterSlice = createSlice({
   name: "water",
   initialState: initialState.water,
+ reducers: {
+   changeActualDate: (state, action) => {
+     state.items.date = action.payload;
+    },
+  },
+
+
   extraReducers: (builder) =>
     builder
       .addCase(addWaterItem.pending, handlePending)
@@ -96,5 +103,7 @@ const waterSlice = createSlice({
         state = initialState.water;
       }),
 });
+
+export const { changeActualDate } = waterSlice.actions;
 
 export default waterSlice.reducer;

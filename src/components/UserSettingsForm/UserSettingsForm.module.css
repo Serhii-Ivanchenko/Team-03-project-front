@@ -33,6 +33,7 @@
   width: 24px;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
@@ -371,6 +372,11 @@
   text-align: center;
   color: #323f47;
   border: none;
+  cursor: pointer;
+}
+
+.saveButton:hover {
+  background-color: #87d28d;
 }
 
 @media screen and (min-width: 768px) {
