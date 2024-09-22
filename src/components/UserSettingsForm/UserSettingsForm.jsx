@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import css from "../UserSettingsForm/UserSettingsForm.module.css";
 import { selectUser } from "../../redux/user/selectors";
 import { FiUpload } from "react-icons/fi";
+import { FiX } from "react-icons/fi";
 import { BsExclamationLg } from "react-icons/bs";
 import { MdRadioButtonChecked } from "react-icons/md";
 import { IoMdRadioButtonOff } from "react-icons/io";
@@ -93,9 +94,7 @@ export default function UserSettingsForm({ onClose }) {
   return (
     <div className={css.settingsFormModal}>
       <button type="button" className={css.closeBtn} onClick={onClose}>
-        <svg className={css.closeBtnIcon}>
-          <use href="../../../src/assets/images/icons/icons.svg#icon-x"></use>
-        </svg>
+        <FiX className={css.closeBtnIcon} />
       </button>
       <h2 className={css.settingsHeader}>Settings</h2>
       <img src={avatar} alt="User`s avatar" className={css.avatar} />
@@ -207,7 +206,7 @@ export default function UserSettingsForm({ onClose }) {
               <p className={css.label}>Active time in hours</p>
             </div>
           </div>
-          <div>
+          <div className={css.wrapper}>
             <div className={css.inputSectionWrapper}>
               <div className={css.inputWrapper}>
                 <label className={css.label} htmlFor="weight">
@@ -239,7 +238,7 @@ export default function UserSettingsForm({ onClose }) {
               </div>
             </div>
             <div className={css.recommendedNorma}>
-              <p className={css.label}>
+              <p className={css.waterNormaLabel}>
                 The required amount of water in liters per day:
               </p>
               <p className={css.waterNorma}>
