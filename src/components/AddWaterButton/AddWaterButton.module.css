@@ -22,6 +22,11 @@
   height: 30px;
   border-radius: 50%;
   background-color: #9BE1A0;
+  transition: background-color 0.3s ease;
+}
+
+.addWaterButton:hover .containerSvg {
+  background-color: #323F47;
 }
 
 .icon {
@@ -29,6 +34,11 @@
   height: 18px;
   stroke: #323F47;
   fill: transparent;
+  transition: stroke 0.3s ease;
+}
+
+.addWaterButton:hover .icon {
+  stroke: #FFF;
 }
 
 .text {

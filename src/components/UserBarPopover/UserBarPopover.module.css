@@ -46,14 +46,13 @@
   background: none;
   border: none;
   cursor: pointer;
-}
-
-.button {
-  color: #323F47;
-}
-
-.buttonOut {
   color: rgba(50, 63, 71, 0.40);
+  transition: color 0.3s ease;
+}
+
+.button:hover,
+.buttonOut:hover {
+  color: #323F47;
 }
 
 .icon,
@@ -62,12 +61,12 @@
   height: 16px;
   margin-right: 8px;
   fill: none;
+  stroke: rgba(50, 63, 71, 0.40);
+  transition: stroke 0.3s ease;
 }
 
-.icon {
+.button:hover .icon,
+.buttonOut:hover .iconOut {
   stroke: #323F47;
 }
 
-.iconOut {
-  stroke: rgba(50, 63, 71, 0.40);
-}
