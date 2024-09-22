@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { persistor, store } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import {AxiosInterceptor} from "./components/AxiosInterceptor.jsx";
+import "./i18n"; //локалізація
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
