@@ -6,8 +6,8 @@ import css from "./HomePage.module.css";
 export default function HomePage() {
 
   return (
-    <div>
-      <WelcomeSection classname={css.wel} />
+    <div className={css.homePage}>
+      <WelcomeSection className={css.wel} />
       <AdvantagesSection />
     </div>
   );

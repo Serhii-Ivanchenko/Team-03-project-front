@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import GoogleBtn from "../GoogleBtn/GoogleBtn";
 import toast from "react-hot-toast";
-import axios from "axios";
+// import axios from "axios";
 import { useState } from "react";
 import iconSprite from "../../assets/images/icons/icons.svg";
 
@@ -27,7 +27,7 @@ const SignUpForm = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(signUpFormSchema),
-    mode: "onSubmit",
+    mode: "onChange",
   });
 
   const onSubmit = async (data) => {
@@ -59,16 +59,16 @@ const SignUpForm = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleGoogleSignUp = async () => {
-    try {
-      const response = await axios.get("/users/get-oauth-url");
-      const { url } = response.data.data;
-      window.location.href = url;
-    } catch (error) {
-      console.error("Error getting Google OAuth URL:", error);
-      toast.error("Error getting Google OAuth URL");
-    }
-  };
+  // const handleGoogleSignUp = async () => {
+  //   try {
+  //     const response = await axios.get("/users/get-oauth-url");
+  //     const { url } = response.data.data;
+  //     window.location.href = url;
+  //   } catch (error) {
+  //     console.error("Error getting Google OAuth URL:", error);
+  //     toast.error("Error getting Google OAuth URL");
+  //   }
+  // };
   // const handleConfirmGoogleAuth = async (code) => {
   //   try {
   //     const response = await axios.post("/confirm-google-auth", { code });
@@ -170,7 +170,7 @@ const SignUpForm = () => {
         <GoogleBtn
           context={"Sign Up with Google"}
           onClick={() => {
-            handleGoogleSignUp();
+            // handleGoogleSignUp();
             // dispatch(userSlice(true));
           }}
         />
