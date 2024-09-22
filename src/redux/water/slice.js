@@ -41,8 +41,6 @@ const waterSlice = createSlice({
       .addCase(deleteWaterItem.pending, handlePending)
       .addCase(deleteWaterItem.fulfilled, (state, action) => {
         state.loading = false;
-        console.log("action payload", action.payload);
-
         state.items.day = state.items.day.filter(
           (item) => item.id !== action.payload.id
         );

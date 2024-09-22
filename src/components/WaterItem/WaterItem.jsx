@@ -30,7 +30,7 @@ const WaterItem = ({ itemId, value, time }) => {
   };
 
   return (
-    <li key={itemId} className={styles.item}>
+    <li className={styles.item}>
       <div className={styles.iconContainer}>
         <svg className={styles.icon}>
           <use href={`${iconUpdate}#icon-mage_water-glass-fill`}></use>

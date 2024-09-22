@@ -7,7 +7,6 @@ import { selectDayWaterItems } from "../../redux/water/selectors";
 const WaterList = () => {
   const containerRef = useRef(null);
   const waterItems = useSelector(selectDayWaterItems);
-  console.log("Water Items:", waterItems);
 
   useEffect(() => {
     const container = containerRef.current;
