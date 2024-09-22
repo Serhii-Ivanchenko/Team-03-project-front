@@ -14,12 +14,12 @@ import Calendar from '../Calendar/Calendar.jsx';
 
 function addMonths(date, months) {
   let result = new Date(date);
-  let expectedMonth = ((result.getMonth() + months) % 12 + 12) % 12; // Этот метод позволяет оставаться в пределах индексов месяцев от 0 до 11
+  let expectedMonth = ((result.getMonth() + months) % 12 + 12) % 12; 
   result.setMonth(result.getMonth() + months);
   
   // Если произошло переполнение, исправляем
   if (result.getMonth() !== expectedMonth) {
-    result.setDate(0); // Таким образом мы возвращаемся к концу предыдущего месяца.
+    result.setDate(0); 
   }
   return result;
 }
@@ -31,10 +31,9 @@ const dispatch = useDispatch();
   const waterSelectDate = useSelector(selectDate);
    const userData = useSelector(selectUser);
   //  const isLoadingTracker = useSelector(selectLoadingTracker);
-  
+  const currentMonth = new Date().toISOString().substring(0, 7)
   const waterDailyNorm = userData.dailyNorm;
-  // console.log("waterDailyNorm", waterDailyNorm);
-  // console.log("waterSelectDate", waterSelectDate);
+ 
 
    const [ queryMonth, setQueryMonth ] = useState( new Date());
 
@@ -46,11 +45,7 @@ const dispatch = useDispatch();
      setQueryMonth(addMonths(queryMonth,-1))
   };
   
-  const calendarClick = () => {
-   
-  }
  
-// console.log(queryMonth)
 const options = {
   month: 'long',
   year: 'numeric'
@@ -59,21 +54,19 @@ const options = {
   let strMonth = queryMonth.toLocaleString("en-US", options);
   let calendarMonth = queryMonth.toISOString().substring(0, 7);
   
-   useEffect(() => {
+  useEffect(() => {
+     
      const fetchWaterData = async () => {
        await Promise.all([
-         // dispatch(getUserData()),
-         // dispatch(getDayWaterByDate("2024-09-12")),
          dispatch(getMonthWaterByMonth(calendarMonth)),
        ]);
      };
 
      fetchWaterData();
-   }, [dispatch, calendarMonth, waterDailyNorm]);
+   }, [dispatch, calendarMonth, waterDailyNorm,waterSelectDate]);
 
-  // console.log("waterMonthData", waterMonthData);
-
-  // console.log(calendarMonth);
+let isDisabled = currentMonth === calendarMonth ?  true :  false;
+ 
   return (
     <div className={css.containerpagin}>
       <div className={css.mainbox}>
@@ -84,7 +77,9 @@ const options = {
               <FiChevronLeft className={css.arrowIcon} />
             </button>
             <p className={css.namemonth}> {strMonth} </p>
-            <button className={css.iconstep} onClick={handleClickRight}>
+
+            <button className={ css.iconstep } onClick={handleClickRight}
+            disabled={isDisabled} >
               <FiChevronRight className={css.arrowIcon} />
             </button>
           </div>
@@ -100,7 +95,6 @@ const options = {
         monthData={waterMonthData}
         waterDailyNorm={waterDailyNorm}
         waterSelectDate={waterSelectDate}
-        onCalendarClick={calendarClick}
       />
     </div>
   );
