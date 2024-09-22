@@ -30,10 +30,10 @@ const WaterList = () => {
       <div ref={containerRef} className={styles.container}>
         {waterItems.length > 0 ? (
           waterItems.map((item) => (
-            <WaterItem key={item.id} quantity={item.quantity} time={item.time} />
+            <WaterItem key={item.id} value={item.value} time={item.time} />
           ))
         ) : (
-          <p>No water data available.</p> // Повідомлення, якщо дані відсутні
+          <p className={styles.message}>No records about water consumption</p>
         )}
       </div>
     </div>

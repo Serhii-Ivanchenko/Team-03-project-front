@@ -6,7 +6,7 @@ import DeleteWaterModal from '../Modals/DeleteWaterModal/DeleteWaterModal';
 import EditWaterModal from '../Modals/EditWaterModal/EditWaterModal';
 
 
-const WaterItem = ({ quantity, time }) => {
+const WaterItem = ({ value, time }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -39,7 +39,7 @@ const WaterItem = ({ quantity, time }) => {
       </div>
       <div className={styles.info}>
         <p className={styles.quantity}>
-          {quantity}<span className={styles.unit}></span>
+          {value}<span className={styles.unit}></span>
         </p>
         <p className={styles.time}>
           {time}<span className={styles.unit}></span>

@@ -1,8 +1,8 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import styles from './AddWaterButton.module.css';
 import iconPlus from '../../assets/images/icons/icons.svg';
 import Modal from '../Modal/Modal';
-import EditWaterModal from '../Modals/EditWaterModal/EditWaterModal';
+import AddWaterModal from '../Modals/AddWaterModal/AddWaterModal';
 
 const AddWaterButton = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,8 +17,8 @@ const AddWaterButton = () => {
 
   return (
     <>
-      <button className={styles.addWaterButton} onClick={openModal}>
-        <div className={styles.containerSvg}>
+      <button className={styles.addWaterButton}>
+        <div className={styles.containerSvg} onClick={openModal}>
           <svg className={styles.icon}>
             <use href={`${iconPlus}#icon-plus`}></use>
           </svg>
@@ -26,7 +26,7 @@ const AddWaterButton = () => {
         <span className={styles.text}>Add water</span>
       </button>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <EditWaterModal onClose={closeModal} />
+        <AddWaterModal onClose={closeModal} />
       </Modal>
     </>
   );
