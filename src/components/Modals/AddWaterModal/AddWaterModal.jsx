@@ -159,7 +159,9 @@ const AddWaterModal = ({ onClose }) => {
             render={({ field }) => (
               <input
                 {...field}
-                className={css.formInput}
+                className={`${css.formInput} ${
+                  errors.waterUsed ? css.errorInput : ""
+                }`}
                 type="text"
                 placeholder="250"
                 onChange={(e) => {

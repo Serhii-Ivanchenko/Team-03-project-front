@@ -209,3 +209,7 @@
   font-size: 14px;
   margin-bottom: 10px;
 }
+
+.errorInput {
+  border: 1px solid #ef5050;
+}
