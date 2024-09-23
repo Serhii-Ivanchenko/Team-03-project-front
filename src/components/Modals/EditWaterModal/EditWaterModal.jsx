@@ -10,8 +10,8 @@ import { editWaterItem } from "../../../redux/water/operations";
 const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
   const dispatch = useDispatch();
 
-  const [amount, setAmount] = useState((initialValue)  );
-  const [time, setTime] = useState(initialTime)
+  const [amount, setAmount] = useState(initialValue);
+  const [time, setTime] = useState(initialTime);
 
   const {
     control,
@@ -156,7 +156,9 @@ const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
             render={({ field }) => (
               <input
                 {...field}
-                className={css.formInput}
+                className={`${css.formInput} ${
+                  errors.waterUsed ? css.errorInput : ""
+                }`}
                 type="text"
                 placeholder="250"
                 onChange={(e) => {
