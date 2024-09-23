@@ -40,9 +40,6 @@ const ForgotPasswordModalContent = ({ onClose }) => {
           Send email
         </button>
       </form>
-      <button className={css.modalClose} onClick={onClose}>
-        Close
-      </button>
     </div>
   );
 };

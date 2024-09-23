@@ -69,6 +69,9 @@ const waterSlice = createSlice({
           (item) => item.id === updatedItem._id
         );
 
+        const oldValueDay =
+          dayItemIndex !== -1 ? state.items.day[dayItemIndex].value : 0;
+
         if (dayItemIndex !== -1) {
           state.items.day[dayItemIndex] = {
             ...state.items.day[dayItemIndex],
@@ -81,6 +84,9 @@ const waterSlice = createSlice({
           (item) => item.id === updatedItem._id
         );
 
+        const oldValueMonth =
+          monthItemIndex !== -1 ? state.items.month[monthItemIndex].value : 0;
+
         if (monthItemIndex !== -1) {
           state.items.month[monthItemIndex] = {
             ...state.items.month[monthItemIndex],
@@ -88,6 +94,9 @@ const waterSlice = createSlice({
             time: updatedItem.time,
           };
         }
+
+        state.items.totalValue +=
+          updatedItem.value - (oldValueDay + oldValueMonth);
       })
       .addCase(editWaterItem.rejected, handleRejected)
       .addCase(getDayWaterByDate.pending, handlePending)
