@@ -7,14 +7,17 @@ import { useForm, Controller, useWatch } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { editWaterItem } from "../../../redux/water/operations";
 
-const EditWaterModal = ({ onClose }) => {
+const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
   const dispatch = useDispatch();
 
-  const [amount, setAmount] = useState(() => {
-    return localStorage.getItem("editWaterAmount")
-      ? parseInt(localStorage.getItem("editWaterAmount"), 10)
-      : 50;
-  });
+  const [amount, setAmount] = useState((initialValue)
+  //   => {
+  //   return localStorage.getItem("editWaterAmount")
+  //     ? parseInt(localStorage.getItem("editWaterAmount"), 10)
+  //     : 50;
+  // }
+  );
+  const [time, setTime] = useState(initialTime)
 
   const {
     control,
@@ -24,9 +27,13 @@ const EditWaterModal = ({ onClose }) => {
     reset,
     formState: { errors },
   } = useForm({
+    // defaultValues: {
+    //   waterAmount: localStorage.getItem("editWaterAmount") || amount,
+    //   recordTime: localStorage.getItem("editRecordTime") || "",
+    // },
     defaultValues: {
-      waterAmount: localStorage.getItem("editWaterAmount") || amount,
-      recordTime: localStorage.getItem("editRecordTime") || "",
+      waterAmount: amount,
+      recordTime: time,
     },
     mode: "onChange",
     reValidateMode: "onChange",
@@ -74,10 +81,11 @@ const EditWaterModal = ({ onClose }) => {
 
   const onSubmit = (data) => {
     const updatedWaterItem = {
-      date: new Date().toISOString().split("T")[0],
+      waterItemId: itemId,
       time: data.recordTime || "00:00",
       value: parseInt(data.waterAmount, 10),
     };
+
     dispatch(editWaterItem(updatedWaterItem))
       .unwrap()
       .then(() => {
@@ -85,8 +93,6 @@ const EditWaterModal = ({ onClose }) => {
 
         localStorage.removeItem("editWaterAmount");
         localStorage.removeItem("editRecordTime");
-
-        reset();
 
         onClose();
       })
