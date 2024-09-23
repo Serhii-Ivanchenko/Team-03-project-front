@@ -10,22 +10,32 @@ import { addWaterItem } from "../../../redux/water/operations";
 const AddWaterModal = ({ onClose }) => {
   const dispatch = useDispatch();
 
+  // Використовуємо локальне сховище для кількості води
   const [count, setCount] = useState(() => {
     return localStorage.getItem("waterCount")
       ? parseInt(localStorage.getItem("waterCount"), 10)
       : 50;
   });
 
+  // Функція для отримання поточного часу
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
+
   const {
     control,
     handleSubmit,
     setValue,
     register,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      waterUsed: localStorage.getItem("waterUsed") || count,
-      recordingTime: localStorage.getItem("recordingTime") || "",
+      waterUsed: localStorage.getItem("waterUsed") || count, // Використовуємо localStorage
+      recordingTime: getCurrentTime(), // Встановлюємо поточний час
     },
     mode: "onChange",
     reValidateMode: "onChange",
@@ -34,17 +44,13 @@ const AddWaterModal = ({ onClose }) => {
   const recordingTime = useWatch({ control, name: "recordingTime" });
   const waterUsed = useWatch({ control, name: "waterUsed" });
 
+  // Оновлюємо значення лічильника та зберігаємо в localStorage
   useEffect(() => {
     localStorage.setItem("waterCount", count);
     setValue("waterUsed", count);
   }, [count, setValue]);
 
-  useEffect(() => {
-    if (recordingTime) {
-      localStorage.setItem("recordingTime", recordingTime);
-    }
-  }, [recordingTime]);
-
+  // Зберігаємо використану кількість води в localStorage
   useEffect(() => {
     if (waterUsed) {
       localStorage.setItem("waterUsed", waterUsed);
@@ -59,6 +65,18 @@ const AddWaterModal = ({ onClose }) => {
     setCount((prevCount) => (prevCount > 0 ? prevCount - 50 : 0));
   };
 
+  const formatTime = (value) => {
+    const cleaned = value.replace(/\D/g, "");
+    const hours = cleaned.slice(0, 2);
+    const minutes = cleaned.slice(2, 4);
+    return `${hours}${minutes ? `:${minutes}` : ""}`;
+  };
+
+  const handleTimeChange = (e) => {
+    const formattedTime = formatTime(e.target.value);
+    setValue("recordingTime", formattedTime);
+  };
+
   const onSubmit = (data) => {
     const newWaterItem = {
       date: new Date().toISOString().split("T")[0],
@@ -70,13 +88,11 @@ const AddWaterModal = ({ onClose }) => {
       .then(() => {
         toast.success("Add data successfully!");
         onClose();
-
+        reset();
         localStorage.removeItem("waterCount");
         localStorage.removeItem("waterUsed");
-        localStorage.removeItem("recordingTime");
       })
       .catch((err) => {
-        console.log(err);
         toast.error("Something went wrong");
       });
   };
@@ -120,6 +136,7 @@ const AddWaterModal = ({ onClose }) => {
                 },
               })}
               type="text"
+              onChange={handleTimeChange}
             />
           </label>
 

@@ -69,7 +69,7 @@ const WaterItem = ({ itemId, value, time }) => {
 
       {isEditModalOpen && (
         <Modal isOpen={isEditModalOpen} onClose={closeEditModal}>
-          <EditWaterModal onClose={closeEditModal} />
+          <EditWaterModal initialValue={ value} initialTime={time} itemId={itemId} onClose={closeEditModal} />
         </Modal>
       )}
       {isDeleteModalOpen && (
