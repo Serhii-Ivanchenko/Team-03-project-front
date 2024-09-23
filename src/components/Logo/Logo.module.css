@@ -9,3 +9,8 @@
     height: 24px;
   }
 }
+
+.logo_lang {
+  display: flex;
+  justify-content: space-between;
+}
