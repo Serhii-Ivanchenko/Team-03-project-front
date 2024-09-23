@@ -20,11 +20,13 @@ const UserBar = ({ userName }) => {
     <div className={styles.userBarContainer}>
       <button className={styles.userBar}>
         <span className={styles.userName}>{userName}</span>
+        <div className={styles.avatarContainer}>
         <img
           src={photo}
           alt={`${name}'s avatar`}
           className={styles.avatar}
         />
+        </div>
         <svg className={styles.icon} onClick={togglePopover}>
           <use href={`${iconArrow}#icon-arrow-${isPopoverOpen ? 'up' : 'down'}`}></use>
         </svg>
