@@ -61,7 +61,6 @@ const options = {
   let strMonth = queryMonth.toLocaleString("en-US", options);
   let calendarMonth = queryMonth.toISOString().substring(0, 7);
    let actualDateTotal = waterSelectDate + String(totalByDate);
-  console.log(actualDateTotal);
   useEffect(() => {
      
      const fetchWaterData = async () => {
@@ -88,7 +87,7 @@ let isDisabled = currentMonth === calendarMonth ?  true :  false;
             <p className={css.namemonth}> {strMonth} </p>
 
             <button className={ css.iconstep } onClick={handleClickRight}
-            disabled={isDisabled} >
+            disabled={isDisabled} style={{ cursor: 'default'}}>
               <FiChevronRight className={css.arrowIcon} />
             </button>
           </div>

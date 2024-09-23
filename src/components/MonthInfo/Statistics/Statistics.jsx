@@ -162,7 +162,7 @@ const CustomTooltip = ({ active, payload, coordinate }) => {
 
 export default function Statistics({ monthData }) {
 
-
+//  const [startIndex, setStartIndex] = useState(data.length - 5);
 
     return (<div className={css.containerstatistics}
         style={{ width: '100%', overflowX: 'scroll' }}
@@ -170,9 +170,7 @@ export default function Statistics({ monthData }) {
         style={{ width: '1500px' }}
         > 
 
-        <ResponsiveContainer width="100%" height= {
-            361
-        }
+        <ResponsiveContainer width="100%" height= {361 }
 
             >
                 <AreaChart data={data}
@@ -249,6 +247,15 @@ export default function Statistics({ monthData }) {
 
         // отображение значений рядом с узлами
                     />
+{/* 
+                    <Brush
+          dataKey="name"
+          height={30}
+          stroke="#8884d8"
+          startIndex={startIndex}
+          endIndex={data.length - 1}
+          onChange={(indexRange) => setStartIndex(indexRange.startIndex)}
+        /> */}
        
                 </AreaChart> </ResponsiveContainer> </div> </div>);
 }
