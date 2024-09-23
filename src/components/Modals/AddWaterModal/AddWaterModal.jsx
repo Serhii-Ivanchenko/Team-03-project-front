@@ -16,17 +16,27 @@ const AddWaterModal = ({ onClose }) => {
       : 50;
   });
 
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
+
   const {
     control,
     handleSubmit,
     setValue,
     register,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
       waterUsed: localStorage.getItem("waterUsed") || count,
-      recordingTime: localStorage.getItem("recordingTime") || "",
+      recordingTime: localStorage.getItem("recordingTime") || getCurrentTime(),
     },
+    mode: "onChange",
+    reValidateMode: "onChange",
   });
 
   const recordingTime = useWatch({ control, name: "recordingTime" });
@@ -57,6 +67,18 @@ const AddWaterModal = ({ onClose }) => {
     setCount((prevCount) => (prevCount > 0 ? prevCount - 50 : 0));
   };
 
+  const formatTime = (value) => {
+    const cleaned = value.replace(/\D/g, "");
+    const hours = cleaned.slice(0, 2);
+    const minutes = cleaned.slice(2, 4);
+    return `${hours}${minutes ? `:${minutes}` : ""}`;
+  };
+
+  const handleTimeChange = (e) => {
+    const formattedTime = formatTime(e.target.value);
+    setValue("recordingTime", formattedTime);
+  };
+
   const onSubmit = (data) => {
     const newWaterItem = {
       date: new Date().toISOString().split("T")[0],
@@ -67,17 +89,15 @@ const AddWaterModal = ({ onClose }) => {
       .unwrap()
       .then(() => {
         toast.success("Add data successfully!");
-        reset();
         onClose();
+        reset();
+        localStorage.removeItem("waterCount");
+        localStorage.removeItem("waterUsed");
+        localStorage.removeItem("recordingTime");
       })
       .catch((err) => {
         console.log(err);
-
-        if (err === 409) {
-          toast.error("User already exists.");
-        } else {
-          toast.error("Something went wrong");
-        }
+        toast.error("Something went wrong");
       });
   };
 
@@ -111,7 +131,7 @@ const AddWaterModal = ({ onClose }) => {
           <label>
             <input
               className={css.formInput}
-              placeholder="00:00"
+              placeholder="7:00"
               {...register("recordingTime", {
                 required: "Recording time is required",
                 pattern: {
@@ -120,6 +140,7 @@ const AddWaterModal = ({ onClose }) => {
                 },
               })}
               type="text"
+              onChange={handleTimeChange}
             />
           </label>
 

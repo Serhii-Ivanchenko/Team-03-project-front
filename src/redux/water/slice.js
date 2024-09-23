@@ -53,27 +53,29 @@ const waterSlice = createSlice({
       .addCase(editWaterItem.fulfilled, (state, action) => {
         state.loading = false;
 
-        const updatedItem = action.payload;
+        const updatedItem = action.payload.data;
 
         const dayItemIndex = state.items.day.findIndex(
-          (item) => item.id === updatedItem.id
+          (item) => item.id === updatedItem._id
         );
 
         if (dayItemIndex !== -1) {
           state.items.day[dayItemIndex] = {
             ...state.items.day[dayItemIndex],
-            ...updatedItem,
+            value: updatedItem.value,
+            time: updatedItem.time,
           };
         }
 
         const monthItemIndex = state.items.month.findIndex(
-          (item) => item.id === updatedItem.id
+          (item) => item.id === updatedItem._id
         );
 
         if (monthItemIndex !== -1) {
-          state.waterData.month[monthItemIndex] = {
-            ...state.water.items.month[monthItemIndex],
-            ...updatedItem,
+          state.items.month[monthItemIndex] = {
+            ...state.items.month[monthItemIndex],
+            value: updatedItem.value,
+            time: updatedItem.time,
           };
         }
       })
