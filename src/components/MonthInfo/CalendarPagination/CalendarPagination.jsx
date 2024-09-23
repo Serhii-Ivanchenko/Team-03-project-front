@@ -61,7 +61,6 @@ const options = {
   let strMonth = queryMonth.toLocaleString("en-US", options);
   let calendarMonth = queryMonth.toISOString().substring(0, 7);
    let actualDateTotal = waterSelectDate + String(totalByDate);
-  console.log(actualDateTotal);
   useEffect(() => {
      
      const fetchWaterData = async () => {
