@@ -16,6 +16,13 @@ const AddWaterModal = ({ onClose }) => {
       : 50;
   });
 
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
+
   const {
     control,
     handleSubmit,
@@ -26,7 +33,7 @@ const AddWaterModal = ({ onClose }) => {
   } = useForm({
     defaultValues: {
       waterUsed: localStorage.getItem("waterUsed") || count,
-      recordingTime: localStorage.getItem("recordingTime") || "",
+      recordingTime: localStorage.getItem("recordingTime") || getCurrentTime(),
     },
     mode: "onChange",
     reValidateMode: "onChange",
