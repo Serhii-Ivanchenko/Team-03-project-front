@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {getMonthWaterByMonth} from "../../../redux/water/operations.js";
-import {selectMonthWaterItems,selectDate, } from "../../../redux/water/selectors.js";
+import {selectMonthWaterItems,selectDate, selectTotalValue,} from "../../../redux/water/selectors.js";
 import {selectUser} from '../../../redux/user/selectors.js'
 import css from './CalendarPagination.module.css';
 import myIcon from '../../../assets/images/icons/icons.svg'
 import { FiChevronLeft } from "react-icons/fi";
 import { FiChevronRight } from "react-icons/fi";
+import Statistics  from "../Statistics/Statistics.jsx"
 import { useState } from 'react';
 import Calendar from '../Calendar/Calendar.jsx';
 
@@ -29,13 +30,15 @@ export default function CalendarPagination() {
 const dispatch = useDispatch();
   const waterMonthData = useSelector(selectMonthWaterItems);
   const waterSelectDate = useSelector(selectDate);
-   const userData = useSelector(selectUser);
+  const userData = useSelector(selectUser); 
+  const totalByDate = useSelector(selectTotalValue);
   //  const isLoadingTracker = useSelector(selectLoadingTracker);
   const currentMonth = new Date().toISOString().substring(0, 7)
   const waterDailyNorm = userData.dailyNorm;
  
 
-   const [ queryMonth, setQueryMonth ] = useState( new Date());
+  const [queryMonth, setQueryMonth] = useState(new Date());
+  const [ isCalendar, setIsCalendar ] = useState(true);
 
    const handleClickRight = () => {
     setQueryMonth(addMonths(queryMonth,1))
@@ -43,6 +46,10 @@ const dispatch = useDispatch();
 
    const handleClickLeft = () => {
      setQueryMonth(addMonths(queryMonth,-1))
+  };
+
+   const handleToggleCalendar = () => {
+    setIsCalendar(!isCalendar);
   };
   
  
@@ -53,7 +60,8 @@ const options = {
 
   let strMonth = queryMonth.toLocaleString("en-US", options);
   let calendarMonth = queryMonth.toISOString().substring(0, 7);
-  
+   let actualDateTotal = waterSelectDate + String(totalByDate);
+  console.log(actualDateTotal);
   useEffect(() => {
      
      const fetchWaterData = async () => {
@@ -63,14 +71,15 @@ const options = {
      };
 
      fetchWaterData();
-   }, [dispatch, calendarMonth, waterDailyNorm,waterSelectDate]);
+   }, [dispatch, calendarMonth, waterDailyNorm, actualDateTotal ]);
 
 let isDisabled = currentMonth === calendarMonth ?  true :  false;
+// statisticMonthData = waterMonthData.map()
  
   return (
     <div className={css.containerpagin}>
       <div className={css.mainbox}>
-        <p className={css.name}>Month</p>
+        <p className={css.name}>{isCalendar ? "Month" : "Statistics"}</p>
         <div className={css.mainboxpagination}>
           <div className={css.boxpagination}>
             <button className={css.iconstep} onClick={handleClickLeft}>
@@ -84,19 +93,20 @@ let isDisabled = currentMonth === calendarMonth ?  true :  false;
             </button>
           </div>
 
-          <div className={css.pieIconWrapper}>
+          <button className={css.pieIconWrapper} onClick={handleToggleCalendar} >
             <svg className={css.iconpie}>
               <use href={`${myIcon}#icon-pie-chart-02`}></use>
             </svg>
-          </div>
+          </button>
         </div>
       </div>
-      <Calendar
+      {isCalendar && <Calendar
         monthData={waterMonthData}
         waterDailyNorm={waterDailyNorm}
         waterSelectDate={waterSelectDate}
-      />
+      />}
+      {!isCalendar && <Statistics monthData={waterMonthData} />}
     </div>
   );
-}
+};
 
