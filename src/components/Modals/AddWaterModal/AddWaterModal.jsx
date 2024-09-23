@@ -96,7 +96,6 @@ const AddWaterModal = ({ onClose }) => {
         localStorage.removeItem("recordingTime");
       })
       .catch((err) => {
-        console.log(err);
         toast.error("Something went wrong");
       });
   };

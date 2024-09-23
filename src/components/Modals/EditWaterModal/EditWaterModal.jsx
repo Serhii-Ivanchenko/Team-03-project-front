@@ -10,13 +10,7 @@ import { editWaterItem } from "../../../redux/water/operations";
 const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
   const dispatch = useDispatch();
 
-  const [amount, setAmount] = useState((initialValue)
-  //   => {
-  //   return localStorage.getItem("editWaterAmount")
-  //     ? parseInt(localStorage.getItem("editWaterAmount"), 10)
-  //     : 50;
-  // }
-  );
+  const [amount, setAmount] = useState((initialValue)  );
   const [time, setTime] = useState(initialTime)
 
   const {
@@ -27,10 +21,6 @@ const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
     reset,
     formState: { errors },
   } = useForm({
-    // defaultValues: {
-    //   waterAmount: localStorage.getItem("editWaterAmount") || amount,
-    //   recordTime: localStorage.getItem("editRecordTime") || "",
-    // },
     defaultValues: {
       waterAmount: amount,
       recordTime: time,
@@ -97,7 +87,6 @@ const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
         onClose();
       })
       .catch((err) => {
-        console.log(err);
         toast.error("Something went wrong");
       });
   };
