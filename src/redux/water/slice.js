@@ -36,6 +36,7 @@ const waterSlice = createSlice({
         state.loading = false;
         const newItem = { ...action.payload.data, id: action.payload.data._id };
         state.items.day.push(newItem);
+        state.items.totalValue = action.payload.totalValue;
       })
       .addCase(addWaterItem.rejected, handleRejected)
       .addCase(deleteWaterItem.pending, handlePending)

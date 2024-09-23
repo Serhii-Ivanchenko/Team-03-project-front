@@ -88,7 +88,7 @@ let isDisabled = currentMonth === calendarMonth ?  true :  false;
             <p className={css.namemonth}> {strMonth} </p>
 
             <button className={ css.iconstep } onClick={handleClickRight}
-            disabled={isDisabled} >
+            disabled={isDisabled} style={{ cursor: 'default'}}>
               <FiChevronRight className={css.arrowIcon} />
             </button>
           </div>
