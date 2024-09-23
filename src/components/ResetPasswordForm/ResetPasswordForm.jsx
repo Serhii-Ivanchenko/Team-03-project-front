@@ -6,16 +6,19 @@ import css from "./ResetPasswordForm.module.css";
 import clsx from "clsx";
 import { useState } from "react";
 import iconSprite from "../../assets/images/icons/icons.svg";
+import { useTranslation } from "react-i18next";
 
 const ResetPasswordForm = ({ onSubmit }) => {
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
 
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(resetPasswordFormSchema),
+    resolver: yupResolver(resetPasswordFormSchema(t)),
     mode: "onChange",
     defaultValues: {
       password: "",
@@ -30,15 +33,15 @@ const ResetPasswordForm = ({ onSubmit }) => {
   return (
     <AuthFormLayout className={css.layout}>
       <div className={css.resetPwdContainer}>
-        <h2 className={css.title}>Change your password</h2>
+        <h2 className={css.title}>{t("reset_pwd.change_password")}</h2>
         <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
           <label className={css.field}>
-            <span className={css.label}>Password </span>
+            <span className={css.label}>{t("reset_pwd.password")}</span>
             <div className={css.inputField}>
               <input
                 type={showPassword ? "text" : "password"}
                 {...register("password", { required: true })}
-                placeholder="Enter new password"
+                placeholder={t("reset_pwd.enter_new_password")}
                 className={clsx(css.input, {
                   [css.inputError]: errors.password,
                 })}
@@ -63,12 +66,12 @@ const ResetPasswordForm = ({ onSubmit }) => {
           </label>
 
           <label className={css.field}>
-            <span className={css.label}> Confirm password</span>
+            <span className={css.label}>{t("reset_pwd.confirm_password")}</span>
             <div className={css.inputField}>
               <input
                 type={showPassword ? "text" : "password"}
                 {...register("confirmPassword", { required: true })}
-                placeholder="Enter new password"
+                placeholder={t("reset_pwd.enter_new_password")}
                 className={clsx(css.input, {
                   [css.inputError]: errors.confirmPassword,
                 })}
@@ -94,7 +97,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
             </p>
           </label>
           <button type="submit" className={css.submit}>
-            Change Password
+          {t("reset_pwd.change_password")}
           </button>
         </form>
       </div>

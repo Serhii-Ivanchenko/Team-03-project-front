@@ -4,8 +4,10 @@ import { useDispatch } from "react-redux";
 import { logOut } from "../../../redux/user/operations.js";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const LogOutModal = ({ onClose }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -15,7 +17,7 @@ const LogOutModal = ({ onClose }) => {
             navigate("/");
           })
           .catch(() => {
-            toast.error("Logout failed. Please try again.");
+            toast.error(t("logout_modal.log_out_error"));
           });
     onClose();
   };
@@ -26,15 +28,15 @@ const LogOutModal = ({ onClose }) => {
         <FiX className={css.closeIcon} />
       </button>
       <div className={css.logOutModalTextContainer}>
-        <h2 className={css.logOutModalTitle}>Log out</h2>
-        <p className={css.logOutModalText}>Do you really want to leave?</p>
+        <h2 className={css.logOutModalTitle}>{t("logout_modal.log_out")}</h2>
+        <p className={css.logOutModalText}>{t("logout_modal.confirm_leave")}</p>
       </div>
       <div className={css.logOutModalBtnWrapper}>
         <button className={css.logOutModalBtn} onClick={handleLogoutClick}>
-          Log out
+        {t("logout_modal.log_out")}
         </button>
         <button className={css.logOutModalCancelBtn} onClick={onClose}>
-          Cancel
+        {t("logout_modal.cancel")}
         </button>
       </div>
     </div>

@@ -1,18 +1,20 @@
+import { useTranslation } from "react-i18next";
 import css from "./DeleteWaterModal.module.css";
 
 const DeleteWaterModal = ({ onClose }) => {
+  const { t } = useTranslation();
   return (
     <div className={css.deleteModalContainer}>
       <div className={css.deleteModalTextContainer}>
-        <h2 className={css.deleteModalTitle}>Delete entry</h2>
+        <h2 className={css.deleteModalTitle}>{t("delete_water_modal.delete_entry")}</h2>
         <p className={css.deleteModalText}>
-          Are you sure you want to delete the entry?
+        {t("delete_water_modal.delete_confirmation")}
         </p>
       </div>
       <div className={css.deleteModalBtnWrapper}>
-        <button className={css.deleteModalBtn}>Delete</button>
+        <button className={css.deleteModalBtn}>{t("delete_water_modal.delete")}</button>
         <button className={css.deleteModalCancelBtn} onClick={onClose}>
-          Cancel
+        {t("delete_water_modal.cancel")}
         </button>
       </div>
     </div>

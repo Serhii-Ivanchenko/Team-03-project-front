@@ -9,6 +9,7 @@ import { FiChevronLeft } from "react-icons/fi";
 import { FiChevronRight } from "react-icons/fi";
 import { useState } from 'react';
 import Calendar from '../Calendar/Calendar.jsx';
+import { useTranslation } from "react-i18next";
 
  
 
@@ -26,6 +27,7 @@ function addMonths(date, months) {
 
 
 export default function CalendarPagination() {
+  const { t, i18n } = useTranslation();
 const dispatch = useDispatch();
   const waterMonthData = useSelector(selectMonthWaterItems);
   const waterSelectDate = useSelector(selectDate);
@@ -34,7 +36,6 @@ const dispatch = useDispatch();
   const currentMonth = new Date().toISOString().substring(0, 7)
   const waterDailyNorm = userData.dailyNorm;
  
-
    const [ queryMonth, setQueryMonth ] = useState( new Date());
 
    const handleClickRight = () => {
@@ -51,7 +52,7 @@ const options = {
   year: 'numeric'
 };
 
-  let strMonth = queryMonth.toLocaleString("en-US", options);
+  let strMonth = queryMonth.toLocaleString(i18n.language, options);
   let calendarMonth = queryMonth.toISOString().substring(0, 7);
   
   useEffect(() => {
@@ -70,7 +71,7 @@ let isDisabled = currentMonth === calendarMonth ?  true :  false;
   return (
     <div className={css.containerpagin}>
       <div className={css.mainbox}>
-        <p className={css.name}>Month</p>
+        <p className={css.name}>{t("month")}</p>
         <div className={css.mainboxpagination}>
           <div className={css.boxpagination}>
             <button className={css.iconstep} onClick={handleClickLeft}>

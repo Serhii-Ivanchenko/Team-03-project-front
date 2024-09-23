@@ -3,8 +3,10 @@ import WaterItem from '../WaterItem/WaterItem';
 import styles from './WaterList.module.css';
 import { useSelector } from 'react-redux';
 import {selectDayWaterItems} from '../../redux/water/selectors';
+import { useTranslation } from 'react-i18next';
 
 const WaterList = () => {
+  const { t } = useTranslation();
   const containerRef = useRef(null);
   const waterItems = useSelector(selectDayWaterItems);
 
@@ -33,7 +35,7 @@ const WaterList = () => {
             <WaterItem key={item.id} value={item.value} time={item.time} />
           ))
         ) : (
-          <p className={styles.message}>No records about water consumption</p>
+          <p className={styles.message}>{t("no_records")}</p>
         )}
       </div>
     </div>

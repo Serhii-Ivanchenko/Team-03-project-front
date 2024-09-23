@@ -386,7 +386,7 @@
 .saveButton {
   margin-top: 40px;
   border-radius: 30px;
-  padding: 14px 40px;
+  /* padding: 14px 40px; */
   width: 116px;
   height: 46px;
   background-color: #9be1a0;
@@ -407,7 +407,7 @@
 
 @media screen and (min-width: 768px) {
   .saveButton {
-    padding: 14px 50px;
+    /* padding: 14px 50px; */
     width: 141px;
     height: 56px;
     font-size: 16px;
