@@ -93,7 +93,6 @@ const AddWaterModal = ({ onClose }) => {
         localStorage.removeItem("waterUsed");
       })
       .catch((err) => {
-        console.log(err);
         toast.error("Something went wrong");
       });
   };
