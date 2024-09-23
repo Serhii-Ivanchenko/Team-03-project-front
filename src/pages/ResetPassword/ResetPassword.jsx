@@ -26,19 +26,10 @@ dispatch(resetPassword({ token, password }))
    toast.success("Password reset successful!");
    navigate("/signin");
   })
-  .catch((err) => {
-   console.error("Password reset failed", err);
+  .catch(() => {
    toast.error("Failed to reset password. Please try again.");
   });
 
-    // try {
-    //   await dispatch(resetPassword({ token, password })).unwrap();
-    //   toast.success("Password reset successful!");
-    //   navigate("/signin");
-    // } catch (error) {
-    //   console.error("Password reset failed", error);
-    //   toast.error("Failed to reset password. Please try again.");
-    // }
   };
   return (
     <div className={css.section}>

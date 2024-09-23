@@ -44,8 +44,6 @@ const SignInForm = () => {
         reset();
       })
       .catch((err) => {
-        console.log(err);
-
         if (err === 409) {
           toast.error("User already exists.");
         } else {

@@ -36,11 +36,21 @@ const waterSlice = createSlice({
         state.loading = false;
         const newItem = { ...action.payload.data, id: action.payload.data._id };
         state.items.day.push(newItem);
+        state.items.totalValue += action.payload.data.value;
       })
       .addCase(addWaterItem.rejected, handleRejected)
       .addCase(deleteWaterItem.pending, handlePending)
       .addCase(deleteWaterItem.fulfilled, (state, action) => {
         state.loading = false;
+
+        const itemToDelete = state.items.day.find(
+          (item) => item.id === action.payload.id
+        );
+
+        if (itemToDelete) {
+          state.items.totalValue -= itemToDelete.value;
+        }
+
         state.items.day = state.items.day.filter(
           (item) => item.id !== action.payload.id
         );

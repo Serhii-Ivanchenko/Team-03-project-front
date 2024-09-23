@@ -33,10 +33,9 @@
 @media only screen and (min-width: 1440px) {
   .advSection {
     background-image: url(../../../assets/images/main_page/main_page_desktop_girl_1x.webp);
-    width: 100%;
+    width: 672px;
     height: 736px;
     background-size: cover;
-    
   }
 }
 
@@ -61,21 +60,21 @@
 }
 
 @media only screen and (min-width: 768px) {
-    .happyContainer {
-  margin-top: 251px;
-  width: 236px;
-  height: 67px;
-  margin-bottom: -14px;
-  padding: 10px 20px;
-  
-    }
+  .happyContainer {
+    margin-top: 251px;
+    width: 236px;
+    height: 67px;
+    margin-bottom: -14px;
+    padding: 10px 20px;
+
+  }
 }
 
 @media only screen and (min-width: 1440px) {
-    .happyContainer {
-  margin-top: 505px;
- 
-    }
+  .happyContainer {
+    margin-top: 505px;
+
+  }
 }
 
 
@@ -120,11 +119,12 @@
   border-radius: 100px;
   background: transparent;
 }
+
 @media only screen and (min-width: 768px) {
   .happyImage {
-  width: 47px;
-  height: 47px;
-}
+    width: 47px;
+    height: 47px;
+  }
 }
 
 .happyCustomers {
@@ -135,7 +135,7 @@
 
 .happyText {
   color: #323f47;
-  font-family: Poppins;
+  font-family: Poppins, sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
@@ -144,11 +144,11 @@
 }
 
 @media only screen and (min-width: 768px) {
-.happyText {
-  font-size: 15px;
-  line-height: 1.49em;
+  .happyText {
+    font-size: 15px;
+    line-height: 1.49em;
 
-}
+  }
 }
 
 .accent {
@@ -169,12 +169,11 @@
     display: flex;
     gap: 10px;
     margin-bottom: 10px;
-  }}
-
-  
-.btnWrapper{
-
+  }
 }
+
+
+.btnWrapper {}
 
 
 .statistics,
@@ -184,7 +183,7 @@
   padding: 9px 12px;
   border: none;
   text-align: center;
-  font-family: Poppins;
+  font-family: Poppins, sans-serif;
   font-size: 8px;
   font-style: normal;
   font-weight: 700;
@@ -195,7 +194,7 @@
 
 @media screen and (min-width: 768px) {
 
-.statistics,
+  .statistics,
   .habitbtn,
   .rate {
     padding: 11px 16px;
@@ -229,9 +228,10 @@
   justify-content: flex-end;
   margin-right: 61px;
 }
+
 @media screen and (min-width: 768px) {
- .ratebtn {
-  margin-right: 84px;
+  .ratebtn {
+    margin-right: 84px;
   }
 }
 
