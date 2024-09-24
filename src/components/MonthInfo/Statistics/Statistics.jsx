@@ -1,8 +1,6 @@
 import css from "./Statistics.module.css"
 import { useState } from "react";
 import {AreaChart,Brush,
-    LineChart,
-    Line,
     XAxis,
     YAxis,
     CartesianGrid,
@@ -138,6 +136,7 @@ const data = [
 const CustomTooltip = ({ active, payload, coordinate }) => {
   if (active && payload && payload.length) {
     const { x, y } = coordinate; 
+
     return (
       <div
         className="custom-tooltip"
@@ -149,7 +148,13 @@ const CustomTooltip = ({ active, payload, coordinate }) => {
           position: 'absolute',
           left: x, 
           top: y - 60, 
-          transform: 'translateX(-50%)', 
+            transform: 'translateX(-50%)',
+          color: '#323F47',
+
+fontSize: '12px',
+fontStyle: 'normal',
+fontWeight: '700',
+lineWeight: '1.86',
         }}
       >
         <p>{`${payload[0].value} ml`}</p> 
@@ -159,93 +164,58 @@ const CustomTooltip = ({ active, payload, coordinate }) => {
   return null;
 };
 
+export default function Statistics({ monthData, startDay, endDay }) {
 
-export default function Statistics({ monthData }) {
+const [startIndex, setStartIndex] = useState(startDay);
+    const [endIndex, setEndIndex] = useState(endDay); 
 
-//  const [startIndex, setStartIndex] = useState(data.length - 5);
-
+  
+// , overflowX: 'scroll'
     return (<div className={css.containerstatistics}
-        style={{ width: '100%', overflowX: 'scroll' }}
-        > <div 
-        style={{ width: '1500px' }}
-        > 
+        style={{ width: '100%' }}>
+        <div className={css.areabox}
+            style={{ width: '100%' }}> 
 
-        <ResponsiveContainer width="100%" height= {361 }
+            <ResponsiveContainer width="100%" height={273} className={css.responseContainer }  >
+                <AreaChart data={monthData}
 
-            >
-                <AreaChart data={data}
-            // monthData
          > 
 
-                    <defs>
+            <defs>
           <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#9BE1A0" stopOpacity={0.95} />
-            <stop offset="100%" stopColor="#9BE1A0" stopOpacity={0} />
+            <stop offset="0%" stopColor="#87D28D" stopOpacity={1} />
+            <stop offset="100%" stopColor="#87D28D" stopOpacity={0} />
           </linearGradient>
         </defs>
 
+        <CartesianGrid strokeDasharray="3 3" /> 
 
-        <CartesianGrid strokeDasharray="3 3" /> {
-            /* Ось X */
-        }
-
-                    <XAxis dataKey="date" interval={0} /> {
-            /* Ось Y */
-        }
-
-                    <YAxis domain={[0, 2500]} tickFormatter={(value) => (value / 1000).toFixed(1)}
-                        label={{ value: 'Liters', angle: -90, position: 'insideLeft' }} unit={' L'}
-                     ticks={[0, 500, 1000, 1500, 2000, 2500 ]}
-       
-                    /> 
-  <Tooltip content={<CustomTooltip />} />
-                    {/* <Tooltip formatter={(value) => `${value } ml`} /> */}
-
-        {/* <Area type="monotone" dataKey="value" stroke="#8884d8" fill="rgba(135, 206, 235, 0.5)" /> */}
-            
-
+                    <XAxis dataKey="day" interval={0} /> 
                     
-                       <Area
+                    <YAxis domain={[0, 2500]} tickFormatter={(value) => (value / 1000).toFixed(1)}
+                         width={40}
+                        label={{ angle: -90, position: 'insideLeft' }} unit={' L'}
+                        ticks={[0, 500, 1000, 1500, 2000, 2500]}
+                     />
+                    
+  <Tooltip content={<CustomTooltip />} />
+                  
+
+                        <Area
           type="monotone"
           dataKey="value"
-                        stroke="#8884d8"
-                        strokeWidth={2}
-          fill="url(#colorGradient)" // Используем линейный градиент для заливки
-          dot={{ r: 5, fill: '#fff', stroke: '#9BE1A0' }} // Полностью закрашенные кружочки
+                        stroke="#87D28D"
+                        strokeWidth={3}
+          fill="url(#colorGradient)" 
+                 dot={{ r: 8, fill: '#fff', stroke: '#87D28D', strokeWidth: '4px' }} // Полностью закрашенные кружочки
         //   label={({ x, y, value }) => (
         //     <text x={x} y={y - 10} fill="#000" textAnchor="middle">
         //       {`${value} ml`} {/* Добавляем "ml" к значению */}
         //     </text>
-        //   )}
-                        
-                        
-        //                 Line type="monotone"
-        // dataKey="value"
-        // stroke="#8884d8"
+        //   )}        
 
-        // strokeWidth= {
-        //     2
-        // }
-
-        // dot= {
-        //         {
-        //         r: 5, fill: '#fff', stroke :  '#8884d8'
-        //     }
-        // }
-
-        //             // круги в узлах
-        //                  label={({ x, y, value }) => (
-        //     <text x={x} y={y - 10} fill="#000" textAnchor="middle">
-        //       {`${value} ml`} {/* Добавляем "ml" к значению */}
-        //     </text>
-        //   )}
-        // label= {
-        //         {
-        //         position: 'top', fill: '#000'
-        //     }
-        // }
-
-        // отображение значений рядом с узлами
+        
+      
                     />
 {/* 
                     <Brush
@@ -257,8 +227,24 @@ export default function Statistics({ monthData }) {
           onChange={(indexRange) => setStartIndex(indexRange.startIndex)}
         /> */}
        
+                    
+ <Brush
+                        dataKey="day"
+           height={10}
+                        stroke="#87D28D8"
+                         travellerWidth={5} // Ширина ползунка
+          traveller={{ stroke: 'rgba(50, 63, 71, 0.2)', fill:'rgba(50, 63, 71, 0.2)' }}
+          startIndex={startIndex}
+          endIndex={endIndex}
+          onChange={(indexRange) => {
+            setStartIndex(indexRange.startIndex);
+            setEndIndex(indexRange.endIndex);
+          }}
+        />
+
                 </AreaChart> </ResponsiveContainer> </div> </div>);
 }
 
 ;
+
 

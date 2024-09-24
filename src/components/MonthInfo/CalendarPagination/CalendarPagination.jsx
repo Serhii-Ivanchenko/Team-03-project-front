@@ -33,8 +33,12 @@ const dispatch = useDispatch();
   const userData = useSelector(selectUser); 
   const totalByDate = useSelector(selectTotalValue);
   //  const isLoadingTracker = useSelector(selectLoadingTracker);
-  const currentMonth = new Date().toISOString().substring(0, 7)
+  const currentMonth = new Date().toISOString().substring(0, 7);
+  const currentDay = new Date().getDate();
   const waterDailyNorm = userData.dailyNorm * 1000;
+  //  let startday = 0;
+  //  let endday = 6;
+
  
 
   const [queryMonth, setQueryMonth] = useState(new Date());
@@ -60,7 +64,8 @@ const options = {
 
   let strMonth = queryMonth.toLocaleString("en-US", options);
   let calendarMonth = queryMonth.toISOString().substring(0, 7);
-   let actualDateTotal = waterSelectDate + String(totalByDate);
+  let actualDateTotal = waterSelectDate + String(totalByDate);
+
   useEffect(() => {
      
      const fetchWaterData = async () => {
@@ -72,9 +77,17 @@ const options = {
      fetchWaterData();
    }, [dispatch, calendarMonth, waterDailyNorm, actualDateTotal ]);
 
-let isDisabled = currentMonth === calendarMonth ?  true :  false;
-// statisticMonthData = waterMonthData.map()
- 
+  let isCurrentMonth = currentMonth === calendarMonth ? true : false;
+  
+  
+  let endDay = isCurrentMonth && currentDay > 7 ? currentDay - 1 : 6;
+  let startDay = isCurrentMonth && currentDay > 7 ? currentDay - 6 : 0;
+
+// console.log(currentMonth, calendarMonth, currentDay, isCurrentMonth && currentDay > 7, startday, endday)
+    
+  let statisticMonthData =
+    waterMonthData.map(el => ({ ...el, day: el.date.substring(8, 10).replace(/^0+/ ,'')}));
+//  console.log( statisticMonthData );
   return (
     <div className={css.containerpagin}>
       <div className={css.mainbox}>
@@ -87,7 +100,8 @@ let isDisabled = currentMonth === calendarMonth ?  true :  false;
             <p className={css.namemonth}> {strMonth} </p>
 
             <button className={ css.iconstep } onClick={handleClickRight}
-            disabled={isDisabled} style={{ cursor: 'default'}}>
+            disabled={isCurrentMonth} > style={{ cursor: 'default'}}>
+
               <FiChevronRight className={css.arrowIcon} />
             </button>
           </div>
@@ -104,7 +118,7 @@ let isDisabled = currentMonth === calendarMonth ?  true :  false;
         waterDailyNorm={waterDailyNorm}
         waterSelectDate={waterSelectDate}
       />}
-      {!isCalendar && <Statistics monthData={waterMonthData} />}
+      {!isCalendar && <Statistics monthData={statisticMonthData} startDay={startDay} endDay={endDay} />}
     </div>
   );
 };
