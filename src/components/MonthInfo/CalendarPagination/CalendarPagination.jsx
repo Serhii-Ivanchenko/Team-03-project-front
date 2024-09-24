@@ -99,26 +99,37 @@ const options = {
             </button>
             <p className={css.namemonth}> {strMonth} </p>
 
-            <button className={ css.iconstep } onClick={handleClickRight}
-            disabled={isCurrentMonth} > style={{ cursor: 'default'}}>
-
+            <button
+              className={css.iconstep}
+              onClick={handleClickRight}
+              disabled={isCurrentMonth}
+              style={{ cursor: "default" }}
+            >              
               <FiChevronRight className={css.arrowIcon} />
             </button>
           </div>
 
-          <button className={css.pieIconWrapper} onClick={handleToggleCalendar} >
+          <button className={css.pieIconWrapper} onClick={handleToggleCalendar}>
             <svg className={css.iconpie}>
               <use href={`${myIcon}#icon-pie-chart-02`}></use>
             </svg>
           </button>
         </div>
       </div>
-      {isCalendar && <Calendar
-        monthData={waterMonthData}
-        waterDailyNorm={waterDailyNorm}
-        waterSelectDate={waterSelectDate}
-      />}
-      {!isCalendar && <Statistics monthData={statisticMonthData} startDay={startDay} endDay={endDay} />}
+      {isCalendar && (
+        <Calendar
+          monthData={waterMonthData}
+          waterDailyNorm={waterDailyNorm}
+          waterSelectDate={waterSelectDate}
+        />
+      )}
+      {!isCalendar && (
+        <Statistics
+          monthData={statisticMonthData}
+          startDay={startDay}
+          endDay={endDay}
+        />
+      )}
     </div>
   );
 };
