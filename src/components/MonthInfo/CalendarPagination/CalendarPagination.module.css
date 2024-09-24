@@ -132,6 +132,10 @@
 .pieIconWrapper {
     width: 20px;
     height: 20px;
+    border: none;
+    text-align: center;
+        align-items: center;
+        cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {
@@ -147,7 +151,7 @@
     stroke: #323f47;
     width: 20px;
     height: 20px;
-    opacity: 0.4;
+    /* opacity: 0.4; */
     cursor: pointer;
 }
 

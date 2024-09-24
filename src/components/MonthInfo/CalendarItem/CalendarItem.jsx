@@ -16,7 +16,7 @@ export default function CalendarItem({date, day, value, waterDailyNorm , isActiv
         {isActiveDay && <button className={css.colordarkgrey} onClick={() => dispatch(changeActualDate(date))}>
           {valday}
         </button>}
-         { !isActiveDay && isNotClick && <button className={isColor? css.colorgrey : css.colorwhite }  >
+        {!isActiveDay && isNotClick && <button className={ css.colorgrey } style={{ cursor: 'default', opacity: '0.5' }} disabled={isNotClick} >
           {valday}
         </button>}
         { !isActiveDay && !isNotClick && <button className={isColor? css.colorgrey : css.colorwhite } onClick={() => dispatch(changeActualDate(date))} >
