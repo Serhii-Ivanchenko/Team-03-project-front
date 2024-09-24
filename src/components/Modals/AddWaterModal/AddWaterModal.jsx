@@ -4,11 +4,13 @@ import iconSprite from "../../../assets/images/icons/icons.svg";
 import toast from "react-hot-toast";
 
 import { useForm, Controller, useWatch } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addWaterItem } from "../../../redux/water/operations";
+import { selectDate } from "../../../redux/water/selectors.js";
 
 const AddWaterModal = ({ onClose }) => {
   const dispatch = useDispatch();
+  const selectedDate = useSelector(selectDate);
 
   // Використовуємо локальне сховище для кількості води
   const [count, setCount] = useState(() => {
@@ -77,13 +79,8 @@ const AddWaterModal = ({ onClose }) => {
     setValue("recordingTime", formattedTime);
   };
 
-  const onSubmit = (data) => {
-    const newWaterItem = {
-      date: new Date().toISOString().split("T")[0],
-      time: data.recordingTime || "00:00",
-      value: parseInt(data.waterUsed, 10),
-    };
-    dispatch(addWaterItem(newWaterItem))
+const handleAddWaterItem = (newWaterItem) => {
+    dispatch(addWaterItem({ newWaterItem, selectedDate: selectedDate }))
       .unwrap()
       .then(() => {
         toast.success("Add data successfully!");
@@ -95,6 +92,27 @@ const AddWaterModal = ({ onClose }) => {
       .catch((err) => {
         toast.error("Something went wrong");
       });
+  };
+
+  const onSubmit = (data) => {
+    const newWaterItem = {
+      // date: new Date().toISOString().split("T")[0],
+      time: data.recordingTime || "00:00",
+      value: parseInt(data.waterUsed, 10),
+    };
+    handleAddWaterItem(newWaterItem);
+    // dispatch(addWaterItem(newWaterItem))
+    //   .unwrap()
+    //   .then(() => {
+    //     toast.success("Add data successfully!");
+    //     onClose();
+    //     reset();
+    //     localStorage.removeItem("waterCount");
+    //     localStorage.removeItem("waterUsed");
+    //   })
+    //   .catch((err) => {
+    //     toast.error("Something went wrong");
+    //   });
   };
 
   return (
