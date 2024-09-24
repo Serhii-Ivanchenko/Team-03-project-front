@@ -9,129 +9,7 @@ import {AreaChart,Brush,
     ResponsiveContainer
 } from 'recharts';
 
-const data = [
-        {
-            date: "1",
-            value: 685
-        },
-        {
-            date: "2",
-            value: 500
-        },
-        {
-            date: "3",
-            value: 550
-        },
-        {
-            date: "4",
-            value: 1000
-        },
-        {
-            date: "5",
-            value: 1200
-        },
-        {
-            date: "6",
-            value: 900
-        },
-        {
-            date: "7",
-            value: 1700
-        },
-        {
-            date: "8",
-            value: 490
-        },
-        {
-            date: "9",
-            value: 1300
-        },
-        {
-            date: "10",
-            value: 1500
-        },
-        {
-            date: "11",
-            value: 1110
-        },
-        {
-            date: "12",
-            value: 1600
-        },
-        {
-            date: "13",
-            value: 1260
-        },
-        {
-            date: "14",
-            value: 1300
-        },
-        {
-            date: "15",
-            value: 1400
-        },
-        {
-            date: "16",
-            value: 1600
-        },
-        {
-            date: "17",
-            value: 1000
-        },
-        {
-            date: "18",
-            value: 900
-        },
-        {
-            date: "19",
-            value: 0
-        },
-        {
-            date: "20",
-            value: 0
-        },
-        {
-            date: "21",
-            value: 0
-        },
-        {
-            date: "22",
-            value: 0
-        },
-        {
-            date: "23",
-            value: 0
-        },
-        {
-            date: "24",
-            value: 0
-        },
-        {
-            date: "25",
-            value: 0
-        },
-        {
-            date: "26",
-            value: 0
-        },
-        {
-            date: "27",
-            value: 0
-        },
-        {
-            date: "28",
-            value: 0
-        },
-        {
-            date: "29",
-            value: 0
-        },
-        {
-            date: "30",
-            value: 0
-        }
-    ]
-;
+
 
 const CustomTooltip = ({ active, payload, coordinate }) => {
   if (active && payload && payload.length) {
@@ -172,11 +50,11 @@ const [startIndex, setStartIndex] = useState(startDay);
   
 // , overflowX: 'scroll'
     return (<div className={css.containerstatistics}
-        style={{ width: '100%' }}>
+        >
         <div className={css.areabox}
-            style={{ width: '100%' }}> 
+           > 
 
-            <ResponsiveContainer width="100%" height={273} className={css.responseContainer }  >
+            <ResponsiveContainer  height={273} className={css.responseContainer }  >
                 <AreaChart data={monthData}
 
          > 
@@ -190,9 +68,9 @@ const [startIndex, setStartIndex] = useState(startDay);
 
         <CartesianGrid strokeDasharray="3 3" /> 
 
-                    <XAxis dataKey="day" interval={0} /> 
+                    <XAxis dataKey="day" interval={0} padding={{ right: 10 }}/> 
                     
-                    <YAxis domain={[0, 2500]} tickFormatter={(value) => (value / 1000).toFixed(1)}
+                    <YAxis domain={[0, (dataMax) => dataMax + 20]} tickFormatter={(value) => (value / 1000).toFixed(1)}
                          width={40}
                         label={{ angle: -90, position: 'insideLeft' }} unit={' L'}
                         ticks={[0, 500, 1000, 1500, 2000, 2500]}

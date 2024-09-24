@@ -10,7 +10,7 @@
 @media only screen and (min-width: 768px) {
     .containerstatistics {
     height: 305px;
-             margin-left: 10px;
+            margin-left: 10px;
             margin-right: 10px; 
             margin-top: 49px;
             margin-bottom: 40px;
@@ -19,13 +19,24 @@
 
     .areabox {
         width: 276px;
+        
     }
 
         @media only screen and (min-width: 768px) {
         .areabox {
-                width: 588px;
+                width: 608px;
+                margin-left: 10px;
+                    margin-right: 10px;
+                    margin-top: 49px;
+                    margin-bottom: 40px;
             }
         }
+
+         @media only screen and (min-width: 1440px) {
+        .areabox {
+              width: 580px;
+                      }
+                  }
 
         .responseContainer {
             width:100%;
@@ -34,12 +45,14 @@
 
       @media only screen and (min-width: 768px) {
             .responseContainer {
+                width: 588px;
                     height: 233px;
                 }
             }
 
      @media only screen and (min-width: 1440px) {
          .responseContainer {
+            width: 580px;
                                  height: 273px;
                              }
                          }
