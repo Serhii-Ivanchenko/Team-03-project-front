@@ -43,7 +43,7 @@ const AddWaterModal = ({ onClose }) => {
     reValidateMode: "onChange",
   });
 
-  const recordingTime = useWatch({ control, name: "recordingTime" });
+  // const recordingTime = useWatch({ control, name: "recordingTime" });
   const waterUsed = useWatch({ control, name: "waterUsed" });
 
   // Оновлюємо значення лічильника та зберігаємо в localStorage
