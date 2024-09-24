@@ -48,6 +48,10 @@
   font-weight: 700;
   line-height: 1.285em;
   letter-spacing: -0.14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px; 
   }
 
   @media only screen and (min-width: 768px) {
