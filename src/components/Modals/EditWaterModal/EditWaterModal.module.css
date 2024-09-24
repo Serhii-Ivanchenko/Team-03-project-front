@@ -3,7 +3,8 @@
   flex-direction: column;
   padding: 40px 20px;
 
-  width: 343px;
+  max-width: 343px;
+  width: calc(100vw - 32px);
   height: 514px;
 
   border-radius: 15px;
@@ -15,15 +16,10 @@
 
 @media (min-width: 768px) {
   .editModalContainer {
-    width: 478px;
+    width: 518px;
+    max-width: 100%;
     height: 587px;
     padding: 40px;
-  }
-}
-
-@media (min-width: 1440px) {
-  .editModalContainer {
-    width: 518px;
   }
 }
 
