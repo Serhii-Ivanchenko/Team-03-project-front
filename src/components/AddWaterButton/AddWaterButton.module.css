@@ -23,10 +23,11 @@
   background-color: #9BE1A0;
   transition: background-color 0.3s ease;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 
 }
 
-.addWaterButton:hover .containerSvg {
+.containerSvg:hover {
   background-color: #323F47;
 }
 
@@ -38,10 +39,11 @@
   transition: stroke 0.3s ease;
 }
 
-.addWaterButton:hover .icon {
+.icon:hover {
   stroke: #FFF;
 }
 
 .text {
   font-weight: bold;
+  pointer-events: none;
 }
