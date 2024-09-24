@@ -3,7 +3,8 @@
   flex-direction: column;
   padding: 40px 20px;
 
-  width: 343px;
+  max-width: 343px;
+  width: calc(100vw - 32px);
   height: 514px;
 
   border-radius: 15px;
@@ -15,38 +16,38 @@
 
 @media (min-width: 768px) {
   .addModalContainer {
-    width: 478px;
+    width: 518px;
+    max-width: 100%;
     height: 587px;
     padding: 40px;
-  }
-}
-
-@media (min-width: 1440px) {
-  .addModalContainer {
-    width: 518px;
   }
 }
 
 .addModalTextContainer {
   color: #323f47;
 }
+
 .addModalTitle {
   width: 248px;
   font-weight: 700;
-  line-height: 24px; /* 120% */
+  line-height: 24px;
+  /* 120% */
   letter-spacing: -0.2px;
   font-size: 20px;
 
   @media (min-width: 768px) {
     width: 347px;
     font-size: 28px;
-    line-height: 32px; /* 114.286% */
+    line-height: 32px;
+    /* 114.286% */
     letter-spacing: -0.28px;
   }
 }
+
 .addModalSubTitle {
   font-size: 16px;
-  line-height: 20px; /* 125% */
+  line-height: 20px;
+  /* 125% */
   letter-spacing: -0.16px;
 
   padding-top: 24px;
@@ -54,7 +55,8 @@
 
   @media (min-width: 768px) {
     font-size: 18px;
-    line-height: 24px; /* 133.333% */
+    line-height: 24px;
+    /* 133.333% */
     letter-spacing: -0.18px;
   }
 }
@@ -64,13 +66,15 @@
   color: #2f2f2f;
 
   font-size: 14px;
-  line-height: 18px; /* 128.571% */
+  line-height: 18px;
+  /* 128.571% */
   letter-spacing: -0.14px;
 
   @media (min-width: 768px) {
     font-size: 16px;
     font-weight: 400;
-    line-height: 24px; /* 150% */
+    line-height: 24px;
+    /* 150% */
     letter-spacing: -0.16px;
   }
 }
@@ -104,12 +108,14 @@
 
 .addModalTitleWaterUsed {
   font-size: 16px;
-  line-height: 20px; /* 125% */
+  line-height: 20px;
+  /* 125% */
   letter-spacing: -0.16px;
 
   @media (min-width: 768px) {
     font-size: 18px;
-    line-height: 24px; /* 133.333% */
+    line-height: 24px;
+    /* 133.333% */
     letter-spacing: -0.18px;
   }
 }
@@ -132,6 +138,7 @@
   border: 0;
   cursor: pointer;
 }
+
 .addModalCounterButtonMinus {
   background-color: transparent;
   border: 0;
@@ -149,14 +156,16 @@
   color: #323f47;
 
   font-weight: 700;
-  line-height: 18px; /* 150% */
+  line-height: 18px;
+  /* 150% */
   letter-spacing: -0.14px;
 
   @media (min-width: 768px) {
     padding: 18px 50px;
 
     font-size: 16px;
-    line-height: 24px; /* 150% */
+    line-height: 24px;
+    /* 150% */
     letter-spacing: -0.16px;
   }
 }
@@ -173,6 +182,7 @@
   top: 20px;
   right: 20px;
 }
+
 .iconClose {
   stroke: #323f47;
   width: 28px;
@@ -208,4 +218,8 @@
   color: red;
   font-size: 14px;
   margin-bottom: 10px;
+}
+
+.errorInput {
+  border: 1px solid #ef5050;
 }

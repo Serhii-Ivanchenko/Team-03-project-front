@@ -25,6 +25,8 @@ const waterSlice = createSlice({
   initialState: initialState.water,
   reducers: {
     changeActualDate: (state, action) => {
+      console.log("changeActualDate", action.payload);
+
       state.items.date = action.payload;
     },
   },
@@ -33,14 +35,28 @@ const waterSlice = createSlice({
     builder
       .addCase(addWaterItem.pending, handlePending)
       .addCase(addWaterItem.fulfilled, (state, action) => {
+        console.log("action payload during adding", action.payload);
         state.loading = false;
         const newItem = { ...action.payload.data, id: action.payload.data._id };
-        state.items.day.push(newItem);
+        if (state.items.date === action.payload.data.date) {
+          state.items.day.push(newItem);
+        }
+        // state.items.day.push(newItem);
+        state.items.totalValue += action.payload.data.value;
       })
       .addCase(addWaterItem.rejected, handleRejected)
       .addCase(deleteWaterItem.pending, handlePending)
       .addCase(deleteWaterItem.fulfilled, (state, action) => {
         state.loading = false;
+
+        const itemToDelete = state.items.day.find(
+          (item) => item.id === action.payload.id
+        );
+
+        if (itemToDelete) {
+          state.items.totalValue -= itemToDelete.value;
+        }
+
         state.items.day = state.items.day.filter(
           (item) => item.id !== action.payload.id
         );
@@ -53,29 +69,40 @@ const waterSlice = createSlice({
       .addCase(editWaterItem.fulfilled, (state, action) => {
         state.loading = false;
 
-        const updatedItem = action.payload;
+        const updatedItem = action.payload.data;
 
         const dayItemIndex = state.items.day.findIndex(
-          (item) => item.id === updatedItem.id
+          (item) => item.id === updatedItem._id
         );
+
+        const oldValueDay =
+          dayItemIndex !== -1 ? state.items.day[dayItemIndex].value : 0;
 
         if (dayItemIndex !== -1) {
           state.items.day[dayItemIndex] = {
             ...state.items.day[dayItemIndex],
-            ...updatedItem,
+            value: updatedItem.value,
+            time: updatedItem.time,
           };
         }
 
         const monthItemIndex = state.items.month.findIndex(
-          (item) => item.id === updatedItem.id
+          (item) => item.id === updatedItem._id
         );
 
+        const oldValueMonth =
+          monthItemIndex !== -1 ? state.items.month[monthItemIndex].value : 0;
+
         if (monthItemIndex !== -1) {
-          state.waterData.month[monthItemIndex] = {
-            ...state.water.items.month[monthItemIndex],
-            ...updatedItem,
+          state.items.month[monthItemIndex] = {
+            ...state.items.month[monthItemIndex],
+            value: updatedItem.value,
+            time: updatedItem.time,
           };
         }
+
+        state.items.totalValue +=
+          updatedItem.value - (oldValueDay + oldValueMonth);
       })
       .addCase(editWaterItem.rejected, handleRejected)
       .addCase(getDayWaterByDate.pending, handlePending)

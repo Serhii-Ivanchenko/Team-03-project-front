@@ -35,10 +35,10 @@ const dispatch = useDispatch();
   //  const isLoadingTracker = useSelector(selectLoadingTracker);
   const currentMonth = new Date().toISOString().substring(0, 7);
   const currentDay = new Date().getDate();
-  const waterDailyNorm = userData.dailyNorm;
+  const waterDailyNorm = userData.dailyNorm * 1000;
   //  let startday = 0;
   //  let endday = 6;
-  
+
  
 
   const [queryMonth, setQueryMonth] = useState(new Date());
@@ -65,7 +65,7 @@ const options = {
   let strMonth = queryMonth.toLocaleString("en-US", options);
   let calendarMonth = queryMonth.toISOString().substring(0, 7);
   let actualDateTotal = waterSelectDate + String(totalByDate);
-  
+
   useEffect(() => {
      
      const fetchWaterData = async () => {
@@ -100,7 +100,8 @@ const options = {
             <p className={css.namemonth}> {strMonth} </p>
 
             <button className={ css.iconstep } onClick={handleClickRight}
-            disabled={isCurrentMonth} >
+            disabled={isCurrentMonth} > style={{ cursor: 'default'}}>
+
               <FiChevronRight className={css.arrowIcon} />
             </button>
           </div>

@@ -1,7 +1,9 @@
 import { Oval } from "react-loader-spinner";
 import css from "./Loader.module.css";
+import { useTranslation } from "react-i18next";
 
 export default function Loader() {
+  const { t } = useTranslation();
   return (
     <div className={css.loader}>
       <Oval
@@ -14,7 +16,7 @@ export default function Loader() {
         wrapperStyle={{}}
         wrapperClass=""
       />
-      <p>Loading, please wait...</p>
+      <p>{t('loading_message')}</p>
     </div>
   );
 }

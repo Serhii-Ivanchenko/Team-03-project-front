@@ -15,6 +15,8 @@
 @media only screen and (min-width: 1440px) {
     .container {
         width: 672px;
+        height: 736px;
         margin-top: 0;
         margin-bottom: 0;
-      }}
+      }
+    }

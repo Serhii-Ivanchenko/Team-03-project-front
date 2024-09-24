@@ -11,25 +11,15 @@ const ForgotPasswordModalContent = ({ onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-dispatch(sendResetPassword(email))
-  .unwrap()
-  .then(() => {
-    toast.success("Check your email for the reset link.");
-    onClose();
-  })
-  .catch((err) => {
-    console.error(err);
-    toast.error("Something went wrong. Please try again.");
-  });
-
-    // try {
-    //   await dispatch(sendResetPassword(email)).unwrap();
-    //   toast.success("Check your email for the reset link.");
-    //   onClose();
-    // } catch (error) {
-    //   console.error(error);
-    //   toast.error("Something went wrong. Please try again.");
-    // }
+    dispatch(sendResetPassword(email))
+      .unwrap()
+      .then(() => {
+        toast.success("Check your email for the reset link.");
+        onClose();
+      })
+      .catch(() => {
+        toast.error("Something went wrong. Please try again.");
+      });
   };
 
   return (
@@ -50,9 +40,6 @@ dispatch(sendResetPassword(email))
           Send email
         </button>
       </form>
-      <button className={css.modalClose} onClick={onClose}>
-        Close
-      </button>
     </div>
   );
 };

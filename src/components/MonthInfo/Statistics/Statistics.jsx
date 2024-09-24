@@ -164,7 +164,6 @@ lineWeight: '1.86',
   return null;
 };
 
-
 export default function Statistics({ monthData, startDay, endDay }) {
 
 const [startIndex, setStartIndex] = useState(startDay);
@@ -179,7 +178,7 @@ const [startIndex, setStartIndex] = useState(startDay);
 
             <ResponsiveContainer width="100%" height={273} className={css.responseContainer }  >
                 <AreaChart data={monthData}
-            
+
          > 
 
             <defs>
@@ -218,6 +217,15 @@ const [startIndex, setStartIndex] = useState(startDay);
         
       
                     />
+{/* 
+                    <Brush
+          dataKey="name"
+          height={30}
+          stroke="#8884d8"
+          startIndex={startIndex}
+          endIndex={data.length - 1}
+          onChange={(indexRange) => setStartIndex(indexRange.startIndex)}
+        /> */}
        
                     
  <Brush

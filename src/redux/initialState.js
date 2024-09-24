@@ -1,7 +1,7 @@
 export const initialState = {
   water: {
     items: {
-      totalValue: null,
+      totalValue: 0,
       day: [],
       month: [],
       date: null,

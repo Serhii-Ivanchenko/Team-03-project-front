@@ -8,7 +8,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import GoogleBtn from "../GoogleBtn/GoogleBtn";
 import toast from "react-hot-toast";
-// import axios from "axios";
 import { useState } from "react";
 import iconSprite from "../../assets/images/icons/icons.svg";
 
@@ -34,70 +33,24 @@ const SignUpForm = () => {
     const { email, password } = data;
     const newEmail = email.toLowerCase();
 
- dispatch(registerUser({ email: newEmail, password }))
-   .unwrap()
-   .then(() => {
-     reset();
-     toast.success("Registration successful!");
-   })
-   .catch((err) => {
-     if (err=== 409) {
+    dispatch(registerUser({ email: newEmail, password }))
+      .unwrap()
+      .then(() => {
+        reset();
+        toast.success("Registration successful!");
+      })
+      .catch((err) => {
+        if (err === 409) {
           toast.error("User already exists.");
         } else {
           toast.error("Registration failed. Please try again.");
         }
-   });
-
-    // try {
-    //   const resultAction = await dispatch(
-    //     registerUser({ email: newEmail, password })
-    //   );
-    //   if (registerUser.fulfilled.match(resultAction)) {
-    //     reset();
-    //     toast.success("Registration successful!");
-    //   } else if (registerUser.rejected.match(resultAction)) {
-    //     const errorStatus = resultAction.payload;
-    //     if (errorStatus === 409) {
-    //       toast.error("User already exists.");
-    //     } else {
-    //       toast.error("Registration failed. Please try again.");
-    //     }
-    //   }
-    // } catch (error) {
-    //   console.error("Error during registration:", error);
-    //   toast.error("An unexpected error occurred.");
-    // }
+      });
   };
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
-  // const handleGoogleSignUp = async () => {
-  //   try {
-  //     const response = await axios.get("/users/get-oauth-url");
-  //     const { url } = response.data.data;
-  //     window.location.href = url;
-  //   } catch (error) {
-  //     console.error("Error getting Google OAuth URL:", error);
-  //     toast.error("Error getting Google OAuth URL");
-  //   }
-  // };
-  // const handleConfirmGoogleAuth = async (code) => {
-  //   try {
-  //     const response = await axios.post("/confirm-google-auth", { code });
-  //     const { token, user } = response.data;
-
-  //     // Dispatch дії для збереження користувача і токену
-  //     dispatch(logInWithGoogle({ token, user }));
-
-  //     toast.success("Successfully signed up with Google!");
-  //     navigate("/"); // Перенаправлення після успішної авторизації
-  //   } catch (error) {
-  //     console.error("Error confirming Google Auth:", error);
-  //     toast.error("Error during Google Sign Up");
-  //   }
-  // };
   return (
     <AuthFormLayout className={css.layout}>
       <div className={css.signUpContainer}>
@@ -181,13 +134,7 @@ const SignUpForm = () => {
           <input className={css.submit} type="submit" value="Sign Up" />
         </form>
 
-        <GoogleBtn
-          context={"Sign Up with Google"}
-          onClick={() => {
-            // handleGoogleSignUp();
-            // dispatch(userSlice(true));
-          }}
-        />
+        <GoogleBtn context={"Sign Up with Google"} onClick={() => {}} />
         <div className={css.inviteOnLogIn}>
           {" "}
           <p className={css.inviteText}>

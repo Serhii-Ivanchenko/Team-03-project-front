@@ -1,8 +1,11 @@
 import { useTranslation } from "react-i18next";
-import css from "./LanguageSwitcher.module.css"
+import { MdRadioButtonChecked } from "react-icons/md";
+import { IoMdRadioButtonOff } from "react-icons/io";
+import css from "./LanguageSwitcher.module.css";
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
+  const selectedOption = i18n.language;
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -11,25 +14,45 @@ const LanguageSwitcher = () => {
 
   return (
     <div className={css.switcherContainer}>
-      <label className={css.label}>
+      <label className={css.radioBtnLabel}>
         <input
+          className={css.languageInput}
           type="radio"
           value="en"
-          checked={i18n.language === "en"}
+          checked={selectedOption === "en"}
           onChange={() => changeLanguage("en")}
         />
-        En
+        {selectedOption === "en" ? (
+          <MdRadioButtonChecked
+            style={{ color: "#9be1a0", width: "20px", height: "20px" }}
+          />
+        ) : (
+          <IoMdRadioButtonOff
+            style={{ color: "#9be1a0", width: "20px", height: "20px" }}
+          />
+        )}
+        🇬🇧
       </label>
-      <label className={css.label}>
+      <label className={css.radioBtnLabel}>
         <input
+          className={css.languageInput}
           type="radio"
           value="uk"
-          checked={i18n.language === "uk"}
+          checked={selectedOption === "uk"}
           onChange={() => changeLanguage("uk")}
         />
-        Укр
+        {selectedOption === "uk" ? (
+          <MdRadioButtonChecked
+            style={{ color: "#9be1a0", width: "20px", height: "20px" }}
+          />
+        ) : (
+          <IoMdRadioButtonOff
+            style={{ color: "#9be1a0", width: "20px", height: "20px" }}
+          />
+        )}
+        🇺🇦
       </label>
     </div>
   );
 };
-export default LanguageSwitcher
+export default LanguageSwitcher;

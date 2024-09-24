@@ -62,16 +62,25 @@
 }
 
 .avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 75px;
   height: 75px;
   border-radius: 50%;
+  overflow: hidden;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 10px;
 }
 
 @media screen and (min-width: 768px) {
-  .avatar {
+  .imageContainer {
     width: 100px;
     height: 100px;
   }
@@ -92,6 +101,7 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
+  margin-top: 10px;
 }
 
 @media screen and (min-width: 768px) {
