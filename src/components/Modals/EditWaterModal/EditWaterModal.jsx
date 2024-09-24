@@ -150,14 +150,19 @@ const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
             control={control}
             rules={{
               required: "Water amount is required",
-              validate: (value) =>
-                !isNaN(value) || "Please enter a valid number",
+              validate: {
+                validNumber: (value) =>
+                  !isNaN(value) || "Please enter a valid number",
+                nonZero: (value) =>
+                  parseInt(value, 10) > 0 ||
+                  "Water amount must be greater than 0",
+              },
             }}
             render={({ field }) => (
               <input
                 {...field}
                 className={`${css.formInput} ${
-                  errors.waterUsed ? css.errorInput : ""
+                  errors.waterAmount ? css.errorInput : ""
                 }`}
                 type="text"
                 placeholder="250"
