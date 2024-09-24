@@ -12,6 +12,7 @@ import { getUserData } from "../../redux/user/operations.js";
 import {
   selectLoadingTracker,
 } from "../../redux/user/selectors.js";
+import toast from "react-hot-toast";
 
 export default function TrackerPage() {
   const dispatch = useDispatch();
@@ -23,8 +24,18 @@ export default function TrackerPage() {
   useEffect(() => {
     const fetchWaterData = async () => {
       await Promise.all([
-        dispatch(getUserData()),
-        dispatch(getDayWaterByDate(today)),
+        dispatch(getUserData())
+          .unwrap()
+          .then(() => {})
+          .catch((err) => {
+            toast.error("Ooops, something went wrong. Please try again.");
+          }),
+        dispatch(getDayWaterByDate(today))
+          .unwrap()
+          .then(() => {})
+          .catch((err) => {
+            toast.error("Ooops, can't get water data. Please try again.");
+          }),
       ]);
     };
 
