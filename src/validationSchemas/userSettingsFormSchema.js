@@ -27,6 +27,11 @@ export const userSettingsFormschema = Yup.object({
     .typeError("Daily norma should be a number")
     .required("Daily norma time should be required")
     .positive("Daily norma should be a positive number")
-    .min(1000, "Daily norma should be more than 1000 ml")
-    .max(15000, "Daily norma should be less than 15000 ml"),
+    .min(1, "Daily norma should be more than 1 liter")
+    .max(15, "Daily norma should be less than 15 liters")
+    .test(
+      "is-decimal",
+      "Daily norm should have up to two decimal places",
+      (value) => (value ? /^\d+(\.\d{1,2})?$/.test(value) : true)
+    ),
 });

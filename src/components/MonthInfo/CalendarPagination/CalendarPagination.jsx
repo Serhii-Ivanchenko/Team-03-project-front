@@ -34,7 +34,7 @@ const dispatch = useDispatch();
   const totalByDate = useSelector(selectTotalValue);
   //  const isLoadingTracker = useSelector(selectLoadingTracker);
   const currentMonth = new Date().toISOString().substring(0, 7)
-  const waterDailyNorm = userData.dailyNorm;
+  const waterDailyNorm = userData.dailyNorm * 1000;
  
 
   const [queryMonth, setQueryMonth] = useState(new Date());

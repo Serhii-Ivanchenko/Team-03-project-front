@@ -13,7 +13,7 @@ export default function WaterProgressBar() {
   const date = useSelector(selectDate);
   const dispatch = useDispatch();
 
-  const dailyNorma = user.dailyNorm;
+  const dailyNorma = user.dailyNorm * 1000;
   const totalValue = dayValue;
   const progress = Math.min(Math.round((totalValue / dailyNorma) * 100), 100);
 
