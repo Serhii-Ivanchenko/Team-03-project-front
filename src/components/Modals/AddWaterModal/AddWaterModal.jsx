@@ -153,8 +153,13 @@ const AddWaterModal = ({ onClose }) => {
             control={control}
             rules={{
               required: "Water usage is required",
-              validate: (value) =>
-                !isNaN(value) || "Please enter a valid number",
+              validate: {
+                validNumber: (value) =>
+                  !isNaN(value) || "Please enter a valid number",
+                nonZero: (value) =>
+                  parseInt(value, 10) > 0 ||
+                  "Water usage must be greater than 0",
+              },
             }}
             render={({ field }) => (
               <input
