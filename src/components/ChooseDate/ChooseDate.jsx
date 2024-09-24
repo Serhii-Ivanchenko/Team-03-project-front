@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import styles from './ChooseDate.module.css';
-import {selectDate} from '../../redux/water/selectors';
-
+import { selectDate } from '../../redux/water/selectors';
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -10,10 +9,11 @@ const formatDate = (dateString) => {
 };
 
 const ChooseDate = () => {
-  const currentDate = new Date().toLocaleDateString();
+  const today = new Date().toDateString();
   const selectedDate = useSelector(selectDate);
+  const formattedSelectedDate = new Date(selectedDate).toDateString();
 
-  const displayDate = selectedDate === currentDate 
+  const displayDate = formattedSelectedDate === today 
     ? "Today" 
     : formatDate(selectedDate);
 
