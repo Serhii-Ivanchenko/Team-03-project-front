@@ -20,13 +20,7 @@ export function AxiosInterceptor() {
 
             setAuthHeader(accessToken);
 
-            dispatch(resetToken(accessToken))
-              .unwrap()
-              .then(() => {
-              })
-              .catch(() => {
-                toast.error("Something went wrong. Please, refresh the page");
-              });
+            dispatch(resetToken(accessToken));
 
             originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
             return await axiosInstance(originalRequest);
