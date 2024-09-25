@@ -15,6 +15,7 @@ import Statistics from "../Statistics/Statistics.jsx";
 import { useState } from "react";
 import Calendar from "../Calendar/Calendar.jsx";
 import { useTranslation } from "react-i18next";
+import toast from "react-hot-toast";
 
 
 function addMonths(date, months) {
@@ -22,7 +23,6 @@ function addMonths(date, months) {
   let expectedMonth = (((result.getMonth() + months) % 12) + 12) % 12;
   result.setMonth(result.getMonth() + months);
 
-  // Если произошло переполнение, исправляем
   if (result.getMonth() !== expectedMonth) {
     result.setDate(0);
   }
@@ -66,7 +66,11 @@ export default function CalendarPagination() {
 
   useEffect(() => {
     const fetchWaterData = async () => {
-      await Promise.all([dispatch(getMonthWaterByMonth(calendarMonth))]);
+      await Promise.all([dispatch(getMonthWaterByMonth(calendarMonth)).unwrap()
+      .then(() => {})
+      .catch(() => {
+        toast.error("Something went wrong. Please, try again");
+      })]);
     };
 
     fetchWaterData();

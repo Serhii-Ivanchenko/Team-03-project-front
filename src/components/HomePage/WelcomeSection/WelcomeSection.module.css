@@ -7,8 +7,31 @@
   border-radius: 30px;
 }
 
+.logoMain.animation-down {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.9s, transform 0.9s;
+  transition-delay: 300ms;
+}
+
+.logoMain.animation-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .welcome {
   margin-top: 74px;
+}
+
+.welcome.animation-scale {
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 2s, transform 2s;
+}
+
+.welcome.animation-active {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .descr {
@@ -60,7 +83,7 @@
   letter-spacing: -0.01em;
   text-align: center;
   color: #323f47;
- cursor: pointer;
+  cursor: pointer;
   border-radius: 30px;
   border: 1px solid #323f47;
 }
@@ -69,9 +92,6 @@
   border: 1px solid #87d28d;
   color: #87d28d;
 }
-
-
-
 
 /* ======================= SCREEN 768px ====================================================== */
 
@@ -128,7 +148,6 @@
     float: left;
   }
 
-
   .title {
     font-size: 80px;
     line-height: 95%;
@@ -139,28 +158,5 @@
   .welcome {
     margin: 132px 32px 0;
   }
-
-  /* 
-  .singup {
-    padding-right: 16px;
-  } */
-
-  /* .btn {
-    padding-right: 16px;
-    font-size: 16px;
-    line-height: 150%;
-    text-align: center;
-    padding: 18px 40px;
-  } */
-
-  /* .btnSingIn {
-  padding-right: 16px;
-  font-size: 16px;
-  line-height: 150%;
-  letter-spacing: -0.01em;
-  padding: 18px 40px;
-} */
-
-
 
 }

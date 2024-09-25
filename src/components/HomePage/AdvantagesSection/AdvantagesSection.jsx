@@ -8,15 +8,25 @@ import secondGirl2x from "../../../assets/images/main_page/second_girl_avatar_2x
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { selectTotalAmount } from "../../../redux/user/selectors.js";
+import { useEffect, useState } from "react";
 
 const AdvantagesSection = () => {
   const totalAmount = useSelector(selectTotalAmount);
-  console.log("total amount in adv section", totalAmount);
+  const [isActive, setIsActive] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsActive(true);
+    }, 100);
+  }, []);
 
   const { t, i18n } = useTranslation();
   return (
     <div className={css.advSection}>
-      <div className={css.happyContainer}>
+      <div
+        className={`${css.happyContainer} ${css["animation-scale"]} ${
+          isActive ? css["animation-active"] : ""
+        }`}
+      >
         <ul className={css.happyList}>
           <li className={css.happyItem}>
             <picture>
@@ -80,7 +90,11 @@ const AdvantagesSection = () => {
           </p>
         </div>
       </div>
-      <div className={css.btnWrapper}>
+      <div
+        className={`${css.btnWrapper} ${css["animation-scale"]} ${
+          isActive ? css["animation-active"] : ""
+        }`}
+      >
         <div className={css.infoStaticsBtn}>
           <button className={css.habitbtn}>
             <span className={css.circle}></span>

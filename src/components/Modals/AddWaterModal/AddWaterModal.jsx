@@ -45,7 +45,6 @@ const AddWaterModal = ({ onClose }) => {
     reValidateMode: "onChange",
   });
 
-  // const recordingTime = useWatch({ control, name: "recordingTime" });
   const waterUsed = useWatch({ control, name: "waterUsed" });
 
   // Оновлюємо значення лічильника та зберігаємо в localStorage
@@ -91,30 +90,17 @@ const handleAddWaterItem = (newWaterItem) => {
         localStorage.removeItem("waterCount");
         localStorage.removeItem("waterUsed");
       })
-      .catch((err) => {
+      .catch(() => {
         toast.error(t("add_water_modal.something_wrong"));
       });
   };
 
   const onSubmit = (data) => {
     const newWaterItem = {
-      // date: new Date().toISOString().split("T")[0],
       time: data.recordingTime || "00:00",
       value: parseInt(data.waterUsed, 10),
     };
     handleAddWaterItem(newWaterItem);
-    // dispatch(addWaterItem(newWaterItem))
-    //   .unwrap()
-    //   .then(() => {
-    //     toast.success("Add data successfully!");
-    //     onClose();
-    //     reset();
-    //     localStorage.removeItem("waterCount");
-    //     localStorage.removeItem("waterUsed");
-    //   })
-    //   .catch((err) => {
-    //     toast.error("Something went wrong");
-    //   });
   };
 
   return (

@@ -8,8 +8,6 @@ const UserPanel = () => {
   const { t } = useTranslation();
   const user = useSelector(selectUser);
 
-  // console.log('User data:', user);
-
   const userName = user?.name || (user?.email ? user.email.split('@')[0] : 'User'); 
 
   return (

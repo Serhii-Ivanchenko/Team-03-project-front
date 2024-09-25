@@ -3,15 +3,11 @@ import WaterDetailedInfo from "../../components/WaterDetailedInfo/WaterDetailedI
 import WaterMainInfo from "../../components/WaterMainInfo/WaterMainInfo.jsx";
 import styles from "./TrackerPage.module.css";
 import { useEffect } from "react";
-import {
-  getDayWaterByDate,
-  // getMonthWaterByMonth,
-} from "../../redux/water/operations.js";
+import { getDayWaterByDate } from "../../redux/water/operations.js";
 import Loader from "../../components/Loader/Loader.jsx";
 import { getUserData } from "../../redux/user/operations.js";
-import {
-  selectLoadingTracker,
-} from "../../redux/user/selectors.js";
+import { selectLoadingTracker } from "../../redux/user/selectors.js";
+import toast from "react-hot-toast";
 
 export default function TrackerPage() {
   const dispatch = useDispatch();
@@ -23,8 +19,18 @@ export default function TrackerPage() {
   useEffect(() => {
     const fetchWaterData = async () => {
       await Promise.all([
-        dispatch(getUserData()),
-        dispatch(getDayWaterByDate(today)),
+        dispatch(getUserData())
+          .unwrap()
+          .then(() => {})
+          .catch(() => {
+            toast.error("Something went wrong. Please, try again");
+          }),
+        dispatch(getDayWaterByDate(today))
+          .unwrap()
+          .then(() => {})
+          .catch(() => {
+            toast.error("Something went wrong. Please, try again");
+          }),
       ]);
     };
 

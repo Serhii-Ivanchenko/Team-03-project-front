@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUsersAmount, refreshUser } from "../../redux/user/operations.js";
 import { selectIsRefreshing } from "../../redux/user/selectors.js";
 import Loader from "../Loader/Loader.jsx";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import GoogleAuthCallback from "../GoogleAuthCallback/GoogleAuthCallback.jsx";
 import ResetPassword from "../../pages/ResetPassword/ResetPassword.jsx";
 
@@ -27,7 +27,12 @@ export default function App() {
 
   useEffect(() => {
     dispatch(refreshUser());
-    dispatch(getUsersAmount());
+    dispatch(getUsersAmount())
+      .unwrap()
+      .then(() => {})
+      .catch(() => {
+        toast.error("Something went wrong. Please, try again");
+      });
   }, [dispatch]);
 
   const isRefreshing = useSelector(selectIsRefreshing);

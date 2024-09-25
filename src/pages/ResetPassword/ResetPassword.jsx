@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 const ResetPassword = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
-  const token = searchParams.get("token"); // Отримання токену з URL
+  const token = searchParams.get("token");
   const navigate = useNavigate();
 
   const { t } = useTranslation();

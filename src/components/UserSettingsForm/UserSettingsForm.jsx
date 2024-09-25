@@ -64,8 +64,7 @@ export default function UserSettingsForm({ onClose }) {
       .then(() => {
         toast.success("Avatar updated!");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         setAvatar(photo);
         toast.error("Avatar wasn`t updated,please try again");
       });
@@ -87,8 +86,7 @@ export default function UserSettingsForm({ onClose }) {
         toast.success("Settings saved successfully!");
         onClose();
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         toast.error("Settings weren`t saved,please try again");
       });
   };
