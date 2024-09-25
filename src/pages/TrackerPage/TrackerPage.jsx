@@ -5,7 +5,6 @@ import styles from "./TrackerPage.module.css";
 import { useEffect } from "react";
 import {
   getDayWaterByDate,
-  // getMonthWaterByMonth,
 } from "../../redux/water/operations.js";
 import Loader from "../../components/Loader/Loader.jsx";
 import { getUserData } from "../../redux/user/operations.js";

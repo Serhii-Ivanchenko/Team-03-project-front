@@ -22,7 +22,6 @@ function addMonths(date, months) {
   let expectedMonth = (((result.getMonth() + months) % 12) + 12) % 12;
   result.setMonth(result.getMonth() + months);
 
-  // Если произошло переполнение, исправляем
   if (result.getMonth() !== expectedMonth) {
     result.setDate(0);
   }

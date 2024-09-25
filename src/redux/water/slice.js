@@ -25,8 +25,6 @@ const waterSlice = createSlice({
   initialState: initialState.water,
   reducers: {
     changeActualDate: (state, action) => {
-      console.log("changeActualDate", action.payload);
-
       state.items.date = action.payload;
     },
   },
@@ -35,13 +33,11 @@ const waterSlice = createSlice({
     builder
       .addCase(addWaterItem.pending, handlePending)
       .addCase(addWaterItem.fulfilled, (state, action) => {
-        console.log("action payload during adding", action.payload);
         state.loading = false;
         const newItem = { ...action.payload.data, id: action.payload.data._id };
         if (state.items.date === action.payload.data.date) {
           state.items.day.push(newItem);
         }
-        // state.items.day.push(newItem);
         state.items.totalValue += action.payload.data.value;
       })
       .addCase(addWaterItem.rejected, handleRejected)

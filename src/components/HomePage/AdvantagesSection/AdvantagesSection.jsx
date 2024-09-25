@@ -11,7 +11,6 @@ import { selectTotalAmount } from "../../../redux/user/selectors.js";
 
 const AdvantagesSection = () => {
   const totalAmount = useSelector(selectTotalAmount);
-  console.log("total amount in adv section", totalAmount);
 
   const { t } = useTranslation();
   return (
