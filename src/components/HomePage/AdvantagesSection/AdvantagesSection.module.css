@@ -59,6 +59,17 @@
   box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
 }
 
+.happyContainer.animation-scale {
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 2s, transform 2s;
+}
+
+.happyContainer.animation-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
 @media only screen and (min-width: 768px) {
   .happyContainer {
     margin-top: 251px;
@@ -170,8 +181,16 @@
 }
 
 
-.btnWrapper {}
+.btnWrapper.animation-scale {
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 2s, transform 2s;
+}
 
+.btnWrapper.animation-active {
+  opacity: 1;
+  transform: scale(1);
+}
 
 .statistics,
 .habitbtn,
