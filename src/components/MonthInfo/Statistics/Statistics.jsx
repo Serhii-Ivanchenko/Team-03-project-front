@@ -1,5 +1,6 @@
 import css from "./Statistics.module.css";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   AreaChart,
   Brush,
@@ -43,6 +44,7 @@ const CustomTooltip = ({ active, payload, coordinate }) => {
 };
 
 export default function Statistics({ monthData, startDay, endDay }) {
+  const { t } = useTranslation();
   const [startIndex, setStartIndex] = useState(startDay);
   const [endIndex, setEndIndex] = useState(endDay);
 
@@ -67,7 +69,7 @@ export default function Statistics({ monthData, startDay, endDay }) {
               tickFormatter={(value) => (value / 1000).toFixed(1)}
               width={40}
               label={{ angle: -90, position: "insideLeft" }}
-              unit={" L"}
+              unit={` ${t("l")}`}
               ticks={[0, 500, 1000, 1500, 2000, 2500]}
             />
 

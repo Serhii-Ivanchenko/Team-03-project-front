@@ -32,7 +32,7 @@ export const userSettingsFormschema = (t) =>
       .max(15, t("user_valid.daily_norm_max"))
       .test(
         "is-decimal",
-        "Daily norm should have up to two decimal places",
+        t("user_valid.decimal_error"),
         (value) => (value ? /^\d+(\.\d{1,2})?$/.test(value) : true)
       ),
   });
