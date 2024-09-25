@@ -84,14 +84,14 @@ const handleAddWaterItem = (newWaterItem) => {
     dispatch(addWaterItem({ newWaterItem, selectedDate: selectedDate }))
       .unwrap()
       .then(() => {
-        toast.success("Add data successfully!");
+        toast.success(t("add_water_modal.add_successfully"));
         onClose();
         reset();
         localStorage.removeItem("waterCount");
         localStorage.removeItem("waterUsed");
       })
       .catch(() => {
-        toast.error("Something went wrong. Please, try again");
+        toast.error(t("add_water_modal.something_wrong"));
       });
   };
 
@@ -135,10 +135,10 @@ const handleAddWaterItem = (newWaterItem) => {
               className={css.formInput}
               placeholder="7:00"
               {...register("recordingTime", {
-                required: "Recording time is required",
+                required: t("add_water_modal.time_required"),
                 pattern: {
                   value: /^([01]\d|2[0-3]):([0-5]\d)$/,
-                  message: "Please enter time in format HH:MM",
+                  message: t("add_water_modal.time_format"),
                 },
               })}
               type="text"
@@ -158,13 +158,13 @@ const handleAddWaterItem = (newWaterItem) => {
             name="waterUsed"
             control={control}
             rules={{
-              required: "Water usage is required",
+              required: t("add_water_modal.water_required"),
               validate: {
                 validNumber: (value) =>
-                  !isNaN(value) || "Please enter a valid number",
+                  !isNaN(value) || t("add_water_modal.valid_number"),
                 nonZero: (value) =>
                   parseInt(value, 10) > 0 ||
-                  "Water usage must be greater than 0",
+                t("add_water_modal.water_must"),
               },
             }}
             render={({ field }) => (

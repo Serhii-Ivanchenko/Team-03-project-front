@@ -25,17 +25,29 @@
     "amount_water": "Amount of water:",
     "recording_time": "Recording time:",
     "enter_water": "Enter the value of the water used:",
-    "save": "Save"
+    "save": "Save",
+    "add_successfully": "Add data successfully!",
+    "something_wrong": "Something went wrong",
+    "time_required": "Recording time is required",
+    "time_format": "Please enter time in format HH:MM",
+    "water_required": "Water usage is required",
+    "valid_number": "Please enter a valid number",
+    "water_must": "Water usage must be greater than 0"
   },
   "delete_water_modal": {
     "delete_entry": "Delete entry",
     "delete_confirmation": "Are you sure you want to delete the entry?",
     "delete": "Delete",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "successfully_deleted": "The item has been successfully deleted",
+    "something_wrong": "Oops, something went wrong. Please try again"
   },
   "edit_water_modal": {
     "edit_amount": "Edit the entered amount of water",
-    "correct_data": "Correct entered data:"
+    "correct_data": "Correct entered data:",
+    "data_successfully": "Data updated successfully!",
+    "amount_required": "Water amount is required",
+    "water_must": "Water amount must be greater than 0"
   },
   "logout_modal": {
     "log_out": "Log out",
@@ -44,6 +56,7 @@
     "cancel": "Cancel"
   },
   "month": "Month",
+  "statistics": "Statistics",
   "reset_password": {
     "change_password": "Change your password",
     "password": "Password",
@@ -148,18 +161,19 @@
     "weight_type_error": "Weight should be a number",
     "weight_required": "Weight should be required",
     "weight_positive": "Weight should be a positive number",
-    "weight_min": "Weight should be more than 10 kg",
+    "weight_min": "Weight should be more than 0 kg",
     "weight_max": "Weight should be less than 350 kg",
     "active_time_type_error": "Active Time should be a number",
     "active_time_required": "Active time should be required",
     "active_time_positive": "Active Time should be a positive number",
-    "active_time_min": "Active Time should be more than 0.5 hours",
+    "active_time_min": "Active Time should be more than 0 hours",
     "active_time_max": "Active Time should be less than 24 hours",
     "daily_norm_type_error": "Daily norma should be a number",
     "daily_norm_required": "Daily norma should be required",
     "daily_norm_positive": "Daily norma should be a positive number",
-    "daily_norm_min": "Daily norma should be more than 1000 ml",
-    "daily_norm_max": "Daily norma should be less than 15000 ml"
+    "daily_norm_min": "Daily norma should be more than 1 l",
+    "daily_norm_max": "Daily norma should be less than 15 l",
+    "decimal_error": "Daily norm should have up to two decimal places"
   },
   "reset_pwd": {
     "passwords_do_not_match": "Passwords do not match",

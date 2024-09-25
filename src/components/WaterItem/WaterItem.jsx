@@ -4,8 +4,10 @@ import { useState } from "react";
 import Modal from "../Modal/Modal";
 import DeleteWaterModal from "../Modals/DeleteWaterModal/DeleteWaterModal";
 import EditWaterModal from "../Modals/EditWaterModal/EditWaterModal";
+import { useTranslation } from "react-i18next";
 
 const WaterItem = ({ itemId, value, time }) => {
+  const { t } = useTranslation();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -38,7 +40,7 @@ const WaterItem = ({ itemId, value, time }) => {
       </div>
       <div className={styles.info}>
         <p className={styles.quantity}>
-          {value}ml
+          {value}{t("add_water_modal.ml")}
           <span className={styles.unit}></span>
         </p>
         <p className={styles.time}>

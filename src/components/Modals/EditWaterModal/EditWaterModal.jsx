@@ -80,7 +80,7 @@ const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
     dispatch(editWaterItem(updatedWaterItem))
       .unwrap()
       .then(() => {
-        toast.success("Data updated successfully!");
+        toast.success(t("edit_water_modal.data_successfully"));
 
         localStorage.removeItem("editWaterAmount");
         localStorage.removeItem("editRecordTime");
@@ -88,7 +88,7 @@ const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
         onClose();
       })
       .catch(() => {
-        toast.error("Something went wrong");
+        toast.error(t("add_water_modal.something_wrong"));
       });
   };
 
@@ -127,10 +127,10 @@ const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
               className={css.formInput}
               placeholder="7:00"
               {...register("recordTime", {
-                required: "Recording time is required",
+                required: t("add_water_modal.time_required"),
                 pattern: {
                   value: /^([01]\d|2[0-3]):([0-5]\d)$/,
-                  message: "Please enter time in format HH:MM",
+                  message: t("add_water_modal.time_format"),
                 },
               })}
               type="text"
@@ -150,13 +150,13 @@ const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
             name="waterAmount"
             control={control}
             rules={{
-              required: "Water amount is required",
+              required: t("edit_water_modal.amount_required"),
               validate: {
                 validNumber: (value) =>
-                  !isNaN(value) || "Please enter a valid number",
+                  !isNaN(value) || t("add_water_modal.valid_number"),
                 nonZero: (value) =>
                   parseInt(value, 10) > 0 ||
-                  "Water amount must be greater than 0",
+                t("edit_water_modal.water_must"),
               },
             }}
             render={({ field }) => (

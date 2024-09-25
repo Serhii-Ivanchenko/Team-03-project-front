@@ -11,7 +11,7 @@ export default function WaterDailyNorma() {
     return (
         <div className={css.normabox}>
             
-        <p key={user.id} className={css.normaAmount}>{dailyNorm}{t("l")}</p>
+        <p key={user.id} className={css.normaAmount}>{dailyNorm} {t("l")}</p>
         
             <p className={css.normaText}>{t("settings.daily_norm")}</p>
         </div>

@@ -13,10 +13,10 @@ const { t } = useTranslation();
     dispatch(deleteWaterItem(itemId))
       .unwrap()
       .then(() => {
-        toast.success("The item has been successfully deleted");
+        toast.success(t("delete_water_modal.successfully_deleted"));
       })
       .catch(() => {
-        toast.error("Oops, something went wrong. Please try again.");
+        toast.error(t("delete_water_modal.something_wrong"));
       });
     onClose();
   };

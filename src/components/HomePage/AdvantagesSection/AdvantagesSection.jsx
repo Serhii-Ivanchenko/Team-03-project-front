@@ -19,7 +19,7 @@ const AdvantagesSection = () => {
     }, 100);
   }, []);
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <div className={css.advSection}>
       <div
@@ -80,8 +80,8 @@ const AdvantagesSection = () => {
 
         <div className={css.happyCustomers}>
           <p className={css.happyText}>
-            {t("advantages.our")}
-            <br />
+          {i18n.language === 'en' ? t("advantages.our") : null}
+          {i18n.language === 'en' ? <br /> : null}
             <span className={css.accent}>
               {totalAmount} {t("advantages.happy")}
             </span>
