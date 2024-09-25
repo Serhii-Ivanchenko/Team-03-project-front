@@ -6,6 +6,7 @@ import css from "./ResetPassword.module.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { resetPassword } from "../../redux/user/operations";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
@@ -13,21 +14,23 @@ const ResetPassword = () => {
   const token = searchParams.get("token"); // Отримання токену з URL
   const navigate = useNavigate();
 
+  const { t } = useTranslation();
+
   const handleResetPassword = async (data) => {
     const { password, confirmPassword } = data;
     if (password !== confirmPassword) {
-      toast.error("Passwords do not match.");
+      toast.error(t("reset_pwd.passwords_do_not_match"));
       return;
     }
 
 dispatch(resetPassword({ token, password }))
   .unwrap()
   .then(() => {
-   toast.success("Password reset successful!");
+   toast.success(t("reset_pwd.password_reset_successful"));
    navigate("/signin");
   })
   .catch(() => {
-   toast.error("Failed to reset password. Please try again.");
+   toast.error(t("reset_pwd.failed_to_reset_password"));
   });
 
   };

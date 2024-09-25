@@ -2,8 +2,10 @@ import { useSelector } from 'react-redux';
 import UserBar from '../UserBar/UserBar';
 import styles from './UserPanel.module.css';
 import { selectUser } from '../../redux/user/selectors';
+import { useTranslation } from 'react-i18next';
 
 const UserPanel = () => {
+  const { t } = useTranslation();
   const user = useSelector(selectUser);
 
   // console.log('User data:', user);
@@ -13,7 +15,7 @@ const UserPanel = () => {
   return (
     <div className={styles.userPanel}>
       <h2 className={styles.greeting}>
-        Hello<span className={styles.userName}>, {userName}!</span>
+        {t("user_greeting")}<span className={styles.userName}>, {userName}!</span>
       </h2>
       <UserBar userName={userName} />
     </div>

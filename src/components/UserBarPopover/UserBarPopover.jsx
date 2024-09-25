@@ -4,8 +4,10 @@ import Modal from '../Modal/Modal';
 import UserSettingsForm from '../UserSettingsForm/UserSettingsForm';
 import LogOutModal from '../Modals/LogOutModal/LogOutModal';
 import { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const UserBarPopover = ({ isVisible, onClose }) => {
+  const { t } = useTranslation();
   const [isSettingsModalOpen, setSettingsModalOpen] = useState(false);
   const [isLogOutModalOpen, setLogOutModalOpen] = useState(false);
   const popoverRef = useRef(null);
@@ -40,13 +42,13 @@ const UserBarPopover = ({ isVisible, onClose }) => {
         <svg className={styles.icon}>
           <use href={`${iconMenu}#icon-settings`}></use>
         </svg>
-        Settings
+        {t("user_bar.settings")}
       </button>
       <button className={styles.buttonOut} onClick={openLogOutModal}>
         <svg className={styles.iconOut}>
           <use href={`${iconMenu}#icon-log-out`}></use>
         </svg>
-        Log out
+        {t("user_bar.log_out")}
       </button>
 
       {isSettingsModalOpen && (

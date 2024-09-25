@@ -14,6 +14,8 @@ import { FiChevronRight } from "react-icons/fi";
 import Statistics from "../Statistics/Statistics.jsx";
 import { useState } from "react";
 import Calendar from "../Calendar/Calendar.jsx";
+import { useTranslation } from "react-i18next";
+
 
 function addMonths(date, months) {
   let result = new Date(date);
@@ -28,6 +30,7 @@ function addMonths(date, months) {
 }
 
 export default function CalendarPagination() {
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const waterMonthData = useSelector(selectMonthWaterItems);
   const waterSelectDate = useSelector(selectDate);
@@ -57,7 +60,7 @@ export default function CalendarPagination() {
     year: "numeric",
   };
 
-  let strMonth = queryMonth.toLocaleString("en-US", options);
+  let strMonth = queryMonth.toLocaleString(i18n.language, options);
   let calendarMonth = queryMonth.toISOString().substring(0, 7);
   let actualDateTotal = waterSelectDate + String(totalByDate);
 
@@ -82,7 +85,7 @@ export default function CalendarPagination() {
   return (
     <div className={css.containerpagin}>
       <div className={css.mainbox}>
-        <p className={css.name}>{isCalendar ? "Month" : "Statistics"}</p>
+        <p className={css.name}>{isCalendar ? {t("month")} : "Statistics"}</p>
         <div className={css.mainboxpagination}>
           <div className={css.boxpagination}>
             <button className={css.iconstep} onClick={handleClickLeft}>

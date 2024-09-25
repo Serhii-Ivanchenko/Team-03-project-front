@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { FiX } from "react-icons/fi";
 import css from "./DeleteWaterModal.module.css";
 import { useDispatch } from "react-redux";
@@ -6,7 +7,8 @@ import toast from "react-hot-toast";
 
 const DeleteWaterModal = ({ onClose, itemId }) => {
   const dispatch = useDispatch();
-
+const { t } = useTranslation();
+  
   const handleDeleteClick = () => {
     dispatch(deleteWaterItem(itemId))
       .unwrap()
@@ -25,17 +27,17 @@ const DeleteWaterModal = ({ onClose, itemId }) => {
         <FiX className={css.closeIcon} />
       </button>
       <div className={css.deleteModalTextContainer}>
-        <h2 className={css.deleteModalTitle}>Delete entry</h2>
+        <h2 className={css.deleteModalTitle}>{t("delete_water_modal.delete_entry")}</h2>
         <p className={css.deleteModalText}>
-          Are you sure you want to delete the entry?
+        {t("delete_water_modal.delete_confirmation")}
         </p>
       </div>
       <div className={css.deleteModalBtnWrapper}>
         <button className={css.deleteModalBtn} onClick={handleDeleteClick}>
-          Delete
+          {t("delete_water_modal.delete")}
         </button>
         <button className={css.deleteModalCancelBtn} onClick={onClose}>
-          Cancel
+        {t("delete_water_modal.cancel")}
         </button>
       </div>
     </div>

@@ -12,8 +12,10 @@ import { IoMdRadioButtonOff } from "react-icons/io";
 import { useState } from "react";
 import { updateUserAvatar, updateUserData } from "../../redux/user/operations";
 import { userSettingsFormschema } from "../../validationSchemas/userSettingsFormSchema";
+import { useTranslation } from "react-i18next";
 
 export default function UserSettingsForm({ onClose }) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const { name, email, gender, photo, weight, activeTime, dailyNorm } =
@@ -27,7 +29,7 @@ export default function UserSettingsForm({ onClose }) {
     watch,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(userSettingsFormschema),
+    resolver: yupResolver(userSettingsFormschema(t)),
     mode: "onChange",
     defaultValues: {
       gender: gender ?? "woman",
@@ -96,7 +98,7 @@ export default function UserSettingsForm({ onClose }) {
       <button type="button" className={css.closeBtn} onClick={onClose}>
         <FiX className={css.closeBtnIcon} />
       </button>
-      <h2 className={css.settingsHeader}>Settings</h2>
+      <h2 className={css.settingsHeader}>{t("settings.header")}</h2>
       <div className={css.imageContainer}>
       <img src={avatar} alt="User`s avatar" className={css.avatar} />
       </div>
@@ -111,10 +113,10 @@ export default function UserSettingsForm({ onClose }) {
         />
         <label htmlFor="userAvatar" className={css.uploadPhotoBtn}>
           <FiUpload color="#2f2f2f" />
-          Upload a photo
+          {t("settings.upload_photo")}
         </label>
         <div className={css.genderFormWrapper}>
-          <p className={css.settingsFormLabel}>Your gender identity</p>
+          <p className={css.settingsFormLabel}>{t("settings.gender")}</p>
           <div className={css.genderWrapper}>
             <label className={css.radioBtnLabel}>
               <input
@@ -133,7 +135,7 @@ export default function UserSettingsForm({ onClose }) {
                   style={{ color: "#9be1a0", width: "20px", height: "20px" }}
                 />
               )}
-              Woman
+              {t("settings.woman")}
             </label>
             <label className={css.radioBtnLabel}>
               <input
@@ -152,7 +154,7 @@ export default function UserSettingsForm({ onClose }) {
                   style={{ color: "#9be1a0", width: "20px", height: "20px" }}
                 />
               )}
-              Man
+              {t("settings.man")}
             </label>
           </div>
         </div>
@@ -161,7 +163,7 @@ export default function UserSettingsForm({ onClose }) {
             <div className={css.inputSectionWrapper}>
               <div className={css.inputWrapper}>
                 <label className={css.settingsFormLabel} htmlFor="name">
-                  Your name
+                {t("settings.name")}
                 </label>
                 <input
                   type="text"
@@ -173,7 +175,7 @@ export default function UserSettingsForm({ onClose }) {
               </div>
               <div className={css.inputWrapper}>
                 <label className={css.settingsFormLabel} htmlFor="email">
-                  Email
+                {t("settings.email")}
                 </label>
                 <input
                   type="email"
@@ -186,33 +188,30 @@ export default function UserSettingsForm({ onClose }) {
                 <p className={css.errorMessage}>{errors.email?.message}</p>
               </div>
             </div>
-            <p className={css.settingsFormLabel}>My daily norma</p>
+            <p className={css.settingsFormLabel}>{t("settings.daily_norm")}</p>
             <div className={css.normaSectionWrapper}>
               <div className={css.normaWrapper}>
-                <p className={css.label}>For woman:</p>
+                <p className={css.label}>{t("settings.formulas.for_woman")}</p>
                 <p className={css.formula}>V=(M*0,03) + (T*0,4)</p>
               </div>
               <div className={css.normaWrapper}>
-                <p className={css.label}>For man:</p>
+                <p className={css.label}>{t("settings.formulas.for_man")}</p>
                 <p className={css.formula}>V=(M*0,04) + (T*0,6)</p>
               </div>
             </div>
             <p className={css.formulaDescr}>
-              <span className={css.accent}>*</span> V is the volume of the water
-              norm in liters per day, M is your body weight, T is the time of
-              active sports, or another type of activity commensurate in terms
-              of loads (in the absence of these, you must set 0)
+              <span className={css.accent}>*</span> {t("settings.notes.description")}
             </p>
             <div className={css.activeTime}>
               <BsExclamationLg className={css.bsExclamationLg} />
-              <p className={css.label}>Active time in hours</p>
+              <p className={css.label}>{t("settings.active_time_hours")}</p>
             </div>
           </div>
           <div className={css.wrapper}>
             <div className={css.inputSectionWrapper}>
               <div className={css.inputWrapper}>
                 <label className={css.label} htmlFor="weight">
-                  Your weight in kilograms:
+                {t("settings.weight")}
                 </label>
                 <input
                   type="text"
@@ -226,7 +225,7 @@ export default function UserSettingsForm({ onClose }) {
               </div>
               <div className={css.inputWrapper}>
                 <label className={css.label} htmlFor="activity">
-                  The time of active participation in sports:
+                {t("settings.active_time")}
                 </label>
                 <input
                   type="text"
@@ -241,15 +240,15 @@ export default function UserSettingsForm({ onClose }) {
             </div>
             <div className={css.recommendedNorma}>
               <p className={css.waterNormaLabel}>
-                The required amount of water in liters per day:
+              {t("settings.water_norm")}
               </p>
               <p className={css.waterNorma}>
-                {selectedOption === "woman" ? womanNorma : manNorma} L
+                {selectedOption === "woman" ? womanNorma : manNorma} {t("l")}
               </p>
             </div>
             <div className={css.userNormaWrapper}>
               <label className={css.settingsFormLabel} htmlFor="userNorma">
-                Write down how much water you will drink:
+              {t("settings.user_norma")}
               </label>
               <input
                 type="text"
@@ -264,7 +263,7 @@ export default function UserSettingsForm({ onClose }) {
           </div>
         </div>
         <button type="submit" className={css.saveButton}>
-          Save
+        {t("settings.save")}
         </button>
       </form>
     </div>

@@ -6,9 +6,11 @@ import toast from "react-hot-toast";
 import { useForm, Controller, useWatch } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { addWaterItem } from "../../../redux/water/operations";
+import { useTranslation } from "react-i18next";
 import { selectDate } from "../../../redux/water/selectors.js";
 
 const AddWaterModal = ({ onClose }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const selectedDate = useSelector(selectDate);
 
@@ -118,12 +120,12 @@ const handleAddWaterItem = (newWaterItem) => {
   return (
     <div className={css.addModalContainer}>
       <div className={css.addModalTextContainer}>
-        <h2 className={css.addModalTitle}>Add water</h2>
-        <h3 className={css.addModalSubTitle}>Choose a value:</h3>
+        <h2 className={css.addModalTitle}>{t("add_water_modal.add_water")}</h2>
+        <h3 className={css.addModalSubTitle}>{t("add_water_modal.choose_value")}</h3>
       </div>
 
       <div className={css.addModalCounterContainer}>
-        <p className={css.addModalCounterTitle}>Amount of water:</p>
+        <p className={css.addModalCounterTitle}>{t("add_water_modal.amount_water")}</p>
         <div className={css.addModalCounter}>
           <button
             className={css.addModalCounterButtonMinus}
@@ -133,14 +135,14 @@ const handleAddWaterItem = (newWaterItem) => {
               <use href={`${iconSprite}#icon-minus-in-circle`}></use>
             </svg>
           </button>
-          <p className={css.addModalCounterText}>{count} ml</p>
+          <p className={css.addModalCounterText}>{count}{t("add_water_modal.ml")}</p>
           <button className={css.addModalCounterButtonPlus} onClick={increment}>
             <svg className={css.icon}>
               <use href={`${iconSprite}#icon-plus-in-circle`}></use>
             </svg>
           </button>
         </div>
-        <p className={css.addModalCounterTitle}>Recording time:</p>
+        <p className={css.addModalCounterTitle}>{t("add_water_modal.recording_time")}</p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <label>
             <input
@@ -163,7 +165,7 @@ const handleAddWaterItem = (newWaterItem) => {
           )}
 
           <h3 className={css.addModalTitleWaterUsed}>
-            Enter the value of the water used:
+          {t("add_water_modal.enter_water")}
           </h3>
 
           <Controller
@@ -200,7 +202,7 @@ const handleAddWaterItem = (newWaterItem) => {
           )}
 
           <button type="submit" className={css.submitBtn}>
-            Save
+          {t("add_water_modal.save")}
           </button>
         </form>
 

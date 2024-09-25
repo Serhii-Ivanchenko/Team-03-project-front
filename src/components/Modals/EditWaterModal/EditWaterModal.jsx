@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import css from "./EditWaterModal.module.css";
 import iconSprite from "../../../assets/images/icons/icons.svg";
 import toast from "react-hot-toast";
-
+import { useTranslation } from "react-i18next";
 import { useForm, Controller, useWatch } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { editWaterItem } from "../../../redux/water/operations";
 
 const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
   const dispatch = useDispatch();
+    const { t } = useTranslation();
 
   const [amount, setAmount] = useState(initialValue);
   const [time, setTime] = useState(initialTime);
@@ -94,12 +95,12 @@ const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
   return (
     <div className={css.editModalContainer}>
       <div className={css.editModalTextContainer}>
-        <h2 className={css.editModalTitle}>Edit the entered amount of water</h2>
-        <h3 className={css.editModalSubTitle}>Correct entered data:</h3>
+        <h2 className={css.editModalTitle}>{t("edit_water_modal.edit_amount")}</h2>
+        <h3 className={css.editModalSubTitle}>{t("edit_water_modal.correct_data")}</h3>
       </div>
 
       <div className={css.editModalCounterContainer}>
-        <p className={css.editModalCounterTitle}>Amount of water:</p>
+        <p className={css.editModalCounterTitle}>{t("add_water_modal.amount_water")}</p>
         <div className={css.editModalCounter}>
           <button
             className={css.editModalCounterButtonMinus}
@@ -109,7 +110,7 @@ const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
               <use href={`${iconSprite}#icon-minus-in-circle`}></use>
             </svg>
           </button>
-          <p className={css.editModalCounterText}>{amount} ml</p>
+          <p className={css.editModalCounterText}>{amount} {t("add_water_modal.ml")}</p>
           <button
             className={css.editModalCounterButtonPlus}
             onClick={incrementAmount}
@@ -119,7 +120,7 @@ const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
             </svg>
           </button>
         </div>
-        <p className={css.editModalCounterTitle}>Recording time:</p>
+        <p className={css.editModalCounterTitle}>{t("add_water_modal.recording_time")}</p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <label>
             <input
@@ -142,7 +143,7 @@ const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
           )}
 
           <h3 className={css.editModalTitleWaterUsed}>
-            Enter the value of the water used:
+          {t("add_water_modal.enter_water")}
           </h3>
 
           <Controller
@@ -179,7 +180,7 @@ const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
           )}
 
           <button type="submit" className={css.submitBtn}>
-            Save
+           {t("add_water_modal.save")}
           </button>
         </form>
 

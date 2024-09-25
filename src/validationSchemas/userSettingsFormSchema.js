@@ -1,37 +1,37 @@
 import * as Yup from "yup";
 
-export const userSettingsFormschema = Yup.object({
+export const userSettingsFormschema = (t) => Yup.object({
   gender: Yup.string()
-    .required("Gender should be required")
+    .required(t("user_valid.gender_required"))
     .oneOf(["woman", "man"]),
   name: Yup.string()
-    .required("Name should be required")
-    .min(2, "Too Short!")
-    .max(40, "Too Long!"),
+    .required(t("user_valid.name_required"))
+    .min(2, t("user_valid.name_too_short"))
+    .max(40, t("user_valid.name_too_long")),
   email: Yup.string()
-    .required("Email should be required")
-    .email("Must be a valid email"),
+    .required(t("user_valid.email_required"))
+    .email(t("user_valid.email_invalid")),
   weight: Yup.number()
-    .typeError("Weight should be a number")
-    .required("Weight should be required")
-    .positive("Weight should be a positive number")
-    .min(0, "Weight should be 0 or more kg")
-    .max(350, "Weight should be less than 350 kg"),
+    .typeError(t("user_valid.weight_type_error"))
+    .required(t("user_valid.weight_required"))
+    .positive(t("user_valid.weight_positive"))
+    .min(0, t("user_valid.weight_min"))
+    .max(350, t("user_valid.weight_max")),
   activeTime: Yup.number()
-    .typeError("Active Time should be a number")
-    .required("Active time should be required")
-    .positive("Active Time should be a positive number")
-    .min(0, "Active Time should be 0 or more hours")
-    .max(24, "Active Time should be less than 24 hours"),
+    .typeError(t("user_valid.active_time_type_error"))
+    .required(t("user_valid.active_time_required"))
+    .positive(t("user_valid.active_time_positive"))
+    .min(0, t("user_valid.active_time_min"))
+    .max(24, t("user_valid.active_time_max")),
   dailyNorm: Yup.number()
-    .typeError("Daily norma should be a number")
-    .required("Daily norma time should be required")
-    .positive("Daily norma should be a positive number")
-    .min(1, "Daily norma should be more than 1 liter")
-    .max(15, "Daily norma should be less than 15 liters")
-    .test(
+    .typeError(t("user_valid.daily_norm_type_error"))
+    .required(t("user_valid.daily_norm_required"))
+    .positive(t("user_valid.daily_norm_positive"))
+    .min(1, t("user_valid.daily_norm_min"))
+    .max(15, t("user_valid.daily_norm_max"))
+  .test(
       "is-decimal",
       "Daily norm should have up to two decimal places",
       (value) => (value ? /^\d+(\.\d{1,2})?$/.test(value) : true)
-    ),
+    ),,
 });

@@ -1,4 +1,4 @@
-.userBarContainer{
+.userBarContainer {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -31,26 +31,26 @@
 
 
 .userBar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 12px;
-    border-radius: 30px;
-    background: #323F47;
-    border: none;
-    max-width: 100%;
-  }
-
-  @media only screen and (min-width: 768px) {
-    .userBar {
-      gap: 10px;
-    }
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 30px;
+  background: #323F47;
+  border: none;
+  max-width: 100%;
 }
-  
+
+@media only screen and (min-width: 768px) {
+  .userBar {
+    gap: 10px;
+  }
+}
+
 .userName {
   color: #FFF;
   text-align: center;
-  font-family: Poppins;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -62,27 +62,27 @@
   max-width: 150px; 
   }
 
-  @media only screen and (min-width: 768px) {
-    .userName {
-      font-size: 16px;
-      line-height: 1.5em;
-      letter-spacing: -0.16px;
-    }
+@media only screen and (min-width: 768px) {
+  .userName {
+    font-size: 16px;
+    line-height: 1.5em;
+    letter-spacing: -0.16px;
+  }
 }
 
-  .icon{
-    fill: transparent;
-    width: 16px;
-    height: 16px;
-    stroke:#FFF;
-    cursor: pointer;
-    flex-shrink: 0;
+.icon {
+  fill: transparent;
+  width: 16px;
+  height: 16px;
+  stroke: #FFF;
+  cursor: pointer;
+  flex-shrink: 0;
 
+}
+
+@media only screen and (min-width: 768px) {
+  .icon {
+    width: 20px;
+    height: 20px;
   }
-
-  @media only screen and (min-width: 768px) {
-    .icon {
-      width: 20px;
-      height: 20px;
-    }
 }
