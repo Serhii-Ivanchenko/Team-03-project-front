@@ -19,50 +19,47 @@
   },
   "loading_message": "Loading, please wait...",
   "add_water_modal": {
-    "addWater": "Add water",
-    "chooseValue": "Choose a value:",
-    "amountOfWater": "Amount of water:",
-    "recordingTime": "Recording time:",
-    "enterWaterValue": "Enter the value of the water used:",
+    "add_water": "Add water",
+    "choose_value": "Choose a value:",
+    "ml": "ml",
+    "amount_water": "Amount of water:",
+    "recording_time": "Recording time:",
+    "enter_water": "Enter the value of the water used:",
     "save": "Save"
   },
   "delete_water_modal": {
-    "deleteEntry": "Delete entry",
-    "deleteConfirmation": "Are you sure you want to delete the entry?",
+    "delete_entry": "Delete entry",
+    "delete_confirmation": "Are you sure you want to delete the entry?",
     "delete": "Delete",
     "cancel": "Cancel"
   },
   "edit_water_modal": {
-    "editAmount": "Edit the entered amount of water",
-    "correctData": "Correct entered data:",
-    "amountOfWater": "Amount of water:",
-    "recordingTime": "Recording time:",
-    "enterWaterValue": "Enter the value of the water used:",
-    "save": "Save"
+    "edit_amount": "Edit the entered amount of water",
+    "correct_data": "Correct entered data:"
   },
   "logout_modal": {
-    "logOut": "Log out",
-    "confirmLeave": "Do you really want to leave?",
-    "logOutError": "Logout failed. Please try again.",
+    "log_out": "Log out",
+    "confirm_leave": "Do you really want to leave?",
+    "log_out_error": "Logout failed. Please try again",
     "cancel": "Cancel"
   },
   "month": "Month",
   "reset_password": {
-    "changePassword": "Change your password",
+    "change_password": "Change your password",
     "password": "Password",
-    "confirmPassword": "Confirm password",
-    "enterNewPassword": "Enter new password",
-    "errorPassword": "Please enter a password.",
-    "errorConfirmPassword": "Please confirm your password."
+    "confirm_password": "Confirm password",
+    "enter_new_password": "Enter new password",
+    "error_password": "Please enter a password",
+    "error_confirm_password": "Please confirm your password"
   },
-  "notFound": {
+  "not_found": {
     "title": "OOOOPS!!! Page not found",
     "linkText": "Return to Homepage"
   },
-  "signIn": {
+  "sign_in": {
     "title": "Sign In",
     "email": "Email",
-    "emailPlaceholder": "Enter your email",
+    "email_placeholder": "Enter your email",
     "password": "Password",
     "password_placeholder": "Enter your password",
     "or": "or",
@@ -74,15 +71,14 @@
     "user_exists": "User already exists",
     "generic_error": "Login failed. Please try again"
   },
-  "forgotPassword": {
+  "forgot_password": {
     "title": "Reset Password",
     "email_placeholder": "Enter your email",
     "success_message": "Check your email for the reset link",
     "error_message": "Something went wrong. Try again!",
-    "send_email": "Send email",
-    "close": "Close"
+    "send_email": "Send email"
   },
-  "signUp": {
+  "sign_up": {
     "title": "Sign Up",
     "email": "Email",
     "email_placeholder": "Enter your email",
@@ -99,7 +95,7 @@
   },
   "user_bar": {
     "settings": "Settings",
-    "logOut": "Log out"
+    "log_out": "Log out"
   },
   "user_greeting": "Hello",
   "settings": {
@@ -118,19 +114,61 @@
     "user_norma": "Write down how much water you will drink:",
     "save": "Save",
     "error_messages": {
-      "name": "Please enter your name.",
-      "email": "Please enter a valid email.",
-      "weight": "Please enter your weight.",
-      "active_time": "Please enter your activity time.",
-      "daily_norm": "Please enter your water intake norm."
+      "name": "Please enter your name",
+      "email": "Please enter a valid email",
+      "weight": "Please enter your weight",
+      "active_time": "Please enter your activity time",
+      "daily_norm": "Please enter your water intake norm"
     },
     "formulas": {
       "for_woman": "For woman:",
       "for_man": "For man:"
     },
     "notes": {
-      "description": "* V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports."
+      "description": "V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)"
     }
   },
-  "no_records": "No records about water consumption"
+  "no_records": "No records about water consumption",
+  "auth_valid": {
+    "invalid_email": "Please enter a valid email address",
+    "email_required": "Email is required",
+    "password_min": "Must contain at least 8 characters",
+    "password_max": "Password cannot exceed 64 characters",
+    "password_required": "Password is required",
+    "passwords_must_match": "Passwords must match",
+    "incorrect_password": "Incorrect password"
+  },
+  "user_valid": {
+    "gender_required": "Gender should be required",
+    "name_required": "Name should be required",
+    "name_too_short": "Too Short!",
+    "name_too_long": "Too Long!",
+    "email_required": "Email should be required",
+    "email_invalid": "Must be a valid email",
+    "weight_type_error": "Weight should be a number",
+    "weight_required": "Weight should be required",
+    "weight_positive": "Weight should be a positive number",
+    "weight_min": "Weight should be more than 10 kg",
+    "weight_max": "Weight should be less than 350 kg",
+    "active_time_type_error": "Active Time should be a number",
+    "active_time_required": "Active time should be required",
+    "active_time_positive": "Active Time should be a positive number",
+    "active_time_min": "Active Time should be more than 0.5 hours",
+    "active_time_max": "Active Time should be less than 24 hours",
+    "daily_norm_type_error": "Daily norma should be a number",
+    "daily_norm_required": "Daily norma should be required",
+    "daily_norm_positive": "Daily norma should be a positive number",
+    "daily_norm_min": "Daily norma should be more than 1000 ml",
+    "daily_norm_max": "Daily norma should be less than 15000 ml"
+  },
+  "reset_pwd": {
+    "passwords_do_not_match": "Passwords do not match",
+    "password_reset_successful": "Password reset successful!",
+    "password_reset_failed": "Password reset failed",
+    "failed_to_reset_password": "Failed to reset password. Please try again",
+    "change_password": "Change your password",
+    "password": "Password",
+    "enter_new_password": "Enter new password",
+    "confirm_password": "Confirm password"
+  }
 }

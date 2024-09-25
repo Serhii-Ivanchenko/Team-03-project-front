@@ -6,8 +6,10 @@ import { useDispatch } from "react-redux";
 import { selectUser } from "../../../redux/user/selectors";
 import { useEffect } from "react";
 import { selectDate } from "../../../redux/water/selectors";
+import { useTranslation } from "react-i18next";
 
 export default function WaterProgressBar() {
+  const { t, i18n } = useTranslation();
   const dayValue = useSelector(selectTotalValue);
   const user = useSelector(selectUser);
   const date = useSelector(selectDate);
@@ -23,7 +25,7 @@ export default function WaterProgressBar() {
   const formatDate = (dateString) => {
   const date = new Date(dateString);
   const options = { day: 'numeric', month: 'long' };
-  return `${date.toLocaleDateString('en-US', options).replace(/\s/, ', ')}`;
+  return `${date.toLocaleDateString(i18n.language, options).replace(/\s/, ', ')}`;
  };
 
   const dateData = () => {
@@ -34,7 +36,7 @@ export default function WaterProgressBar() {
         ? date
         : new Date(date).toISOString().split("T")[0];
 
-    return selectedDate === today ? "Today" : formatDate(selectedDate);
+    return selectedDate === today ? t('today') : formatDate(selectedDate);
   };
 
   useEffect(() => {

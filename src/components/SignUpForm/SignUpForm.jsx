@@ -11,12 +11,14 @@ import toast from "react-hot-toast";
 // import axios from "axios";
 import { useState } from "react";
 import iconSprite from "../../assets/images/icons/icons.svg";
+import { useTranslation } from "react-i18next";
 
 export const AuthFormLayout = ({ children, className }) => {
   return <div className={clsx(css.layout, { className })}>{children}</div>;
 };
 
 const SignUpForm = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -26,7 +28,7 @@ const SignUpForm = () => {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(signUpFormSchema),
+    resolver: yupResolver(signUpFormSchema(t)),
     mode: "onChange",
   });
 
@@ -38,13 +40,13 @@ const SignUpForm = () => {
    .unwrap()
    .then(() => {
      reset();
-     toast.success("Registration successful!");
+     toast.success(t("sign_up.signup_success"));
    })
    .catch((err) => {
      if (err=== 409) {
-          toast.error("User already exists.");
+          toast.error(t("sign_up.user_exists"));
         } else {
-          toast.error("Registration failed. Please try again.");
+          toast.error(t("sign_up.registration_failed"));
         }
    });
 
@@ -101,28 +103,28 @@ const SignUpForm = () => {
   return (
     <AuthFormLayout className={css.layout}>
       <div className={css.signUpContainer}>
-        <h2 className={css.title}>Sign Up</h2>
+        <h2 className={css.title}>{t("sign_up.title")}</h2>
         <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
           <label className={css.field}>
-            <span className={css.label}>Email </span>
+            <span className={css.label}>{t("sign_up.email")}</span>
             <input
               type="email"
               {...register("email", {
                 required: true,
               })}
-              placeholder="Enter your email"
+              placeholder={t("sign_up.email_placeholder")}
               className={clsx(css.input, { [css.inputError]: errors.email })}
             />
             <p className={css.errorMessage}>{errors.email?.message}</p>
           </label>
 
           <label className={css.field}>
-            <span className={css.label}>Password </span>
+            <span className={css.label}>{t("sign_up.password")}</span>
             <div className={css.inputField}>
               <input
                 type={showPassword ? "text" : "password"}
                 {...register("password", { required: true })}
-                placeholder="Enter your password"
+                placeholder={t("sign_up.password_placeholder")}
                 className={clsx(css.input, {
                   [css.inputError]: errors.password,
                 })}
@@ -147,12 +149,12 @@ const SignUpForm = () => {
           </label>
 
           <label className={css.field}>
-            <span className={css.label}> Repeat password</span>
+            <span className={css.label}>{t("sign_up.repeat_password")}</span>
             <div className={css.inputField}>
               <input
                 type={showPassword ? "text" : "password"}
                 {...register("confirmPassword", { required: true })}
-                placeholder="Repeat password"
+                placeholder={t("sign_up.repeat_password")}
                 className={clsx(css.input, {
                   [css.inputError]: errors.confirmPassword,
                 })}
@@ -178,11 +180,11 @@ const SignUpForm = () => {
             </p>
           </label>
 
-          <input className={css.submit} type="submit" value="Sign Up" />
+          <input className={css.submit} type="submit" value={t("sign_up.signup_button")} />
         </form>
 
         <GoogleBtn
-          context={"Sign Up with Google"}
+          context={t("sign_up.google_signup")}
           onClick={() => {
             // handleGoogleSignUp();
             // dispatch(userSlice(true));
@@ -191,9 +193,9 @@ const SignUpForm = () => {
         <div className={css.inviteOnLogIn}>
           {" "}
           <p className={css.inviteText}>
-            Already have an account?{" "}
+          {t("sign_up.invite_text")}{" "}
             <Link className={css.link} to="/signin">
-              Sign In
+            {t("sign_up.sign_in")}
             </Link>
           </p>
         </div>
