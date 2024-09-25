@@ -1,4 +1,4 @@
-.userBarContainer{
+.userBarContainer {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -8,69 +8,69 @@
 }
 
 .userBar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 12px;
-    border-radius: 30px;
-    background: #323F47;
-    border: none;
-    max-width: 100%;
-  }
-
-  @media only screen and (min-width: 768px) {
-    .userBar {
-      gap: 10px;
-    }
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 30px;
+  background: #323F47;
+  border: none;
+  max-width: 100%;
 }
-  
+
+@media only screen and (min-width: 768px) {
+  .userBar {
+    gap: 10px;
+  }
+}
+
 .avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 38px;
-    flex-shrink: 0;
-  }
-
-  @media only screen and (min-width: 768px) {
-    .avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 44px;
-    }
+  width: 38px;
+  height: 38px;
+  border-radius: 38px;
+  flex-shrink: 0;
 }
-  
+
+@media only screen and (min-width: 768px) {
+  .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 44px;
+  }
+}
+
 .userName {
   color: #FFF;
   text-align: center;
-  font-family: Poppins;
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: 1.285em;
   letter-spacing: -0.14px;
-  }
-
-  @media only screen and (min-width: 768px) {
-    .userName {
-      font-size: 16px;
-      line-height: 1.5em;
-      letter-spacing: -0.16px;
-    }
 }
 
-  .icon{
-    fill: transparent;
-    width: 16px;
-    height: 16px;
-    stroke:#FFF;
-    cursor: pointer;
-    flex-shrink: 0;
-
+@media only screen and (min-width: 768px) {
+  .userName {
+    font-size: 16px;
+    line-height: 1.5em;
+    letter-spacing: -0.16px;
   }
+}
 
-  @media only screen and (min-width: 768px) {
-    .icon {
-      width: 20px;
-      height: 20px;
-    }
+.icon {
+  fill: transparent;
+  width: 16px;
+  height: 16px;
+  stroke: #FFF;
+  cursor: pointer;
+  flex-shrink: 0;
+
+}
+
+@media only screen and (min-width: 768px) {
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
 }
