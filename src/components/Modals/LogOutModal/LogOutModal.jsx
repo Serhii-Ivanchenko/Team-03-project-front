@@ -12,13 +12,14 @@ const LogOutModal = ({ onClose }) => {
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
-    dispatch(logOut()).unwrap()
-          .then(() => {
-            navigate("/");
-          })
-          .catch(() => {
-            toast.error(t("logout_modal.log_out_error"));
-          });
+    dispatch(logOut())
+      .unwrap()
+      .then(() => {
+        navigate("/");
+      })
+      .catch(() => {
+        toast.error(t("logout_modal.log_out_error"));
+      });
     onClose();
     dispatch(getUsersAmount());
   };
@@ -34,10 +35,10 @@ const LogOutModal = ({ onClose }) => {
       </div>
       <div className={css.logOutModalBtnWrapper}>
         <button className={css.logOutModalBtn} onClick={handleLogoutClick}>
-        {t("logout_modal.log_out")}
+          {t("logout_modal.log_out")}
         </button>
         <button className={css.logOutModalCancelBtn} onClick={onClose}>
-        {t("logout_modal.cancel")}
+          {t("logout_modal.cancel")}
         </button>
       </div>
     </div>

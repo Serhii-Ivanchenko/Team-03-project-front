@@ -7,6 +7,7 @@ import { selectUser } from "../../../redux/user/selectors";
 import { useEffect } from "react";
 import { selectDate } from "../../../redux/water/selectors";
 import { useTranslation } from "react-i18next";
+import toast from "react-hot-toast";
 
 export default function WaterProgressBar() {
   const { t, i18n } = useTranslation();
@@ -39,7 +40,12 @@ export default function WaterProgressBar() {
   useEffect(() => {
     if (date) {
       const day = new Date(date).toISOString().split("T")[0];
-      dispatch(getDayWaterByDate(day));
+      dispatch(getDayWaterByDate(day))
+        .unwrap()
+        .then(() => {})
+        .catch(() => {
+          toast.error("Something went wrong. Please, try again");
+        });;
     }
   }, [dispatch, date]);
 

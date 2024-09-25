@@ -3,6 +3,7 @@ import { axiosInstance, setAuthHeader } from "../services/api.js";
 import { logoutAction, resetToken } from "../redux/user/slice.js";
 import { useEffect } from "react";
 import { refreshToken } from "../redux/user/operations.js";
+import toast from "react-hot-toast";
 
 export function AxiosInterceptor() {
   const dispatch = useDispatch();
@@ -19,7 +20,13 @@ export function AxiosInterceptor() {
 
             setAuthHeader(accessToken);
 
-            dispatch(resetToken(accessToken));
+            dispatch(resetToken(accessToken))
+              .unwrap()
+              .then(() => {
+              })
+              .catch(() => {
+                toast.error("Something went wrong. Please, refresh the page");
+              });
 
             originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
             return await axiosInstance(originalRequest);

@@ -87,7 +87,7 @@ const EditWaterModal = ({ onClose, itemId, initialValue, initialTime }) => {
 
         onClose();
       })
-      .catch((err) => {
+      .catch(() => {
         toast.error("Something went wrong");
       });
   };
