@@ -1,7 +1,7 @@
 import { FiX } from "react-icons/fi";
 import css from "./LogOutModal.module.css";
 import { useDispatch } from "react-redux";
-import { logOut } from "../../../redux/user/operations.js";
+import { getUsersAmount, logOut } from "../../../redux/user/operations.js";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
@@ -18,6 +18,7 @@ const LogOutModal = ({ onClose }) => {
             toast.error("Logout failed. Please try again.");
           });
     onClose();
+    dispatch(getUsersAmount());
   };
 
   return (
