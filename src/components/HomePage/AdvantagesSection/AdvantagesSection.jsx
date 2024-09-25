@@ -6,8 +6,13 @@ import boy2x from "../../../assets/images/main_page/boy_avatar_2x.webp";
 import secondGirl1x from "../../../assets/images/main_page/second_girl_avatar_1x.webp";
 import secondGirl2x from "../../../assets/images/main_page/second_girl_avatar_2x.webp";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { selectTotalAmount } from "../../../redux/user/selectors.js";
 
 const AdvantagesSection = () => {
+  const totalAmount = useSelector(selectTotalAmount);
+  console.log("total amount in adv section", totalAmount);
+
   const { t } = useTranslation();
   return (
     <div className={css.advSection}>
@@ -66,7 +71,11 @@ const AdvantagesSection = () => {
         <div className={css.happyCustomers}>
           <p className={css.happyText}>
             {t("advantages.our")}
-            <span className={css.accent}> {t("advantages.happy")} </span>
+            <br />
+            <span className={css.accent}>
+              {totalAmount} {t("advantages.happy")}
+            </span>
+            <br />
             {t("advantages.customers")}
           </p>
         </div>

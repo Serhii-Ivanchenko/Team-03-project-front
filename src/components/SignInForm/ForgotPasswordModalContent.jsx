@@ -13,25 +13,15 @@ const ForgotPasswordModalContent = ({ onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-dispatch(sendResetPassword(email))
-  .unwrap()
-  .then(() => {
-    toast.success(t("forgot_password.success_message"));
-    onClose();
-  })
-  .catch((err) => {
-    console.error(err);
-    toast.error(t("forgot_password.error_message"));
-  });
-
-    // try {
-    //   await dispatch(sendResetPassword(email)).unwrap();
-    //   toast.success("Check your email for the reset link.");
-    //   onClose();
-    // } catch (error) {
-    //   console.error(error);
-    //   toast.error("Something went wrong. Please try again.");
-    // }
+    dispatch(sendResetPassword(email))
+      .unwrap()
+      .then(() => {
+        toast.success(t("forgot_password.success_message"));
+        onClose();
+      })
+      .catch(() => {
+        toast.error(t("forgot_password.error_message"));
+      });
   };
 
   return (

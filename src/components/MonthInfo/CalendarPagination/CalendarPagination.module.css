@@ -1,6 +1,6 @@
 .containerpagin {
-    width: 303px;
-    min-width: 276px;
+    /* width: 303px; */
+    /* min-width: 276px; */
     height: 20px;
 
 }
@@ -21,9 +21,13 @@
 .mainbox {
     height: 20px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: #f0eff4;
+}
+
+@media only screen and (min-width: 355px) {
+    .mainbox {
+        justify-content: space-between;
+    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -66,9 +70,6 @@
         width: 215px;
     }
 }
-
-
-
 
 .boxpagination {
     display: flex;
@@ -130,8 +131,15 @@
 }
 
 .pieIconWrapper {
-    width: 20px;
-    height: 20px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 355px) {
+    .pieIconWrapper {
+        width: 20px;
+    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -147,7 +155,7 @@
     stroke: #323f47;
     width: 20px;
     height: 20px;
-    opacity: 0.4;
+    /* opacity: 0.4; */
     cursor: pointer;
 }
 

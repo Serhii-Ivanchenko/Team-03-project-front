@@ -13,3 +13,5 @@ export const selectLoadingAuth = (state) => state.user.loadingAuth;
 export const selectLoadingTracker = (state) => state.user.loadingTracker;
 
 export const selectError = (state) => state.user.error;
+
+export const selectTotalAmount = (state) => state.user.totalAmount;

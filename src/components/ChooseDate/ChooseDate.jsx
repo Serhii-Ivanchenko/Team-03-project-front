@@ -11,11 +11,13 @@ const formatDate = (dateString, language) => {
 };
 
 const ChooseDate = () => {
-  const { t, i18n } = useTranslation();
-  const currentDate = new Date().toLocaleDateString();
-  const selectedDate = useSelector(selectDate);
 
-  const displayDate = selectedDate === currentDate 
+  const { t, i18n } = useTranslation();
+  const today = new Date().toDateString();
+  const selectedDate = useSelector(selectDate);
+  const formattedSelectedDate = new Date(selectedDate).toDateString();
+
+  const displayDate = formattedSelectedDate === today 
     ? t('today') 
     : formatDate(selectedDate, i18n.language);
 

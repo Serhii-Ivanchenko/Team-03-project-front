@@ -5,7 +5,7 @@ import { lazy, Suspense, useEffect } from "react";
 import RestrictedRoute from "../RestrictedRoute.jsx";
 import PrivateRoute from "../PrivateRoute.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { refreshUser } from "../../redux/user/operations.js";
+import { getUsersAmount, refreshUser } from "../../redux/user/operations.js";
 import { selectIsRefreshing } from "../../redux/user/selectors.js";
 import Loader from "../Loader/Loader.jsx";
 import { Toaster } from "react-hot-toast";
@@ -27,6 +27,7 @@ export default function App() {
 
   useEffect(() => {
     dispatch(refreshUser());
+    dispatch(getUsersAmount());
   }, [dispatch]);
 
   const isRefreshing = useSelector(selectIsRefreshing);

@@ -1,8 +1,8 @@
  .container{
-    width: 303px;
-    min-width: 276px;
+    width: inherit;
+    /* min-width: 276px; */
         height: 348px;
-        background-color: #f0eff4;
+        /* background-color: #f0eff4; */
         border-top: none;
         border-radius: 30px;
         margin-top: 40px;

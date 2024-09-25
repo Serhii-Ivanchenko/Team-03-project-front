@@ -4,9 +4,14 @@ import {axiosInstance} from '../../services/api.js'
 // Операція для додвання порції води в поточний день
 export const addWaterItem = createAsyncThunk(
   "water/addWaterItem",
-  async (newWaterItem, thunkAPI) => {
+  async ({ newWaterItem, selectedDate }, thunkAPI) => {
     try {
-      const response = await axiosInstance.post("/water", newWaterItem);
+     const response = await axiosInstance.post("/water", {
+       ...newWaterItem,
+       date: selectedDate,
+     });
+      console.log('response data after addWater', response.data);
+      
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -19,8 +24,9 @@ export const deleteWaterItem = createAsyncThunk(
   "water/deleteItem",
   async (waterItemId, thunkAPI) => {
     try {
-      const response = await axiosInstance.delete(`/water/${waterItemId}`);
-      return response.data;
+      await axiosInstance.delete(`/water/${waterItemId}`);
+      
+      return { id: waterItemId };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

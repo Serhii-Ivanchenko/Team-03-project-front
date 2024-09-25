@@ -99,7 +99,9 @@ export default function UserSettingsForm({ onClose }) {
         <FiX className={css.closeBtnIcon} />
       </button>
       <h2 className={css.settingsHeader}>{t("settings.header")}</h2>
+      <div className={css.imageContainer}>
       <img src={avatar} alt="User`s avatar" className={css.avatar} />
+      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           name={"photo"}

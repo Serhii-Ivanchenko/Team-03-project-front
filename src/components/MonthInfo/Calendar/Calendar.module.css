@@ -1,18 +1,19 @@
-.containercalend{
-    width: 304px;
-    min-width: 276px;
+.containercalend {
+    width: inherit;
+    /* min-width: 276px; */
     height: 300px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    column-gap: 18px;
-    row-gap: 20px;
+    /* column-gap: 18px;
+    row-gap: 20px; */
+    gap: 16px;
     margin-top: 24px;
-   
+
 }
 
 @media only screen and (min-width: 768px) {
-.containercalend {
+    .containercalend {
         width: 640px;
         height: 305px;
         column-gap: 48px;

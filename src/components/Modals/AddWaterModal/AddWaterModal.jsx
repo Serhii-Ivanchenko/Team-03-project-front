@@ -1,48 +1,60 @@
 import React, { useState, useEffect } from "react";
 import css from "./AddWaterModal.module.css";
 import iconSprite from "../../../assets/images/icons/icons.svg";
+import toast from "react-hot-toast";
+
 import { useForm, Controller, useWatch } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addWaterItem } from "../../../redux/water/operations";
 import { useTranslation } from "react-i18next";
+import { selectDate } from "../../../redux/water/selectors.js";
 
 const AddWaterModal = ({ onClose }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const selectedDate = useSelector(selectDate);
 
+  // Використовуємо локальне сховище для кількості води
   const [count, setCount] = useState(() => {
     return localStorage.getItem("waterCount")
       ? parseInt(localStorage.getItem("waterCount"), 10)
       : 50;
   });
 
+  // Функція для отримання поточного часу
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
+
   const {
     control,
     handleSubmit,
     setValue,
     register,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      waterUsed: localStorage.getItem("waterUsed") || count,
-      recordingTime: localStorage.getItem("recordingTime") || "",
+      waterUsed: localStorage.getItem("waterUsed") || count, // Використовуємо localStorage
+      recordingTime: getCurrentTime(), // Встановлюємо поточний час
     },
+    mode: "onChange",
+    reValidateMode: "onChange",
   });
 
-  const recordingTime = useWatch({ control, name: "recordingTime" });
+  // const recordingTime = useWatch({ control, name: "recordingTime" });
   const waterUsed = useWatch({ control, name: "waterUsed" });
 
+  // Оновлюємо значення лічильника та зберігаємо в localStorage
   useEffect(() => {
     localStorage.setItem("waterCount", count);
     setValue("waterUsed", count);
   }, [count, setValue]);
 
-  useEffect(() => {
-    if (recordingTime) {
-      localStorage.setItem("recordingTime", recordingTime);
-    }
-  }, [recordingTime]);
-
+  // Зберігаємо використану кількість води в localStorage
   useEffect(() => {
     if (waterUsed) {
       localStorage.setItem("waterUsed", waterUsed);
@@ -57,16 +69,52 @@ const AddWaterModal = ({ onClose }) => {
     setCount((prevCount) => (prevCount > 0 ? prevCount - 50 : 0));
   };
 
+  const formatTime = (value) => {
+    const cleaned = value.replace(/\D/g, "");
+    const hours = cleaned.slice(0, 2);
+    const minutes = cleaned.slice(2, 4);
+    return `${hours}${minutes ? `:${minutes}` : ""}`;
+  };
+
+  const handleTimeChange = (e) => {
+    const formattedTime = formatTime(e.target.value);
+    setValue("recordingTime", formattedTime);
+  };
+
+const handleAddWaterItem = (newWaterItem) => {
+    dispatch(addWaterItem({ newWaterItem, selectedDate: selectedDate }))
+      .unwrap()
+      .then(() => {
+        toast.success("Add data successfully!");
+        onClose();
+        reset();
+        localStorage.removeItem("waterCount");
+        localStorage.removeItem("waterUsed");
+      })
+      .catch((err) => {
+        toast.error("Something went wrong");
+      });
+  };
+
   const onSubmit = (data) => {
     const newWaterItem = {
-      _id: "_id",
-      userId: "userId",
-      date: new Date().toISOString().split("T")[0],
+      // date: new Date().toISOString().split("T")[0],
       time: data.recordingTime || "00:00",
       value: parseInt(data.waterUsed, 10),
     };
-
-    dispatch(addWaterItem(newWaterItem));
+    handleAddWaterItem(newWaterItem);
+    // dispatch(addWaterItem(newWaterItem))
+    //   .unwrap()
+    //   .then(() => {
+    //     toast.success("Add data successfully!");
+    //     onClose();
+    //     reset();
+    //     localStorage.removeItem("waterCount");
+    //     localStorage.removeItem("waterUsed");
+    //   })
+    //   .catch((err) => {
+    //     toast.error("Something went wrong");
+    //   });
   };
 
   return (
@@ -100,24 +148,59 @@ const AddWaterModal = ({ onClose }) => {
             <input
               className={css.formInput}
               placeholder="7:00"
-              {...register("recordingTime")}
+              {...register("recordingTime", {
+                required: "Recording time is required",
+                pattern: {
+                  value: /^([01]\d|2[0-3]):([0-5]\d)$/,
+                  message: "Please enter time in format HH:MM",
+                },
+              })}
+              type="text"
+              onChange={handleTimeChange}
             />
           </label>
+
+          {errors.recordingTime && (
+            <p className={css.errorMessage}>{errors.recordingTime.message}</p>
+          )}
+
           <h3 className={css.addModalTitleWaterUsed}>
           {t("add_water_modal.enter_water")}
           </h3>
+
           <Controller
             name="waterUsed"
             control={control}
+            rules={{
+              required: "Water usage is required",
+              validate: {
+                validNumber: (value) =>
+                  !isNaN(value) || "Please enter a valid number",
+                nonZero: (value) =>
+                  parseInt(value, 10) > 0 ||
+                  "Water usage must be greater than 0",
+              },
+            }}
             render={({ field }) => (
               <input
                 {...field}
-                className={css.formInput}
-                type="text"
+                className={`${css.formInput} ${
+                  errors.waterUsed ? css.errorInput : ""
+                }`}
+                type="number"
                 placeholder="250"
+                onChange={(e) => {
+                  field.onChange(e);
+                  setCount(e.target.value ? parseInt(e.target.value, 10) : 0);
+                }}
               />
             )}
           />
+
+          {errors.waterUsed && (
+            <p className={css.errorMessage}>{errors.waterUsed.message}</p>
+          )}
+
           <button type="submit" className={css.submitBtn}>
           {t("add_water_modal.save")}
           </button>

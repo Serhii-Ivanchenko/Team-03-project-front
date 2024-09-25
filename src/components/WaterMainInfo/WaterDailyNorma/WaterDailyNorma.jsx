@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 export default function WaterDailyNorma() {
     const { t } = useTranslation();
     const user = useSelector(selectUser)
-    const dailyNorm = user.dailyNorm / 1000;
+    const dailyNorm = user.dailyNorm;
 
     return (
         <div className={css.normabox}>

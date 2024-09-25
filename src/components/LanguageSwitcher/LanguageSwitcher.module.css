@@ -11,6 +11,12 @@
       gap: 20px;
     }
   }
+
+    @media screen and (min-width: 1440px) {
+      .switcherContainer {
+        margin-top: -24px;
+      }
+    }
   
   .radioBtnLabel {
     font-size: 16px;
