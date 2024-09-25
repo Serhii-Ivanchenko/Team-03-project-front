@@ -85,7 +85,7 @@ export default function CalendarPagination() {
   return (
     <div className={css.containerpagin}>
       <div className={css.mainbox}>
-        <p className={css.name}>{isCalendar ? {t("month")} : "Statistics"}</p>
+        <p className={css.name}>{isCalendar ? "Month" : "Statistics"}</p>
         <div className={css.mainboxpagination}>
           <div className={css.boxpagination}>
             <button className={css.iconstep} onClick={handleClickLeft}>
