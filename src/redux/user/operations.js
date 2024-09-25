@@ -198,3 +198,16 @@ export const refreshToken = createAsyncThunk(
     },
   }
 );
+
+// Отримання загальної кількості користувачів
+export const getUsersAmount = createAsyncThunk(
+  "user/getUsersAmount",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axiosInstance.get("/auth/users");
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

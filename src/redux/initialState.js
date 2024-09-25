@@ -21,6 +21,7 @@ export const initialState = {
       activeTime: null,
       dailyNorm: null,
     },
+    totalAmount: null,
     token: null,
     isLoggedIn: false,
     isRefreshing: false,

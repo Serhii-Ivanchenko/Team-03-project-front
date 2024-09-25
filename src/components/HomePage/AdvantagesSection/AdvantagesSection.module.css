@@ -2,7 +2,7 @@
   padding: 0 16px;
   background-image: url(../../../assets/images/main_page/main_page_mobile_girl_1x.webp);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   max-width: 343px;
   height: 353px;
@@ -48,7 +48,7 @@
 /*  */
 .happyContainer {
   width: 160px;
-  height: 48px;
+  height: 52px;
   margin-top: 209px;
   margin-bottom: 8px;
   padding: 10px 14px;
@@ -63,20 +63,17 @@
   .happyContainer {
     margin-top: 251px;
     width: 236px;
-    height: 67px;
+    height: 75px;
     margin-bottom: -14px;
     padding: 10px 20px;
-
   }
 }
 
 @media only screen and (min-width: 1440px) {
   .happyContainer {
     margin-top: 505px;
-
   }
 }
-
 
 .happyList {
   display: flex;

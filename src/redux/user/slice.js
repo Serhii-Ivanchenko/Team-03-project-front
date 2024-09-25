@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "../initialState.js";
 import {
   getUserData,
+  getUsersAmount,
   logIn,
   logInWithGoogle,
   logOut,
@@ -144,7 +145,13 @@ const userSlice = createSlice({
       .addCase(logInWithGoogle.rejected, handleRejectedIsLoggedIn)
       .addCase(refreshToken.fulfilled, (state, action) => {
         state.token = action.payload;
-      }),
+      })
+      .addCase(getUsersAmount.pending, handlePendingAuth)
+      .addCase(getUsersAmount.fulfilled, (state, action) => {
+        state.totalAmount = action.payload.count;
+        state.loadingTracker = false;
+      })
+      .addCase(getUsersAmount.rejected, handleRejectedAuth),
 });
 
 export const { resetToken, logoutAction } = userSlice.actions;
