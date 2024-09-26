@@ -1,16 +1,23 @@
 import * as Yup from "yup";
 
-export const signUpFormSchema = (t) => Yup.object({
-  email: Yup.string().email(t("auth_valid.invalid_email")).required(t("auth_valid.email_required")),
-  password: Yup.string()
-    .min(8, t("auth_valid.password_min"))
-    .max(64, t("auth_valid.password_max"))
-    .required(t("auth_valid.password_required")),
-  confirmPassword: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    t("auth_valid.passwords_must_match")
-  ),
-});
+export const signUpFormSchema = (t) =>
+  Yup.object({
+    email: Yup.string()
+      .email(t("auth_valid.invalid_email"))
+      .matches(
+        /^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+        "Email should contain domain (e.g: .com, .net)"
+      )
+      .required(t("auth_valid.email_required")),
+    password: Yup.string()
+      .min(8, t("auth_valid.password_min"))
+      .max(64, t("auth_valid.password_max"))
+      .required(t("auth_valid.password_required")),
+    confirmPassword: Yup.string().oneOf(
+      [Yup.ref("password"), null],
+      t("auth_valid.passwords_must_match")
+    ),
+  });
 
 export const signInFormSchema = (t) => Yup.object({
   email: Yup.string().email(t("auth_valid.invalid_email")).required(t("auth_valid.email_required")),

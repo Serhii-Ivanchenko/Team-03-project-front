@@ -44,6 +44,8 @@ const SignUpForm = () => {
       .catch((err) => {
         if (err === 409) {
           toast.error(t("sign_up.user_exists"));
+        } else if (err === 400) {
+          toast.error("Enter a valid email");
         } else {
           toast.error(t("sign_up.registration_failed"));
         }
@@ -133,16 +135,20 @@ const SignUpForm = () => {
             </p>
           </label>
 
-          <input className={css.submit} type="submit" value={t("sign_up.signup_button")} />
+          <input
+            className={css.submit}
+            type="submit"
+            value={t("sign_up.signup_button")}
+          />
         </form>
 
         <GoogleBtn context={t("sign_up.google_signup")} onClick={() => {}} />
         <div className={css.inviteOnLogIn}>
           {" "}
           <p className={css.inviteText}>
-          {t("sign_up.invite_text")}{" "}
+            {t("sign_up.invite_text")}{" "}
             <Link className={css.link} to="/signin">
-            {t("sign_up.sign_in")}
+              {t("sign_up.sign_in")}
             </Link>
           </p>
         </div>

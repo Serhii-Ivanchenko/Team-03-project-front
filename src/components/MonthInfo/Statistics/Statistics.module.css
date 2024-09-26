@@ -10,7 +10,7 @@
 }
 
 .areabox {
-    width: 303px;
+    max-width: 303px;
 }
 
 @media only screen and (min-width: 768px) {
